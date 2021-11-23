@@ -1,0 +1,18 @@
+{
+  "name": "rejufe-web-backend",
+  "version": "1.0.0",
+  "main": "index.jsx",
+  "repository": "https://github.com/cpejr/rejufe-web-backend.git",
+  "author": "Pedro Babosa <pedrobarbosa@cpejr.com.br>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.jsx"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13",
+    "nodemon": "^2.0.15"
+  }
+}
