@@ -17,7 +17,7 @@ mongoose.connect('mongodb+srv://admin:Sirius123%40@cluster0.jtyc0.mongodb.net/Re
         console.log(err);
     }
     else{
-        console.log('MongoDB Conectado com sucesso')
+        console.log('Connected to bucket')
     }
 })
 
@@ -33,6 +33,6 @@ app.use(routes)
 
 // require('/controllers/authController')(app);
 
-app.listen(3003, function () {
-    console.log('Servidor iniciou com sucesso')
+app.listen(3333, function () {
+    console.log('Listening on port: 3333')
 });
