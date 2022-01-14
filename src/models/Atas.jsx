@@ -8,9 +8,10 @@ const Notices = new mongoose.Schema({
     Type: {
         type: String,
         require: true,
+        enum: ['ATAS','EDITAIS'],
     },
     date: {
-        type: String,
+        type: Date,
         require: true,
     },
     description: {
