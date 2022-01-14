@@ -6,7 +6,7 @@ const Information = new mongoose.Schema({
         require: true,
     },
     number: {
-        type: Date,
+        type: Number,
         require: true,
     },
     description: {
@@ -16,6 +16,7 @@ const Information = new mongoose.Schema({
     Type: {
         type: String,
         require: true,
+        enum: ['INFORMATIVO','COMUNICADO'],
     },
     archive_1: {
         type: String,
