@@ -18,6 +18,7 @@ const UserSchema = new mongoose.Schema({
     Type: {
         type: String,
         require: true,
+        enum : ['ADMINISTRADOR','USUÁRIO'],
     },
     nome: {
         type: String,
@@ -40,10 +41,9 @@ const UserSchema = new mongoose.Schema({
         type: String,
         require: true,
         unique: true,
-        default: Number,
     },
     nascimento: {
-        type: String,
+        type: Date,
         require: true,
     },
     naturalidade: {
@@ -52,23 +52,25 @@ const UserSchema = new mongoose.Schema({
     },
     sexo :{
         type: String,
-        require: false,
+        require: true,
+        enum : ['MASCULINO','FEMININO','OUTROS'],
     },
     estadoCivil: {
         type: String,
         require: true,
+        enum : ['SOLTEIRO(A)','CASADO(A)','DIVORCIADO(A)','DESQUITADO(A)','OUTROS'],
     },
     conjuge: {
         type: String,
-        require: true,
+        require: false,
     },
-    nascimento: {
-        type: String,
-        require: true,
+    nascimento_conjuge: {
+        type: Date,
+        require: false,
     },
     filhos :{
         type: String,
-        require: true,
+        require: false,
     },
     CEP: {
         type: String,
@@ -80,9 +82,8 @@ const UserSchema = new mongoose.Schema({
         require: true,
     },
     numero: {
-        type: String,
+        type: Number,
         require: true,
-        default: Number,
     },
     complemento: {
         type: String,
@@ -103,6 +104,7 @@ const UserSchema = new mongoose.Schema({
     lotacao: {
         type: String,
         require: true,
+        enum : ['CEARÁ','RIO GRANDE DO NORTE','PARAÍBA','PERNAMBUCO','ALAGOAS','SERGIPE'],
     },
     atuacao: {
         type: String,
@@ -110,17 +112,15 @@ const UserSchema = new mongoose.Schema({
     },
     CEP_pessoal: {
         type: String,
-        require: true,
-        default: Number,
+        require: false,
     },
     endereco_pessoal: {
         type: String,
-        required: true,
+        required: false,
     },
     numero_pessoal: {
         type: String,
-        require: true,
-        default: Number,
+        require: false,
     },
     complemento_pessoal: {
         type: String,
@@ -128,33 +128,30 @@ const UserSchema = new mongoose.Schema({
     },
     bairro_pessoal: {
         type: String,
-        require: true,
+        require: false,
     },
     cidade_pessoal: {
         type: String,
-        require: true,
+        require: false,
     },
     estado_pessoal: {
         type: String,
-        require: true,
+        require: false,
     },
     telefone: {
         type: String,
-        require: true,
-        default: Number,
+        require: false,
         unique: true,
     },
     fax: {
         type: String,
-        require: true,
-        default: Number,
+        require: false,
         unique: true,
     },
     celular: {
         type: String,
         require: true,
         unique: true,
-        default: Number,
     },
     e_mail: {
         type: String,
@@ -171,7 +168,7 @@ const UserSchema = new mongoose.Schema({
         require: true,
     },
     admissao: {
-        type: String,
+        type: Date,
         require: true,
     },
 });
