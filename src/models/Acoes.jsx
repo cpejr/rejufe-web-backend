@@ -8,9 +8,10 @@ const Actions = new mongoose.Schema({
     Type: {
         type: String,
         require: true,
+        enum:['ADMINISTRATIVAS','JUDICIAIS'],
     },
     date: {
-        type: String,
+        type: Date,
         require: true,
     },
     description: {
