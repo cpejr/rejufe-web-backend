@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -7,9 +8,7 @@ const mongoose = require('mongoose');
 const routes  = require('./src/routes.jsx')
 const app = express();
 
-// const MONGO_URL = 'mongodb+srv://admin:Sirius123%40@cluster0.jtyc0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-
-mongoose.connect('mongodb+srv://admin:Sirius123%40@cluster0.jtyc0.mongodb.net/Rejufe?retryWrites=true&w=majority', {
+mongoose.connect(process.env.DB_URL, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
 }, function(err){
