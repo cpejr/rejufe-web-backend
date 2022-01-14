@@ -8,9 +8,10 @@ const Models = new mongoose.Schema({
     Type: {
         type: String,
         require: true,
+        enum: ['REQUERIMENTOS ADMINISTRATIVOS','PETIÇÕES INICIAIS','JURISPRUDÊNCIA'],
     },
     date: {
-        type: String,
+        type: Date,
         require: true,
     },
     description: {
