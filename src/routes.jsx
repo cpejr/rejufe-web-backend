@@ -8,6 +8,9 @@ routes.get('/', function(req, res) {
 })
 
 routes.get('/acoes', AcoesController.index)
+routes.get('/acoes/:_id', AcoesController.detail)
 routes.post('/acoes', AcoesController.store)
+routes.delete('/acoes/:_id', AcoesController.delete)
+routes.put('/acoes/', AcoesController.update)
 
 module.exports = routes;
