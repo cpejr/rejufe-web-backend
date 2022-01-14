@@ -8,10 +8,12 @@ const NewsLetterSchema = new mongoose.Schema({
     seccao: {
         type: String,
         require: false,
+        enum: ['SITE','INTRANET'],
     },
     Type: {
         type: String,
         require: false,
+        enum: ['ARTIGO','NOTÍCIAS'],
     },
     title: {
         type: String,
@@ -34,18 +36,19 @@ const NewsLetterSchema = new mongoose.Schema({
         require: false,
     },
     Date: {
-        type: String,
-        require: true,
-        default: Date,
+        type: Date,
+        default: Date.now,
     },
     Status: {
         type: String,
         require: true,
+        enum: ['I','A'],
     },
     enviarSite: {
         type: Boolean,
         require: true,
     },
+    
 });
 
 const NewsLetter = mongoose.model('Noticias', UserSchema);
