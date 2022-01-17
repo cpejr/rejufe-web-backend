@@ -13,7 +13,7 @@ const Accountability = new mongoose.Schema({
         type: String,
         require: true,
     },
-    PDF: {
+    pdf: {
         type: String,
         require: true,
     },
