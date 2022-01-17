@@ -26,12 +26,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(routes)
 
-// app.get('/', (req, res) => {
-//     res.send.json({Message: 'OK'});
-// });
-
-// require('/controllers/authController')(app);
-
 app.listen(3333, function () {
     console.log('Listening on port: 3333')
 });
