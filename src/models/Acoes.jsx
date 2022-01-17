@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
+const Decimal128 = mongoose.Schema.Types.Decimal128
 
 const DataSchema = new mongoose.Schema({
-    action_id: {
-        type: String,
-        require: true,
-    },
     Type: {
         type: String,
         require: true,

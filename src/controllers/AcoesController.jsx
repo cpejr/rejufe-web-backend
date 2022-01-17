@@ -2,45 +2,74 @@ const Actions = require('../models/Acoes.jsx')
 
 module.exports = {
     async index(req, res){
-        const actions = await Actions.find();
-        res.json(actions)
+        try {
+            const actions = await Actions.find();
+            res.json(actions)
+        }
+        catch(err){
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get all bank',
+            });
+        }
     },
 
     async detail(req, res){
-        const {_id} = req.params;
-        const actions = await Actions.findOne({_id: _id});
-        res.json(actions)
+        try{
+            const {id} = req.params;
+            const actions = await Actions.findOne({_id: id});
+            res.json(actions)
+        }
+        catch(err){
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get a bank by id',
+            });
+        }
     },
 
     async store(req, res){
-        const { action_id, Type, date, description, archive_1, archive_2 } = req.body;
-        
-        let dataCreate = {}
-
-        dataCreate = {
-            action_id, Type, date, description, archive_1, archive_2
+        try{
+            const action = req.body;
+            await Actions.create(action);
+            res.json(action)
         }
-
-        const actions = await Actions.create(dataCreate);
-        res.json(actions)
+        catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to create a bank',
+            });
+        }
     },
 
     async delete(req, res){
-        const {_id} = req.params;
-        const actions = await Actions.findByIdAndDelete({_id: _id});
-        res.json(actions)
+        try{
+            const {id} = req.params;
+            const actions = await Actions.findByIdAndDelete({_id: id});
+            res.json(actions)
+        }
+        catch(err){
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to delete a bank',
+            });
+        }
     },
 
     async update(req, res){
-        const { _id, action_id, Type, date, description, archive_1, archive_2 } = req.body;
-        
-        let dataCreate = {}
-
-        dataCreate = {
-            action_id, Type, date, description, archive_1, archive_2
+        try{
+            const {id} = req.params;
+            console.log(req.params);
+            const action = req.body
+            const actions = await Actions.findByIdAndUpdate({_id: id}, action);
+            res.json(actions)
         }
-
-        const actions = await Actions.findByIdAndUpdate({_id}, dataCreate, {new: true});
-        res.json(actions)
+        catch(err){
+            console.error(err);
+            return res.status(500).json({
+                notification:
+                    'Internal server error while trying to update a bank by id',
+            });
+        }
     }
 }
