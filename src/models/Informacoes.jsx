@@ -1,21 +1,18 @@
 const mongoose = require('mongoose');
 
 const Information = new mongoose.Schema({
-    registros_id: {
-        type: String,
-        require: true,
-    },
     number: {
-        type: Date,
+        type: Number,
         require: true,
     },
     description: {
         type: String,
         require: true,
     },
-    Type: {
+    type: {
         type: String,
         require: true,
+        enum: ['INFORMATIVO','COMUNICADO'],
     },
     archive_1: {
         type: String,

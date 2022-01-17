@@ -1,16 +1,13 @@
 const mongoose = require('mongoose');
 
 const Notices = new mongoose.Schema({
-    doc_id: {
+    type: {
         type: String,
         require: true,
-    },
-    Type: {
-        type: String,
-        require: true,
+        enum: ['ATAS','EDITAIS'],
     },
     date: {
-        type: String,
+        type: Date,
         require: true,
     },
     description: {

@@ -1,12 +1,8 @@
 const mongoose = require('mongoose');
 
 const Accountability = new mongoose.Schema({
-    prest_id: {
-        type: String,
-        require: true,
-    },
     date: {
-        type: String,
+        type: Date,
         require: true,
     },
     title: {
@@ -17,7 +13,7 @@ const Accountability = new mongoose.Schema({
         type: String,
         require: true,
     },
-    PDF: {
+    pdf: {
         type: String,
         require: true,
     },

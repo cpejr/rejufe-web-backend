@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const ContactUs = new mongoose.Schema({
-    contact_id: {
-        type: String,
-        require: true,
-    },
     name: {
         type: String,
         require: true,
@@ -14,7 +10,7 @@ const ContactUs = new mongoose.Schema({
         type: String,
         require: true,
     },
-    Msg: {
+    message: {
         type: String,
         require: true,
     },

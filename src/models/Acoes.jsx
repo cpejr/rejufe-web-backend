@@ -2,12 +2,13 @@ const mongoose = require('mongoose');
 const Decimal128 = mongoose.Schema.Types.Decimal128
 
 const DataSchema = new mongoose.Schema({
-    Type: {
+    type: {
         type: String,
         require: true,
+        enum:['ADMINISTRATIVAS','JUDICIAIS'],
     },
     date: {
-        type: String,
+        type: Date,
         require: true,
     },
     description: {
