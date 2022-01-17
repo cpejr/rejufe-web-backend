@@ -5,12 +5,12 @@ const NewsLetterSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    seccao: {
+    section: {
         type: String,
         require: false,
         enum: ['SITE','INTRANET'],
     },
-    Type: {
+    type: {
         type: String,
         require: false,
         enum: ['ARTIGO','NOTÍCIAS'],
@@ -35,21 +35,21 @@ const NewsLetterSchema = new mongoose.Schema({
         type: String,
         require: false,
     },
-    Date: {
+    date: {
         type: Date,
         default: Date.now,
     },
-    Status: {
+    status: {
         type: String,
         require: true,
         enum: ['I','A'],
     },
-    enviarSite: {
+    send_site: {
         type: Boolean,
         require: true,
     },
     
 });
 
-const NewsLetter = mongoose.model('Noticias', UserSchema);
-module.exports = NewsLetter;
+const NewsLetterSchema = mongoose.model('Noticias', UserSchema);
+module.exports = NewsLetterSchema;

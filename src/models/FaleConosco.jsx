@@ -14,7 +14,7 @@ const ContactUs = new mongoose.Schema({
         type: String,
         require: true,
     },
-    Msg: {
+    message: {
         type: String,
         require: true,
     },

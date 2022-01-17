@@ -15,130 +15,130 @@ const UserSchema = new mongoose.Schema({
         require: true,
         select: false,
     },
-    Type: {
+    type: {
         type: String,
         require: true,
         enum : ['ADMINISTRADOR','USUÁRIO'],
     },
-    nome: {
+    name: {
         type: String,
         require: true,
     },
-    usuario: {
-        type: String,
-        require: true,
-        unique: true,
-    },
-    cargo: {
-        type: String,
-        require: true,
-    },
-    nacionalidade: {
-        type: String,
-        require: true,
-    },
-    CPF: {
+    user: {
         type: String,
         require: true,
         unique: true,
     },
-    nascimento: {
+    office: {
+        type: String,
+        require: true,
+    },
+    nacionality: {
+        type: String,
+        require: true,
+    },
+    cpf: {
+        type: String,
+        require: true,
+        unique: true,
+    },
+    birth: {
         type: Date,
         require: true,
     },
-    naturalidade: {
+    place_of_birth: {
         type: String,
         require: true,
     },
-    sexo :{
+    gender :{
         type: String,
         require: true,
         enum : ['MASCULINO','FEMININO','OUTROS'],
     },
-    estadoCivil: {
+    civil_state: {
         type: String,
         require: true,
         enum : ['SOLTEIRO(A)','CASADO(A)','DIVORCIADO(A)','DESQUITADO(A)','OUTROS'],
     },
-    conjuge: {
+    spouse: {
         type: String,
         require: false,
     },
-    nascimento_conjuge: {
+    birth_spouse: {
         type: Date,
         require: false,
     },
-    filhos :{
+    sons :{
         type: String,
         require: false,
     },
-    CEP: {
+    cep: {
         type: String,
         require: true,
         default: Number,
     },
-    endereco: {
+    address: {
         type: String,
         require: true,
     },
-    numero: {
+    number: {
         type: Number,
         require: true,
     },
-    complemento: {
+    complement: {
         type: String,
         require: false,
     },
-    bairro: {
+    district: {
         type: String,
         require: true,
     },
-    cidade: {
+    city: {
         type: String,
         require: true,
     },
-    estado: {
+    state: {
         type: String,
         require: true,
     },
-    lotacao: {
+    allocation : {
         type: String,
         require: true,
         enum : ['CEARÁ','RIO GRANDE DO NORTE','PARAÍBA','PERNAMBUCO','ALAGOAS','SERGIPE'],
     },
-    atuacao: {
+    acting: {
         type: String,
         require: true,
     },
-    CEP_pessoal: {
+    personal_cep: {
         type: String,
         require: false,
     },
-    endereco_pessoal: {
+    personal_address: {
         type: String,
         required: false,
     },
-    numero_pessoal: {
+    personal_number: {
         type: String,
         require: false,
     },
-    complemento_pessoal: {
+    personal_complement: {
         type: String,
         require: false,
     },
-    bairro_pessoal: {
+    personal_district: {
         type: String,
         require: false,
     },
-    cidade_pessoal: {
+    personal_city: {
         type: String,
         require: false,
     },
-    estado_pessoal: {
+    personal_state: {
         type: String,
         require: false,
     },
-    telefone: {
+    telephone: {
         type: String,
         require: false,
         unique: true,
@@ -148,7 +148,7 @@ const UserSchema = new mongoose.Schema({
         require: false,
         unique: true,
     },
-    celular: {
+    cell: {
         type: String,
         require: true,
         unique: true,
@@ -167,23 +167,12 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         require: true,
     },
-    admissao: {
+    admission: {
         type: Date,
         require: true,
     },
 });
 
-// UserSchema.pre('save', async function(next) {
-//     const hash_user = await bcrypt.hash(this.user_id, 10);
-//     const hash_firebase = await bcrypt.hash(this.firebaseId, 10);
-    
-//     this.user_id = hash_user;
-//     this.firebaseId = hash_firebase;
-//     // precisa criptografar algum campo? 
-//     // Esses campos criptografados já recebram o token, então é redundante
-
-//     next();
-// })
 
 const Usuario = mongoose.model('Usuario', UserSchema);
 module.exports = Usuario;

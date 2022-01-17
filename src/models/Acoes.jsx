@@ -5,7 +5,7 @@ const Actions = new mongoose.Schema({
         type: String,
         require: true,
     },
-    Type: {
+    type: {
         type: String,
         require: true,
         enum:['ADMINISTRATIVAS','JUDICIAIS'],
