@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const DataSchema = new mongoose.Schema({
-    action_id: {
-        type: String,
-        require: true,
-    },
     type: {
         type: String,
         require: true,

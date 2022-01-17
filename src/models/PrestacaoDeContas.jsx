@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const Accountability = new mongoose.Schema({
-    prest_id: {
-        type: String,
-        require: true,
-    },
     date: {
         type: String,
         require: true,

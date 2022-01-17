@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const NewsLetterSchema = new mongoose.Schema({
-    noticia_id: {
-        type: String,
-        require: true,
-    },
     section: {
         type: String,
         require: false,

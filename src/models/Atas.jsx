@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const Notices = new mongoose.Schema({
-    doc_id: {
-        type: String,
-        require: true,
-    },
     type: {
         type: String,
         require: true,

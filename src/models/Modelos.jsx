@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const Models = new mongoose.Schema({
-    modelos_id: {
-        type: String,
-        require: true,
-    },
     type: {
         type: String,
         require: true,

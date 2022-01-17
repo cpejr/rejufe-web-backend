@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const Information = new mongoose.Schema({
-    registros_id: {
-        type: String,
-        require: true,
-    },
     number: {
         type: Number,
         require: true,
