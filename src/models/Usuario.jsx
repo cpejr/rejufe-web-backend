@@ -71,27 +71,27 @@ const UserSchema = new mongoose.Schema({
         require: true,
         default: Number,
     },
-    address: {
+    profissional_address: {
         type: String,
         require: true,
     },
-    number: {
+    profissional_number: {
         type: Number,
         require: true,
     },
-    complement: {
+    profissional_complement: {
         type: String,
         require: false,
     },
-    district: {
+    profissional_district: {
         type: String,
         require: true,
     },
-    city: {
+    profissional_city: {
         type: String,
         require: true,
     },
-    state: {
+    profissional_state: {
         type: String,
         require: true,
     },
@@ -142,7 +142,7 @@ const UserSchema = new mongoose.Schema({
         require: false,
         unique: true,
     },
-    cell: {
+    cell_phone_number: {
         type: String,
         require: true,
         unique: true,
@@ -161,7 +161,7 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         require: true,
     },
-    admission: {
+    admission_date: {
         type: Date,
         require: true,
     },

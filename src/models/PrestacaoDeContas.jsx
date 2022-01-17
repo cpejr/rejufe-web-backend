@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Accountability = new mongoose.Schema({
     date: {
-        type: String,
+        type: Date,
         require: true,
     },
     title: {
