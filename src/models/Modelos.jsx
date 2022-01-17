@@ -1,16 +1,13 @@
 const mongoose = require('mongoose');
 
 const Models = new mongoose.Schema({
-    modelos_id: {
+    type: {
         type: String,
         require: true,
-    },
-    Type: {
-        type: String,
-        require: true,
+        enum: ['REQUERIMENTOS ADMINISTRATIVOS','PETIÇÕES INICIAIS','JURISPRUDÊNCIA'],
     },
     date: {
-        type: String,
+        type: Date,
         require: true,
     },
     description: {

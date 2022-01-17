@@ -1,16 +1,13 @@
 const mongoose = require('mongoose');
 
 const DataSchema = new mongoose.Schema({
-    action_id: {
+    type: {
         type: String,
         require: true,
-    },
-    Type: {
-        type: String,
-        require: true,
+        enum:['ADMINISTRATIVAS','JUDICIAIS'],
     },
     date: {
-        type: String,
+        type: Date,
         require: true,
     },
     description: {
