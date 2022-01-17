@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Actions = new mongoose.Schema({
+const DataSchema = new mongoose.Schema({
     action_id: {
         type: String,
         require: true,
@@ -28,5 +28,5 @@ const Actions = new mongoose.Schema({
     },
 });
 
-const Actions = mongoose.model('Acoes', UserSchema);
+const Actions = mongoose.model('Acoes', DataSchema);
 module.exports = Actions;
