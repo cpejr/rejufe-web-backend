@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Information = new mongoose.Schema({
+const DataSchema = new mongoose.Schema({
     number: {
         type: Number,
         require: true,
@@ -24,5 +24,5 @@ const Information = new mongoose.Schema({
     },
 });
 
-const Information = mongoose.model('Informacoes', UserSchema);
+const Information = mongoose.model('Informacoes', DataSchema);
 module.exports = Information;

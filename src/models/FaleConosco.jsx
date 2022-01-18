@@ -16,15 +16,15 @@ const DataSchema = new mongoose.Schema({
     },
 });
 
-DataSchema.pre('save', async function(next) {
-    const hash_email = await bcrypt.hash(this.email, 10);
-    const hash_Msg = await bcrypt.hash(this.Msg, 10);
+// DataSchema.pre('save', async function(next) {
+//     const hash_email = await bcrypt.hash(this.email, 10);
+//     const hash_Msg = await bcrypt.hash(this.Msg, 10);
     
-    this.email = hash_email;
-    this.Msg = hash_Msg;
+//     this.email = hash_email;
+//     this.Msg = hash_Msg;
    
-    next();
-})
+//     next();
+// })
 
 const ContactUs= mongoose.model('FaleConosco', DataSchema);
 module.exports = ContactUs;
