@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Notices = new mongoose.Schema({
+const DataSchema = new mongoose.Schema({
     type: {
         type: String,
         require: true,
@@ -24,5 +24,5 @@ const Notices = new mongoose.Schema({
     },
 });
 
-const Notices = mongoose.model('Atas', UserSchema);
+const Notices = mongoose.model('Atas', DataSchema);
 module.exports = Notices;
