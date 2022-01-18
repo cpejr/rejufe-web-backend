@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const NewsLetterSchema = new mongoose.Schema({
+const DataSchema = new mongoose.Schema({
     section: {
         type: String,
         require: false,
@@ -47,5 +47,5 @@ const NewsLetterSchema = new mongoose.Schema({
     
 });
 
-const NewsLetterSchema = mongoose.model('Noticias', UserSchema);
+const NewsLetterSchema = mongoose.model('Noticias', DataSchema);
 module.exports = NewsLetterSchema;
