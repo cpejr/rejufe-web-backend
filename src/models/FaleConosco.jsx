@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const ContactUs = new mongoose.Schema({
+const DataSchema = new mongoose.Schema({
     name: {
         type: String,
         require: true,
@@ -16,7 +16,7 @@ const ContactUs = new mongoose.Schema({
     },
 });
 
-UserSchema.pre('save', async function(next) {
+DataSchema.pre('save', async function(next) {
     const hash_email = await bcrypt.hash(this.email, 10);
     const hash_Msg = await bcrypt.hash(this.Msg, 10);
     
@@ -26,7 +26,7 @@ UserSchema.pre('save', async function(next) {
     next();
 })
 
-const ContactUs= mongoose.model('FaleConosco', UserSchema);
+const ContactUs= mongoose.model('FaleConosco', DataSchema);
 module.exports = ContactUs;
 
 
