@@ -59,7 +59,6 @@ module.exports = {
     async update(req, res){
         try{
             const {id} = req.params;
-            console.log(req.params);
             const action = req.body
             const actions = await Actions.findByIdAndUpdate({_id: id}, action);
             res.json(actions)

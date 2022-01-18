@@ -5,7 +5,7 @@ const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
 
-const routes  = require('./src/routes.jsx')
+const routes = require('./src/routes/index');
 const app = express();
 
 mongoose.connect(process.env.DB_URL, {
