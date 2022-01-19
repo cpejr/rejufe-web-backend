@@ -135,17 +135,14 @@ const UserSchema = new mongoose.Schema({
     telephone: {
         type: String,
         require: false,
-        unique: true,
     },
     fax: {
         type: String,
         require: false,
-        unique: true,
     },
     cell_phone_number: {
         type: String,
         require: true,
-        unique: true,
     },
     e_mail: {
         type: String,
