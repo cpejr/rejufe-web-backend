@@ -1,7 +1,7 @@
 const Accountability = require('../models/PrestacaoDeContas.jsx')
 
 module.exports = {
-  async store(req, res) {
+  async create(req, res) {
     try {
       const accountability = req.body;
       await Accountability.create(accountability);
@@ -14,7 +14,7 @@ module.exports = {
       });
     }
   },
-  async index(req, res) {
+  async getAll(req, res) {
     try {
       const accountability = await Accountability.find();
       res.json(accountability)
@@ -26,7 +26,7 @@ module.exports = {
       });
     }
   },
-  async detail(req, res) {
+  async getById(req, res) {
     try {
       const { id } = req.params;
       const accountability = await Accountability.findOne({ _id: id });

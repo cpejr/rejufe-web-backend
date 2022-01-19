@@ -1,7 +1,7 @@
 const Quizzes = require('../models/Quizzes.jsx')
 
 module.exports = {
-  async store(req, res) {
+  async create(req, res) {
     try {
       const quizzes = req.body;
       await Quizzes.create(quizzes);
@@ -14,7 +14,7 @@ module.exports = {
       });
     }
   },
-  async index(req, res) {
+  async getAll(req, res) {
     try {
       const quizzes = await Quizzes.find();
       res.json(quizzes)
@@ -26,7 +26,7 @@ module.exports = {
       });
     }
   },
-  async detail(req, res) {
+  async getById(req, res) {
     try {
       const { id } = req.params;
       const quizzes = await Quizzes.findOne({ _id: id });

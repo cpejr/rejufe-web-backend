@@ -7,15 +7,15 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 ContactUsRouter.get(
     '/',
-    ContactUsController.index
+    ContactUsController.getAll
 );
 ContactUsRouter.get(
     '/:id',
-    ContactUsController.detail
+    ContactUsController.getById
 );
 ContactUsRouter.post(
     '/',
-    ContactUsController.store
+    ContactUsController.create
 );
 ContactUsRouter.put(
     '/:id',

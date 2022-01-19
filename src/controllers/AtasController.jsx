@@ -1,12 +1,12 @@
-const Atas = require('../models/Atas.jsx')
+const Atas = require('../models/Atas.jsx');
 
 module.exports = {
-    async index(req, res){
+    async getAll(req, res) {
         try {
             const atas = await Atas.find();
             res.json(atas)
         }
-        catch(err){
+        catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to get all atas',
@@ -14,13 +14,13 @@ module.exports = {
         }
     },
 
-    async detail(req, res){
-        try{
-            const {id} = req.params;
-            const atas = await Atas.findOne({_id: id});
+    async getById(req, res) {
+        try {
+            const { id } = req.params;
+            const atas = await Atas.findOne({ _id: id });
             res.json(atas)
         }
-        catch(err){
+        catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to get an atas by id',
@@ -28,8 +28,8 @@ module.exports = {
         }
     },
 
-    async store(req, res){
-        try{
+    async create(req, res) {
+        try {
             const atas = req.body;
             await Atas.create(atas);
             res.json(atas)
@@ -42,13 +42,13 @@ module.exports = {
         }
     },
 
-    async delete(req, res){
-        try{
-            const {id} = req.params;
-            const atas = await Atas.findByIdAndDelete({_id: id});
+    async delete(req, res) {
+        try {
+            const { id } = req.params;
+            const atas = await Atas.findByIdAndDelete({ _id: id });
             res.json(atas)
         }
-        catch(err){
+        catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to delete an atas',
@@ -56,14 +56,14 @@ module.exports = {
         }
     },
 
-    async update(req, res){
-        try{
-            const {id} = req.params;
+    async update(req, res) {
+        try {
+            const { id } = req.params;
             const atas = req.body
-            const result = await Atas.findByIdAndUpdate({_id: id}, atas);
+            const result = await Atas.findByIdAndUpdate({ _id: id }, atas);
             res.json(result)
         }
-        catch(err){
+        catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification:

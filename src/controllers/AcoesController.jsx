@@ -1,12 +1,12 @@
 const Actions = require('../models/Acoes.jsx')
 
 module.exports = {
-    async index(req, res){
+    async getAll(req, res) {
         try {
             const actions = await Actions.find();
             res.json(actions)
         }
-        catch(err){
+        catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to get all bank',
@@ -14,13 +14,13 @@ module.exports = {
         }
     },
 
-    async detail(req, res){
-        try{
-            const {id} = req.params;
-            const actions = await Actions.findOne({_id: id});
+    async getById(req, res) {
+        try {
+            const { id } = req.params;
+            const actions = await Actions.findOne({ _id: id });
             res.json(actions)
         }
-        catch(err){
+        catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to get a bank by id',
@@ -28,8 +28,8 @@ module.exports = {
         }
     },
 
-    async store(req, res){
-        try{
+    async create(req, res) {
+        try {
             const action = req.body;
             await Actions.create(action);
             res.json(action)
@@ -42,13 +42,13 @@ module.exports = {
         }
     },
 
-    async delete(req, res){
-        try{
-            const {id} = req.params;
-            const actions = await Actions.findByIdAndDelete({_id: id});
+    async delete(req, res) {
+        try {
+            const { id } = req.params;
+            const actions = await Actions.findByIdAndDelete({ _id: id });
             res.json(actions)
         }
-        catch(err){
+        catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to delete a bank',
@@ -56,14 +56,14 @@ module.exports = {
         }
     },
 
-    async update(req, res){
-        try{
-            const {id} = req.params;
+    async update(req, res) {
+        try {
+            const { id } = req.params;
             const action = req.body
-            const actions = await Actions.findByIdAndUpdate({_id: id}, action);
+            const actions = await Actions.findByIdAndUpdate({ _id: id }, action);
             res.json(actions)
         }
-        catch(err){
+        catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification:

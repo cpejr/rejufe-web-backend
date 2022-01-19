@@ -7,15 +7,15 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 QuizzesRouter.get(
   '/',
-  QuizzesController.index
+  QuizzesController.getAll
 );
 QuizzesRouter.get(
   '/:id',
-  QuizzesController.detail
+  QuizzesController.getById
 );
 QuizzesRouter.post(
   '/',
-  QuizzesController.store
+  QuizzesController.create
 );
 QuizzesRouter.put(
   '/:id',

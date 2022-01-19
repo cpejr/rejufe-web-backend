@@ -7,15 +7,15 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 AccountabilityRouter.get(
   '/',
-  AccountabilityController.index
+  AccountabilityController.getAll
 );
 AccountabilityRouter.get(
   '/:id',
-  AccountabilityController.detail
+  AccountabilityController.getById
 );
 AccountabilityRouter.post(
   '/',
-  AccountabilityController.store
+  AccountabilityController.create
 );
 AccountabilityRouter.put(
   '/:id',

@@ -1,7 +1,7 @@
 const User = require('../models/Usuario.jsx')
 
 module.exports = {
-    async store(req, res) {
+    async create(req, res) {
         try {
             const user = req.body;
             await User.create(user);
@@ -14,7 +14,7 @@ module.exports = {
             });
         }
     },
-    async index(req, res) {
+    async getAll(req, res) {
         try {
             const user = await User.find();
             res.json(user)
@@ -26,7 +26,7 @@ module.exports = {
             });
         }
     },
-    async detail(req, res) {
+    async getById(req, res) {
         try {
             const { id } = req.params;
             const user = await User.findOne({ _id: id });

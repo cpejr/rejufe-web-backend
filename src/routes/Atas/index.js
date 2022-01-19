@@ -7,15 +7,15 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 AtasRouter.get(
     '/',
-    AtasController.index
+    AtasController.getAll
 );
 AtasRouter.get(
     '/:id',
-    AtasController.detail
+    AtasController.getById
 );
 AtasRouter.post(
     '/',
-    AtasController.store
+    AtasController.create
 );
 AtasRouter.put(
     '/:id',

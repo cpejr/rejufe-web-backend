@@ -7,15 +7,15 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 NoticeRouter.get(
   '/',
-  NoticeController.index
+  NoticeController.getAll
 );
 NoticeRouter.get(
   '/:id',
-  NoticeController.detail
+  NoticeController.getById
 );
 NoticeRouter.post(
   '/',
-  NoticeController.store
+  NoticeController.create
 );
 NoticeRouter.put(
   '/:id',

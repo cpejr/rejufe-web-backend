@@ -1,7 +1,7 @@
 const Noticias = require('../models/Noticias.jsx')
 
 module.exports = {
-  async store(req, res) {
+  async create(req, res) {
     try {
       const noticias = req.body;
       await Noticias.create(noticias);
@@ -14,7 +14,7 @@ module.exports = {
       });
     }
   },
-  async index(req, res) {
+  async getAll(req, res) {
     try {
       const noticias = await Noticias.find();
       res.json(noticias)
@@ -26,7 +26,7 @@ module.exports = {
       });
     }
   },
-  async detail(req, res) {
+  async getById(req, res) {
     try {
       const { id } = req.params;
       const noticias = await Noticias.findOne({ _id: id });

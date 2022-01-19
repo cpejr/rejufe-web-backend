@@ -7,15 +7,15 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 ModelsRouter.get(
     '/',
-    ModelsController.index
+    ModelsController.getAll
 );
 ModelsRouter.get(
     '/:id',
-    ModelsController.detail
+    ModelsController.getById
 );
 ModelsRouter.post(
     '/',
-    ModelsController.store
+    ModelsController.create
 );
 ModelsRouter.put(
     '/:id',

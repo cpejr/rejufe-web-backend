@@ -7,15 +7,15 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 ActionsRouter.get(
     '/',
-    ActionsController.index
+    ActionsController.getAll
 );
 ActionsRouter.get(
     '/:id',
-    ActionsController.detail
+    ActionsController.getById
 );
 ActionsRouter.post(
     '/',
-    ActionsController.store
+    ActionsController.create
 );
 ActionsRouter.put(
     '/:id',

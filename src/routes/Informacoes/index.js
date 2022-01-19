@@ -7,15 +7,15 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 InformationsRouter.get(
     '/',
-    InformationsController.index
+    InformationsController.getAll
 );
 InformationsRouter.get(
     '/:id',
-    InformationsController.detail
+    InformationsController.getById
 );
 InformationsRouter.post(
     '/',
-    InformationsController.store
+    InformationsController.create
 );
 InformationsRouter.put(
     '/:id',
