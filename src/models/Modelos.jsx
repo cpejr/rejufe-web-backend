@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-const DataSchema = new mongoose.Schema({
+const ModelSchema = new mongoose.Schema({
     type: {
         type: String,
         require: true,
-        enum: ['REQUERIMENTOS ADMINISTRATIVOS','PETIÇÕES INICIAIS','JURISPRUDÊNCIA'],
+        enum: ['REQUERIMENTOS ADMINISTRATIVOS', 'PETIÇÕES INICIAIS', 'JURISPRUDÊNCIA'],
     },
     date: {
         type: Date,
@@ -24,5 +24,5 @@ const DataSchema = new mongoose.Schema({
     },
 });
 
-const Models = mongoose.model('Modelos', DataSchema);
+const Models = mongoose.model('Modelos', ModelSchema);
 module.exports = Models;

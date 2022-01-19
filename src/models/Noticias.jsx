@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
-const DataSchema = new mongoose.Schema({
+const NoticeSchema = new mongoose.Schema({
     section: {
         type: String,
         require: false,
-        enum: ['SITE','INTRANET'],
+        enum: ['SITE', 'INTRANET'],
     },
     type: {
         type: String,
         require: false,
-        enum: ['ARTIGO','NOTÍCIAS'],
+        enum: ['ARTIGO', 'NOTÍCIAS'],
     },
     title: {
         type: String,
@@ -38,14 +38,14 @@ const DataSchema = new mongoose.Schema({
     status: {
         type: String,
         require: true,
-        enum: ['I','A'],
+        enum: ['I', 'A'],
     },
     send_site: {
         type: Boolean,
         require: true,
     },
-    
+
 });
 
-const NewsLetterSchema = mongoose.model('Noticias', DataSchema);
-module.exports = NewsLetterSchema;
+const Notice = mongoose.model('Noticias', NoticeSchema);
+module.exports = Notice;

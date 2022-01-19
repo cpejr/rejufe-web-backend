@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-const DataSchema = new mongoose.Schema({
+const AtaSchema = new mongoose.Schema({
     type: {
         type: String,
         require: true,
-        enum: ['ATAS','EDITAIS'],
+        enum: ['ATAS', 'EDITAIS'],
     },
     date: {
         type: Date,
@@ -24,5 +24,5 @@ const DataSchema = new mongoose.Schema({
     },
 });
 
-const Notices = mongoose.model('Atas', DataSchema);
-module.exports = Notices;
+const Atas = mongoose.model('Atas', AtaSchema);
+module.exports = Atas;

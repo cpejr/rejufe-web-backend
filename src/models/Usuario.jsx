@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema({
     type: {
         type: String,
         require: true,
-        enum : ['ADMINISTRADOR','USUÁRIO'],
+        enum: ['ADMINISTRADOR', 'USUÁRIO'],
     },
     name: {
         type: String,
@@ -44,15 +44,15 @@ const UserSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    gender :{
+    gender: {
         type: String,
         require: true,
-        enum : ['MASCULINO','FEMININO','OUTROS'],
+        enum: ['MASCULINO', 'FEMININO', 'OUTROS'],
     },
     civil_state: {
         type: String,
         require: true,
-        enum : ['SOLTEIRO(A)','CASADO(A)','DIVORCIADO(A)','DESQUITADO(A)','OUTROS'],
+        enum: ['SOLTEIRO(A)', 'CASADO(A)', 'DIVORCIADO(A)', 'DESQUITADO(A)', 'OUTROS'],
     },
     spouse: {
         type: String,
@@ -62,7 +62,7 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         require: false,
     },
-    sons :{
+    sons: {
         type: String,
         require: false,
     },
@@ -95,10 +95,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    allocation : {
+    allocation: {
         type: String,
         require: true,
-        enum : ['CEARÁ','RIO GRANDE DO NORTE','PARAÍBA','PERNAMBUCO','ALAGOAS','SERGIPE'],
+        enum: ['CEARÁ', 'RIO GRANDE DO NORTE', 'PARAÍBA', 'PERNAMBUCO', 'ALAGOAS', 'SERGIPE'],
     },
     acting: {
         type: String,
@@ -168,5 +168,5 @@ const UserSchema = new mongoose.Schema({
 });
 
 
-const Usuario = mongoose.model('Usuario', UserSchema);
-module.exports = Usuario;
+const User = mongoose.model('Usuario', UserSchema);
+module.exports = User;
