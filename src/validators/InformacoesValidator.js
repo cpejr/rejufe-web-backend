@@ -3,9 +3,9 @@ const { celebrate, Segments, Joi } = require('celebrate');
 module.exports = {
   create: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      type: Joi.string().valid('ATAS', 'EDITAIS').required(),
-      date: Joi.date().required(),
+      number: Joi.number().required(),
       description: Joi.string().required(),
+      type: Joi.string().valid('INFORMATIVO', 'COMUNICADO').required(),
       archive_1: Joi.string().optional(),
       archive_2: Joi.string().optional(),
     }),
@@ -22,11 +22,11 @@ module.exports = {
       id: Joi.string().required(),
     }),
     [Segments.BODY]: Joi.object().keys({
-      type: Joi.string().valid('ATAS', 'EDITAIS').optional(),
-      date: Joi.date().optional(),
-      description: Joi.string().optional(),
-      archive_1: Joi.string().optional(),
-      archive_2: Joi.string().optional(),
+        number: Joi.number().optional(),
+        description: Joi.string().optional(),
+        type: Joi.string().valid('INFORMATIVO', 'COMUNICADO').optional(),
+        archive_1: Joi.string().optional(),
+        archive_2: Joi.string().optional(),
       }).min(1),
   }),
 

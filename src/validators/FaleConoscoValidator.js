@@ -20,9 +20,9 @@ module.exports = {
       id: Joi.string().required(),
     }),
     [Segments.BODY]: Joi.object().keys({
-        name: Joi.string().required(),
-        email: Joi.string().email().required(),
-        message: Joi.string().required(),
+        name: Joi.string().optional(),
+        email: Joi.string().email().optional(),
+        message: Joi.string().optional(),
       }).min(1),
   }),
 
