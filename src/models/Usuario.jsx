@@ -18,6 +18,12 @@ const UserSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
+    email: {
+        type: String,
+        require: true,
+        unique: true,
+        lowercase: true,
+    },
     user: {
         type: String,
         require: true,
@@ -144,12 +150,6 @@ const UserSchema = new mongoose.Schema({
     cell_phone_number: {
         type: String,
         require: true,
-    },
-    e_mail: {
-        type: String,
-        require: true,
-        unique: true,
-        lowercase: true,
     },
     email_REJUFE: {
         type: Boolean,
