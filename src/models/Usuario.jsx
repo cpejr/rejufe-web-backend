@@ -139,6 +139,7 @@ const UserSchema = new mongoose.Schema({
     fax: {
         type: String,
         require: false,
+        unique: false,
     },
     cell_phone_number: {
         type: String,
