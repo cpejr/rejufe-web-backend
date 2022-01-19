@@ -4,7 +4,7 @@ module.exports = {
     async getAll(req, res) {
         try {
             const atas = await Atas.find();
-            res.json(atas)
+            return res.status(200).json(atas);
         }
         catch (err) {
             console.error(err);
@@ -18,7 +18,7 @@ module.exports = {
         try {
             const { id } = req.params;
             const atas = await Atas.findOne({ _id: id });
-            res.json(atas)
+            return res.status(200).json(atas);
         }
         catch (err) {
             console.error(err);
@@ -32,7 +32,7 @@ module.exports = {
         try {
             const atas = req.body;
             await Atas.create(atas);
-            res.json(atas)
+            return res.status(200).json(atas);
         }
         catch (err) {
             console.error(err);
@@ -46,7 +46,7 @@ module.exports = {
         try {
             const { id } = req.params;
             const atas = await Atas.findByIdAndDelete({ _id: id });
-            res.json(atas)
+            return res.status(200).json(atas);
         }
         catch (err) {
             console.error(err);
@@ -61,7 +61,7 @@ module.exports = {
             const { id } = req.params;
             const atas = req.body
             const result = await Atas.findByIdAndUpdate({ _id: id }, atas);
-            res.json(result)
+            return res.status(200).json(result)
         }
         catch (err) {
             console.error(err);

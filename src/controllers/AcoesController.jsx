@@ -4,7 +4,7 @@ module.exports = {
     async getAll(req, res) {
         try {
             const actions = await Actions.find();
-            res.json(actions)
+            return res.status(200).json(actions);
         }
         catch (err) {
             console.error(err);
@@ -18,7 +18,7 @@ module.exports = {
         try {
             const { id } = req.params;
             const actions = await Actions.findOne({ _id: id });
-            res.json(actions)
+            return res.status(200).json(actions);
         }
         catch (err) {
             console.error(err);
@@ -32,7 +32,7 @@ module.exports = {
         try {
             const action = req.body;
             await Actions.create(action);
-            res.json(action)
+            return res.status(200).json(action);
         }
         catch (err) {
             console.error(err);
@@ -46,7 +46,7 @@ module.exports = {
         try {
             const { id } = req.params;
             const actions = await Actions.findByIdAndDelete({ _id: id });
-            res.json(actions)
+            return res.status(200).json(actions);
         }
         catch (err) {
             console.error(err);
@@ -61,7 +61,7 @@ module.exports = {
             const { id } = req.params;
             const action = req.body
             const actions = await Actions.findByIdAndUpdate({ _id: id }, action);
-            res.json(actions)
+            return res.status(200).json(actions);
         }
         catch (err) {
             console.error(err);

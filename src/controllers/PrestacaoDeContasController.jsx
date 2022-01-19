@@ -5,7 +5,7 @@ module.exports = {
     try {
       const accountability = req.body;
       await Accountability.create(accountability);
-      res.json(accountability)
+      return res.status(200).json(accountability);
     }
     catch (err) {
       console.error(err);
@@ -17,7 +17,7 @@ module.exports = {
   async getAll(req, res) {
     try {
       const accountability = await Accountability.find();
-      res.json(accountability)
+      return res.status(200).json(accountability);
     }
     catch (err) {
       console.error(err);
@@ -30,7 +30,7 @@ module.exports = {
     try {
       const { id } = req.params;
       const accountability = await Accountability.findOne({ _id: id });
-      res.json(accountability)
+      return res.status(200).json(accountability);
     }
     catch (err) {
       console.error(err);
@@ -44,7 +44,7 @@ module.exports = {
       const { id } = req.params;
       const accountability = req.body
       const result = await Accountability.findByIdAndUpdate({ _id: id }, accountability);
-      res.json(result)
+      return res.status(200).json(result);
     }
     catch (err) {
       console.error(err);
@@ -58,7 +58,7 @@ module.exports = {
     try {
       const { id } = req.params;
       const accountability = await Accountability.findByIdAndDelete({ _id: id });
-      res.json(accountability)
+      return res.status(200).json(accountability);
     }
     catch (err) {
       console.error(err);

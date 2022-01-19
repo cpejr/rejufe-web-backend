@@ -4,12 +4,12 @@ module.exports = {
     async getAll(req, res) {
         try {
             const informations = await Informations.find();
-            res.json(informations)
+            return res.status(200).json(informations);
         }
         catch (err) {
             console.error(err);
             return res.status(500).json({
-                notification: 'Internal server error while trying to get all atas',
+                notification: 'Internal server error while trying to get all informations',
             });
         }
     },
@@ -18,12 +18,12 @@ module.exports = {
         try {
             const { id } = req.params;
             const informations = await Informations.findOne({ _id: id });
-            res.json(informations)
+            return res.status(200).json(informations);
         }
         catch (err) {
             console.error(err);
             return res.status(500).json({
-                notification: 'Internal server error while trying to get an atas by id',
+                notification: 'Internal server error while trying to get an information by id',
             });
         }
     },
@@ -32,12 +32,12 @@ module.exports = {
         try {
             const informations = req.body;
             await Informations.create(informations);
-            res.json(informations)
+            return res.status(200).json(informations);
         }
         catch (err) {
             console.error(err);
             return res.status(500).json({
-                notification: 'Internal server error while trying to create an atas',
+                notification: 'Internal server error while trying to create an information',
             });
         }
     },
@@ -46,12 +46,12 @@ module.exports = {
         try {
             const { id } = req.params;
             const informations = await Informations.findByIdAndDelete({ _id: id });
-            res.json(informations)
+            return res.status(200).json(informations);
         }
         catch (err) {
             console.error(err);
             return res.status(500).json({
-                notification: 'Internal server error while trying to delete an atas',
+                notification: 'Internal server error while trying to delete an information',
             });
         }
     },
@@ -61,13 +61,13 @@ module.exports = {
             const { id } = req.params;
             const informations = req.body
             const result = await Informations.findByIdAndUpdate({ _id: id }, informations);
-            res.json(result)
+            return res.status(200).json(result);
         }
         catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification:
-                    'Internal server error while trying to update an atas by id',
+                    'Internal server error while trying to update an return information by id',
             });
         }
     }

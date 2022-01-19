@@ -5,7 +5,7 @@ module.exports = {
     try {
       const noticias = req.body;
       await Noticias.create(noticias);
-      res.json(noticias)
+      return res.status(200).json(noticias);
     }
     catch (err) {
       console.error(err);
@@ -17,7 +17,7 @@ module.exports = {
   async getAll(req, res) {
     try {
       const noticias = await Noticias.find();
-      res.json(noticias)
+      return res.status(200).json(noticias);
     }
     catch (err) {
       console.error(err);
@@ -30,7 +30,7 @@ module.exports = {
     try {
       const { id } = req.params;
       const noticias = await Noticias.findOne({ _id: id });
-      res.json(noticias)
+      return res.status(200).json(noticias);
     }
     catch (err) {
       console.error(err);
@@ -44,7 +44,7 @@ module.exports = {
       const { id } = req.params;
       const noticias = req.body
       const result = await Noticias.findByIdAndUpdate({ _id: id }, noticias);
-      res.json(result)
+      return res.status(200).json(result);
     }
     catch (err) {
       console.error(err);
@@ -58,7 +58,7 @@ module.exports = {
     try {
       const { id } = req.params;
       const noticias = await Noticias.findByIdAndDelete({ _id: id });
-      res.json(noticias)
+      return res.status(200).json(noticias);
     }
     catch (err) {
       console.error(err);

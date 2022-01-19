@@ -4,7 +4,7 @@ module.exports = {
     async getAll(req, res) {
         try {
             const contactUs = await ContactUs.find();
-            res.json(contactUs)
+            return res.status(200).json(contactUs);
         }
         catch (err) {
             console.error(err);
@@ -18,7 +18,7 @@ module.exports = {
         try {
             const { id } = req.params;
             const contactUs = await ContactUs.findOne({ _id: id });
-            res.json(contactUs)
+            return res.status(200).json(contactUs);
         }
         catch (err) {
             console.error(err);
@@ -32,7 +32,7 @@ module.exports = {
         try {
             const contactUs = req.body;
             await ContactUs.create(contactUs);
-            res.json(contactUs)
+            return res.status(200).json(contactUs);
         }
         catch (err) {
             console.error(err);
@@ -46,7 +46,7 @@ module.exports = {
         try {
             const { id } = req.params;
             const contactUs = await ContactUs.findByIdAndDelete({ _id: id });
-            res.json(contactUs)
+            return res.status(200).json(contactUs);
         }
         catch (err) {
             console.error(err);
@@ -61,7 +61,7 @@ module.exports = {
             const { id } = req.params;
             const contactUs = req.body
             const result = await ContactUs.findByIdAndUpdate({ _id: id }, contactUs);
-            res.json(result)
+            return res.status(200).json(result);
         }
         catch (err) {
             console.error(err);

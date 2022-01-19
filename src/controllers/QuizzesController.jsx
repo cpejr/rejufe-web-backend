@@ -5,7 +5,7 @@ module.exports = {
     try {
       const quizzes = req.body;
       await Quizzes.create(quizzes);
-      res.json(quizzes)
+      return res.status(200).json(quizzes);
     }
     catch (err) {
       console.error(err);
@@ -17,7 +17,7 @@ module.exports = {
   async getAll(req, res) {
     try {
       const quizzes = await Quizzes.find();
-      res.json(quizzes)
+      return res.status(200).json(quizzes);
     }
     catch (err) {
       console.error(err);
@@ -30,7 +30,7 @@ module.exports = {
     try {
       const { id } = req.params;
       const quizzes = await Quizzes.findOne({ _id: id });
-      res.json(quizzes)
+      return res.status(200).json(quizzes);
     }
     catch (err) {
       console.error(err);
@@ -44,7 +44,7 @@ module.exports = {
       const { id } = req.params;
       const quizzes = req.body
       const result = await Quizzes.findByIdAndUpdate({ _id: id }, quizzes);
-      res.json(result)
+      return res.status(200).json(result);
     }
     catch (err) {
       console.error(err);
@@ -58,7 +58,7 @@ module.exports = {
     try {
       const { id } = req.params;
       const quizzes = await Quizzes.findByIdAndDelete({ _id: id });
-      res.json(quizzes)
+      return res.status(200).json(quizzes);
     }
     catch (err) {
       console.error(err);
