@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Information = new mongoose.Schema({
+const InformationSchema = new mongoose.Schema({
     number: {
         type: Number,
         require: true,
@@ -12,7 +12,7 @@ const Information = new mongoose.Schema({
     type: {
         type: String,
         require: true,
-        enum: ['INFORMATIVO','COMUNICADO'],
+        enum: ['INFORMATIVO', 'COMUNICADO'],
     },
     archive_1: {
         type: String,
@@ -24,5 +24,5 @@ const Information = new mongoose.Schema({
     },
 });
 
-const Information = mongoose.model('Informacoes', UserSchema);
+const Information = mongoose.model('Informacoes', InformationSchema);
 module.exports = Information;

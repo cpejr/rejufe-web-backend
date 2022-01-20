@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Accountability = new mongoose.Schema({
+const AccountabilitySchema = new mongoose.Schema({
     date: {
         type: Date,
         require: true,
@@ -19,5 +19,5 @@ const Accountability = new mongoose.Schema({
     },
 });
 
-const Accountability = mongoose.model('PrestacaoDeContas', UserSchema);
+const Accountability = mongoose.model('PrestacaoDeContas', AccountabilitySchema);
 module.exports = Accountability;

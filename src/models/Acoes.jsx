@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const Decimal128 = mongoose.Schema.Types.Decimal128
 
-const DataSchema = new mongoose.Schema({
+const AcoesSchema = new mongoose.Schema({
     type: {
         type: String,
         require: true,
-        enum:['ADMINISTRATIVAS','JUDICIAIS'],
+        enum: ['ADMINISTRATIVAS', 'JUDICIAIS'],
     },
     date: {
         type: Date,
@@ -25,5 +25,5 @@ const DataSchema = new mongoose.Schema({
     },
 });
 
-const Actions = mongoose.model('Acoes', DataSchema);
+const Actions = mongoose.model('Acoes', AcoesSchema);
 module.exports = Actions;
