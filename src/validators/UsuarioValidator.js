@@ -1,10 +1,9 @@
 const { celebrate, Segments, Joi } = require("celebrate");
-
+var strongRegex = new RegExp("^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 
 module.exports = {
   create: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      firebaseId: Joi.string().required(),
       type: Joi.string().valid('ADMINISTRADOR', 'USUÁRIO').required(),
       name: Joi.string().required(),
       user: Joi.string().required(),
@@ -21,7 +20,7 @@ module.exports = {
       cep: Joi.string().required(),
       profissional_address: Joi.string().required(),
       profissional_number: Joi.string().required(),
-      profissional_complement: Joi.string().required(),
+      profissional_complement: Joi.string(),
       profissional_district: Joi.string().required(),
       profissional_city: Joi.string().required(),
       profissional_state: Joi.string().required(),
@@ -40,6 +39,7 @@ module.exports = {
       email_REJUFE: Joi.boolean(),
       email_ASCOM: Joi.boolean(),
       admission_date: Joi.date().required(),
+      password: Joi.string().pattern(strongRegex).required(),
     }),
   }),
 
