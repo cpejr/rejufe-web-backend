@@ -58,7 +58,7 @@ module.exports = {
     try {
       const { id } = req.params;
       const noticias = await Noticias.findByIdAndDelete({ _id: id });
-      return res.status(200).json(noticias);
+      return res.status(200).json({id: noticias.id});
     }
     catch (err) {
       console.error(err);

@@ -46,7 +46,7 @@ module.exports = {
         try {
             const { id } = req.params;
             const contactUs = await ContactUs.findByIdAndDelete({ _id: id });
-            return res.status(200).json(contactUs);
+            return res.status(200).json({id: contactUs.id});
         }
         catch (err) {
             console.error(err);

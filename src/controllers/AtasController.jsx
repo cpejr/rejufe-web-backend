@@ -46,7 +46,7 @@ module.exports = {
         try {
             const { id } = req.params;
             const atas = await Atas.findByIdAndDelete({ _id: id });
-            return res.status(200).json(atas);
+            return res.status(200).json({id: atas.id});
         }
         catch (err) {
             console.error(err);
