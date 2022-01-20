@@ -9,8 +9,8 @@ module.exports = {
             const uid = await Firebase.createNewUser(user.email, user.password);
 
             delete user.password;
-            user.firebase_id = uid;
-            console.log(user);
+            user.firebaseId = uid;
+
             await User.create(user);
             return res.status(200).json(user);
         }
