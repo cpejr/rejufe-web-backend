@@ -15,7 +15,7 @@ module.exports = {
           .status(403)
           .json({ notification: "Invalid credentials" });
       }
-      const user = await UsuarioModel.getByFields({ firebase_id: firebaseId });
+      const user = await UsuarioModel.findOne({ firebase_id: firebaseId });
 
       const accessToken = jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
         expiresIn: "8h",
