@@ -7,16 +7,17 @@ const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 
 const routes = require('./src/routes/index');
+global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 const app = express();
 
 mongoose.connect(process.env.DB_URL, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
-}, function(err){
-    if(err){
+}, function (err) {
+    if (err) {
         console.log(err);
     }
-    else{
+    else {
         console.log('Connected to bucket')
     }
 })

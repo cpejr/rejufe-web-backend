@@ -1,6 +1,8 @@
 const firebase = require('firebase/app');
 require('firebase/auth');
+// const admin = require('firebase-admin');
 
+// function initializeFirebase() {
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
@@ -10,8 +12,20 @@ const firebaseConfig = {
   messagingSenderId: process.env.MESSAGING_SENDER_ID,
   appId: process.env.APP_ID,
 }
-
-firebase.initializeApp(firebaseConfig);
+//initialize firebase  
+if (!firebase.apps.length) {
+  try {
+    firebase.initializeApp(firebaseConfig);
+    // admin.initializeApp({
+    //   credential: admin.credential.cert(serviceAccount),
+    //   databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASEURL,
+    // });
+  } catch (err) {
+    console.error(err); //eslint-disable-line
+  }
+}
+// var db = firebase.firestore();
+// };
 
 module.exports = {
   async createNewUser(email, password) {
@@ -22,12 +36,38 @@ module.exports = {
     return result.user.uid;
   },
 
-  async login(user, password) {
-    const email = await this.findOne({ user });
+  async login(email, password) {
     const result = await firebase
       .auth()
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email, password);
 
     return result.user.uid;
-  },
+  }
 };
+
+
+// module.exports = {
+//   // async createNewUser(email, password, user, type) {
+//   //   const result = await admin.auth().createUser({
+//   //     email,
+//   //     password,
+//   //     displayName: type,
+//   //   });
+
+//   async createUserWithEmailAndPassword(email , password){
+//     const result = await firebase
+//       .auth()
+//       .createUserWithEmailAndPassword(email, password);
+
+//     return result.user.uid;
+//   },
+
+//   async login(email, password) {
+//     const email = await this.findOne({ user });
+//     const result = await firebase
+//       .auth()
+//       .signInWithEmailAndPassword(email, password)
+
+//     return result.user;
+//   },
+// };
