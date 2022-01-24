@@ -42,7 +42,19 @@ module.exports = {
       .signInWithEmailAndPassword(email, password);
 
     return result.user.uid;
-  }
+  },
+
+  async firebaseChangeUserPassword(email) {
+    return new Promise((resolve, reject) => {
+      firebase
+        .auth()
+        .sendPasswordResetEmail(email)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((error) => reject(error));
+    });
+  },
 };
 
 
