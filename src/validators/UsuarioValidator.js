@@ -49,6 +49,12 @@ module.exports = {
     }),
   }),
 
+  getUserEmailByUsername: celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      user: Joi.string().required(),
+    }),
+  }),
+
   update: celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       id: Joi.string().required(),

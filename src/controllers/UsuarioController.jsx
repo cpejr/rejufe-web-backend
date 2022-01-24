@@ -47,6 +47,24 @@ module.exports = {
             });
         }
     },
+    async getUserEmailByUsername(req, res) {
+        try {
+            console.log("teste");
+            const user = req.body;
+            console.log(user);
+            const { email } = await User.findOne({ user: user });
+
+            return res.status(200).json(email);
+        }
+        catch (err) {
+            console.error(err);
+            console.log("teste", req.body);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get a email by user',
+            });
+        }
+    },
+
     async update(req, res) {
         try {
             const { id } = req.params;

@@ -5,16 +5,17 @@ const UserController = require('../../controllers/UsuarioController.jsx');
 const UserValidator = require('../../validators/UsuarioValidator');
 
 const { authenticateToken } = require('../../middlewares/authentication');
-
+UserRouter.get(
+  '/getUserEmailByUsername',
+  UserValidator.getUserEmailByUsername,
+  UserController.getUserEmailByUsername
+);
 UserRouter.get(
   '/',
   UserController.getAll
 );
-UserRouter.get(
-  '/:id',
-  UserValidator.getById,
-  UserController.getById
-);
+
+
 UserRouter.post(
   '/',
   UserValidator.create,
@@ -29,6 +30,11 @@ UserRouter.delete(
   '/:id',
   UserValidator.delete,
   UserController.delete
+);
+UserRouter.get(
+  '/:id',
+  UserValidator.getById,
+  UserController.getById
 );
 
 module.exports = UserRouter;
