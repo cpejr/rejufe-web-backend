@@ -49,8 +49,7 @@ module.exports = {
     },
     async getUserEmailByUsername(req, res) {
         try {
-            console.log("teste");
-            const user = req.body;
+            const { user } = req.query;
             console.log(user);
             const { email } = await User.findOne({ user: user });
 
