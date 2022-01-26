@@ -8,6 +8,7 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 AtasRouter.get(
     '/',
+    AtasValidator.getAll,
     AtasController.getAll
 );
 AtasRouter.get(

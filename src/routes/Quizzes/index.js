@@ -8,6 +8,7 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 QuizzesRouter.get(
   '/',
+  QuizzesValidator.getAll,
   QuizzesController.getAll
 );
 QuizzesRouter.get(

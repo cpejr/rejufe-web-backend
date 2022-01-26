@@ -42,7 +42,13 @@ module.exports = {
       password: Joi.string().pattern(strongRegex).required(),
     }),
   }),
-
+  getAll: celebrate({
+    [Segments.QUERY]: Joi.object().keys({
+      times: Joi.number().integer().required(),
+      field: Joi.string().allow(null, ''),
+      filter: Joi.allow(null, ''),
+    }),
+  }),
   getById: celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       id: Joi.string().required(),

@@ -8,6 +8,7 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 InformationsRouter.get(
     '/',
+    InformationsValidator.getAll,
     InformationsController.getAll
 );
 InformationsRouter.get(

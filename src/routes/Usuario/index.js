@@ -13,6 +13,7 @@ UserRouter.get(
 );
 UserRouter.get(
   '/',
+  UserValidator.getAll,
   UserController.getAll
 );
 

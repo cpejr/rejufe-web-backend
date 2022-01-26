@@ -8,6 +8,7 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 ContactUsRouter.get(
     '/',
+    ContactUsValidator.getAll,
     ContactUsController.getAll
 );
 ContactUsRouter.get(
