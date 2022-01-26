@@ -5,6 +5,7 @@ module.exports = {
     [Segments.BODY]: Joi.object().keys({
       email: Joi.string().email().required(),
       password: Joi.string().required(),
+      rememberMe: Joi.boolean().required(),
     }),
   }),
 };

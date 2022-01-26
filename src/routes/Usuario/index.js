@@ -5,6 +5,7 @@ const UserController = require('../../controllers/UsuarioController.jsx');
 const UserValidator = require('../../validators/UsuarioValidator');
 
 const { authenticateToken } = require('../../middlewares/authentication');
+
 UserRouter.get(
   '/getUserEmailByUsername',
   UserValidator.getUserEmailByUsername,

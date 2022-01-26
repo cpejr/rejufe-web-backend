@@ -28,7 +28,6 @@ module.exports = {
           .json({ notification: "Invalid credentials" });
       }
       const user = await UsuarioModel.findOne({ firebase_id: firebaseId });
-
       const accessToken = rememberMe ? jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
         expiresIn: "5d",
       }) : jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
