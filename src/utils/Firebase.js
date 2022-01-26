@@ -1,8 +1,11 @@
-const firebase = require('firebase/app');
-require('firebase/auth');
-// const admin = require('firebase-admin');
+const { initializeApp } = require('firebase/app');
+const { 
+  getAuth, 
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail
+} = require("firebase/auth");
 
-// function initializeFirebase() {
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
@@ -12,43 +15,26 @@ const firebaseConfig = {
   messagingSenderId: process.env.MESSAGING_SENDER_ID,
   appId: process.env.APP_ID,
 }
-//initialize firebase  
-if (!firebase.apps.length) {
-  try {
-    firebase.initializeApp(firebaseConfig);
-    // admin.initializeApp({
-    //   credential: admin.credential.cert(serviceAccount),
-    //   databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASEURL,
-    // });
-  } catch (err) {
-    console.error(err); //eslint-disable-line
-  }
-}
-// var db = firebase.firestore();
-// };
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 module.exports = {
   async createNewUser(email, password) {
-    const result = await firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password);
+    const result = await createUserWithEmailAndPassword(auth, email, password);
 
     return result.user.uid;
   },
 
   async login(email, password) {
-    const result = await firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password);
+    const result = await signInWithEmailAndPassword(auth, email, password);
 
     return result.user.uid;
   },
 
   async firebaseChangeUserPassword(email) {
     return new Promise((resolve, reject) => {
-      firebase
-        .auth()
-        .sendPasswordResetEmail(email)
+        sendPasswordResetEmail(auth, email)
         .then((res) => {
           resolve(res);
         })
@@ -57,29 +43,3 @@ module.exports = {
   },
 };
 
-
-// module.exports = {
-//   // async createNewUser(email, password, user, type) {
-//   //   const result = await admin.auth().createUser({
-//   //     email,
-//   //     password,
-//   //     displayName: type,
-//   //   });
-
-//   async createUserWithEmailAndPassword(email , password){
-//     const result = await firebase
-//       .auth()
-//       .createUserWithEmailAndPassword(email, password);
-
-//     return result.user.uid;
-//   },
-
-//   async login(email, password) {
-//     const email = await this.findOne({ user });
-//     const result = await firebase
-//       .auth()
-//       .signInWithEmailAndPassword(email, password)
-
-//     return result.user;
-//   },
-// };
