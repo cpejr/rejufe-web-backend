@@ -4,7 +4,7 @@ var strongRegex = new RegExp("^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,}
 module.exports = {
   create: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      type: Joi.string().valid('ADMINISTRADOR', 'USUÁRIO').required(),
+      type: Joi.string().valid('administrador', 'usuario').required(),
       name: Joi.string().required(),
       user: Joi.string().required(),
       office: Joi.string().required(),
