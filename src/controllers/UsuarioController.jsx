@@ -50,7 +50,6 @@ module.exports = {
     async getUserEmailByUsername(req, res) {
         try {
             const { user } = req.query;
-            console.log(user);
             const { email } = await User.findOne({ user: user });
 
             return res.status(200).json(email);
