@@ -57,7 +57,6 @@ module.exports = {
         }
         catch (err) {
             console.error(err);
-            console.log("teste", req.body);
             return res.status(500).json({
                 notification: 'Internal server error while trying to get a email by user',
             });
