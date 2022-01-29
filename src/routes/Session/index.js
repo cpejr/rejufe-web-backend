@@ -4,8 +4,18 @@ const sessionRouter = express.Router();
 const SessionController = require('../../controllers/SessionController.jsx');
 const SessionValidator = require('../../validators/SessionValidator');
 
-sessionRouter.post('/forgotten_password', SessionController.forgottenPassword);
+const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/authentication');
 
-sessionRouter.post('/', SessionValidator.signIn, SessionController.signIn);
+sessionRouter.post(
+    '/forgotten_password',
+     SessionController.forgottenPassword
+     );
+
+sessionRouter.post(
+    '/',
+     SessionValidator.signIn,
+     authenticateToken,
+     checksUserIsAdmin,
+     SessionController.signIn);
 
 module.exports = sessionRouter;

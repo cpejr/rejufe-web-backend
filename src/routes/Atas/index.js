@@ -13,21 +13,25 @@ AtasRouter.get(
 AtasRouter.get(
     '/:id',
     AtasValidator.getById,
+    authenticateToken,
     AtasController.getById
 );
 AtasRouter.post(
     '/',
     AtasValidator.create,
+    authenticateToken,
     AtasController.create
 );
 AtasRouter.put(
     '/:id',
     AtasValidator.update,
+    authenticateToken,
     AtasController.update
 );
 AtasRouter.delete(
     '/:id',
     AtasValidator.delete,
+    authenticateToken,
     AtasController.delete
 );
 

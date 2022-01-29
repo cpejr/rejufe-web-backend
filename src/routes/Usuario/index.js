@@ -13,21 +13,25 @@ UserRouter.get(
 UserRouter.get(
   '/:id',
   UserValidator.getById,
+  authenticateToken,
   UserController.getById
 );
 UserRouter.post(
   '/',
   UserValidator.create,
+  authenticateToken,
   UserController.create
 );
 UserRouter.put(
   '/:id',
   UserValidator.update,
+  authenticateToken,
   UserController.update
 );
 UserRouter.delete(
   '/:id',
   UserValidator.delete,
+  authenticateToken,
   UserController.delete
 );
 

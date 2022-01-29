@@ -25,7 +25,7 @@ module.exports = {
   },
   async checksUserIsAdmin(request, response, next) {
     /* Verificar se o usuario logado na sessão é do tipo administrator */
-    if (request.session.user.type === 'administrator') {
+    if (request.session.user.type === 'ADMINISTRADOR') {
       next();
     } else {
       response

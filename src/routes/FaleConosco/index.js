@@ -13,21 +13,25 @@ ContactUsRouter.get(
 ContactUsRouter.get(
     '/:id',
     ContactUsValidator.getById,
+    authenticateToken,
     ContactUsController.getById
 );
 ContactUsRouter.post(
     '/',
     ContactUsValidator.create,
+    authenticateToken,
     ContactUsController.create
 );
 ContactUsRouter.put(
     '/:id',
     ContactUsValidator.update,
+    authenticateToken,
     ContactUsController.update
 );
 ContactUsRouter.delete(
     '/:id',
     ContactUsValidator.delete,
+    authenticateToken,
     ContactUsController.delete
 );
 

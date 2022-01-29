@@ -2,6 +2,11 @@ const { celebrate, Segments, Joi } = require('celebrate');
 
 module.exports = {
   create: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
     [Segments.BODY]: Joi.object().keys({
       type: Joi.string().valid('ATAS', 'EDITAIS').required(),
       date: Joi.date().required(),
@@ -12,12 +17,22 @@ module.exports = {
   }),
 
   getById: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
     [Segments.PARAMS]: Joi.object().keys({
       id: Joi.string().required(),
     }),
   }),
 
   update: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
     [Segments.PARAMS]: Joi.object().keys({
       id: Joi.string().required(),
     }),
@@ -31,6 +46,11 @@ module.exports = {
   }),
 
   delete: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
     [Segments.PARAMS]: Joi.object().keys({
         id: Joi.string().required(),
       }),

@@ -13,21 +13,25 @@ QuizzesRouter.get(
 QuizzesRouter.get(
   '/:id',
   QuizzesValidator.getById,
+  authenticateToken,
   QuizzesController.getById
 );
 QuizzesRouter.post(
   '/',
   QuizzesValidator.create,
+  authenticateToken,
   QuizzesController.create
 );
 QuizzesRouter.put(
   '/:id',
   QuizzesValidator.update,
+  authenticateToken,
   QuizzesController.update
 );
 QuizzesRouter.delete(
   '/:id',
   QuizzesValidator.delete,
+  authenticateToken,
   QuizzesController.delete
 );
 

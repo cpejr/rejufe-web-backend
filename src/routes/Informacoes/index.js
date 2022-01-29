@@ -13,21 +13,25 @@ InformationsRouter.get(
 InformationsRouter.get(
     '/:id',
     InformationsValidator.getById,
+    authenticateToken,
     InformationsController.getById
 );
 InformationsRouter.post(
     '/',
     InformationsValidator.create,
+    authenticateToken,
     InformationsController.create
 );
 InformationsRouter.put(
     '/:id',
     InformationsValidator.update,
+    authenticateToken,
     InformationsController.update
 );
 InformationsRouter.delete(
     '/:id',
     InformationsValidator.delete,
+    authenticateToken,
     InformationsController.delete
 );
 
