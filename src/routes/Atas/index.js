@@ -4,7 +4,7 @@ const AtasRouter = express.Router();
 const AtasController = require('../../controllers/AtasController.jsx');
 const AtasValidator = require('../../validators/AtasValidator.js')
 
-const { authenticateToken } = require('../../middlewares/authentication');
+const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/authentication');
 
 AtasRouter.get(
     '/',
@@ -20,18 +20,21 @@ AtasRouter.post(
     '/',
     AtasValidator.create,
     authenticateToken,
+    checksUserIsAdmin,
     AtasController.create
 );
 AtasRouter.put(
     '/:id',
     AtasValidator.update,
     authenticateToken,
+    checksUserIsAdmin,
     AtasController.update
 );
 AtasRouter.delete(
     '/:id',
     AtasValidator.delete,
     authenticateToken,
+    checksUserIsAdmin,
     AtasController.delete
 );
 

@@ -4,7 +4,7 @@ const ContactUsRouter = express.Router();
 const ContactUsController = require('../../controllers/FaleConoscoController.jsx');
 const ContactUsValidator = require('../../validators/FaleConoscoValidator.js')
 
-const { authenticateToken } = require('../../middlewares/authentication');
+const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/authentication');
 
 ContactUsRouter.get(
     '/',
@@ -26,12 +26,14 @@ ContactUsRouter.put(
     '/:id',
     ContactUsValidator.update,
     authenticateToken,
+    checksUserIsAdmin,
     ContactUsController.update
 );
 ContactUsRouter.delete(
     '/:id',
     ContactUsValidator.delete,
     authenticateToken,
+    checksUserIsAdmin,
     ContactUsController.delete
 );
 

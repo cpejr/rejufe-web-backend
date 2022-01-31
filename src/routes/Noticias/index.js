@@ -14,7 +14,6 @@ NoticeRouter.get(
   '/:id',
   NoticeValidator.getById,
   authenticateToken,
-  checksUserIsAdmin,
   NoticeController.getById
 );
 NoticeRouter.post(

@@ -14,7 +14,6 @@ ModelsRouter.get(
     '/:id',
     ModelsValidator.getById,
     authenticateToken,
-    checksUserIsAdmin,
     ModelsController.getById
 );
 ModelsRouter.post(
