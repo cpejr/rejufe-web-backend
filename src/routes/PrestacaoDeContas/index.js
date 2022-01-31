@@ -8,6 +8,7 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 AccountabilityRouter.get(
   '/',
+  AccountabilityValidator.getAll,
   AccountabilityController.getAll
 );
 AccountabilityRouter.get(

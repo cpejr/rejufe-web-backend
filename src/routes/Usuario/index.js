@@ -7,14 +7,17 @@ const UserValidator = require('../../validators/UsuarioValidator');
 const { authenticateToken } = require('../../middlewares/authentication');
 
 UserRouter.get(
-  '/',
-  UserController.getAll
+  '/getUserEmailByUsername',
+  UserValidator.getUserEmailByUsername,
+  UserController.getUserEmailByUsername
 );
 UserRouter.get(
-  '/:id',
-  UserValidator.getById,
-  UserController.getById
+  '/',
+  UserValidator.getAll,
+  UserController.getAll
 );
+
+
 UserRouter.post(
   '/',
   UserValidator.create,
@@ -29,6 +32,11 @@ UserRouter.delete(
   '/:id',
   UserValidator.delete,
   UserController.delete
+);
+UserRouter.get(
+  '/:id',
+  UserValidator.getById,
+  UserController.getById
 );
 
 module.exports = UserRouter;

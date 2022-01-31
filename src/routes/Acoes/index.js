@@ -8,6 +8,7 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 ActionsRouter.get(
     '/',
+    ActionsValidator.getAll,
     ActionsController.getAll
 );
 ActionsRouter.get(

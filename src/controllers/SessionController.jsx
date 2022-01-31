@@ -17,7 +17,7 @@ module.exports = {
   },
   async signIn(request, response) {
     try {
-      const { email, password } = request.body;
+      const { email, password, rememberMe } = request.body;
 
       let firebaseId;
       try {
@@ -27,9 +27,10 @@ module.exports = {
           .status(403)
           .json({ notification: "Invalid credentials" });
       }
-      const user = await UsuarioModel.findOne({ firebase_id: firebaseId });
-
-      const accessToken = jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
+      const user = await UsuarioModel.findOne({ firebaseId: firebaseId });
+      const accessToken = rememberMe ? jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
+        expiresIn: "5d",
+      }) : jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
         expiresIn: "8h",
       });
 

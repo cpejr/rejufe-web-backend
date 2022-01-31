@@ -8,6 +8,7 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 ModelsRouter.get(
     '/',
+    ModelsValidator.getAll,
     ModelsController.getAll
 );
 ModelsRouter.get(

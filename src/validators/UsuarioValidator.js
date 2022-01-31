@@ -4,7 +4,7 @@ var strongRegex = new RegExp("^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,}
 module.exports = {
   create: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      type: Joi.string().valid('ADMINISTRADOR', 'USUÁRIO').required(),
+      type: Joi.string().valid('administrador', 'usuario').required(),
       name: Joi.string().required(),
       user: Joi.string().required(),
       office: Joi.string().required(),
@@ -42,10 +42,22 @@ module.exports = {
       password: Joi.string().pattern(strongRegex).required(),
     }),
   }),
-
+  getAll: celebrate({
+    [Segments.QUERY]: Joi.object().keys({
+      times: Joi.number().integer().required(),
+      field: Joi.string().allow(null, ''),
+      filter: Joi.allow(null, ''),
+    }),
+  }),
   getById: celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       id: Joi.string().required(),
+    }),
+  }),
+
+  getUserEmailByUsername: celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      user: Joi.string().required(),
     }),
   }),
 

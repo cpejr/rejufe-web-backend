@@ -8,6 +8,7 @@ const { authenticateToken } = require('../../middlewares/authentication');
 
 NoticeRouter.get(
   '/',
+  NoticeValidator.getAll,
   NoticeController.getAll
 );
 NoticeRouter.get(
