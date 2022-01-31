@@ -14,8 +14,6 @@ sessionRouter.post(
 sessionRouter.post(
     '/',
      SessionValidator.signIn,
-     authenticateToken,
-     checksUserIsAdmin,
      SessionController.signIn);
 
 module.exports = sessionRouter;
