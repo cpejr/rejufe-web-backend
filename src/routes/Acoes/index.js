@@ -8,6 +8,7 @@ const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/auth
 
 ActionsRouter.get(
     '/',
+    ActionsValidator.getAll,
     ActionsController.getAll
 );
 ActionsRouter.get(

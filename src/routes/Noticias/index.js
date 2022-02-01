@@ -8,6 +8,7 @@ const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/auth
 
 NoticeRouter.get(
   '/',
+  NoticeValidator.getAll,
   NoticeController.getAll
 );
 NoticeRouter.get(

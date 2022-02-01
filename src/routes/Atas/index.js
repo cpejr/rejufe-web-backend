@@ -8,6 +8,7 @@ const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/auth
 
 AtasRouter.get(
     '/',
+    AtasValidator.getAll,
     AtasController.getAll
 );
 AtasRouter.get(

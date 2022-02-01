@@ -7,7 +7,13 @@ const UserValidator = require('../../validators/UsuarioValidator');
 const { authenticateToken } = require('../../middlewares/authentication');
 
 UserRouter.get(
+  '/getUserEmailByUsername',
+  UserValidator.getUserEmailByUsername,
+  UserController.getUserEmailByUsername
+);
+UserRouter.get(
   '/',
+  UserValidator.getAll,
   UserController.getAll
 );
 UserRouter.get(

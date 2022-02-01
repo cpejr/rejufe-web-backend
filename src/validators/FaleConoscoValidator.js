@@ -13,6 +13,13 @@ module.exports = {
       message: Joi.string().required(),
     }),
   }),
+  getAll: celebrate({
+    [Segments.QUERY]: Joi.object().keys({
+      times: Joi.number().integer().required(),
+      field: Joi.string().allow(null, ''),
+      filter: Joi.allow(null, ''),
+    }),
+  }),
 
   getById: celebrate({
     [Segments.HEADERS]: Joi.object()
@@ -35,10 +42,10 @@ module.exports = {
       id: Joi.string().required(),
     }),
     [Segments.BODY]: Joi.object().keys({
-        name: Joi.string().optional(),
-        email: Joi.string().email().optional(),
-        message: Joi.string().optional(),
-      }).min(1),
+      name: Joi.string().optional(),
+      email: Joi.string().email().optional(),
+      message: Joi.string().optional(),
+    }).min(1),
   }),
 
   delete: celebrate({
@@ -48,7 +55,7 @@ module.exports = {
       })
       .unknown(),
     [Segments.PARAMS]: Joi.object().keys({
-        id: Joi.string().required(),
-      }),
+      id: Joi.string().required(),
+    }),
   }),
 };

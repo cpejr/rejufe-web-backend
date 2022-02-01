@@ -8,6 +8,7 @@ const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/auth
 
 ModelsRouter.get(
     '/',
+    ModelsValidator.getAll,
     ModelsController.getAll
 );
 ModelsRouter.get(

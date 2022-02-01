@@ -8,6 +8,7 @@ const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/auth
 
 QuizzesRouter.get(
   '/',
+  QuizzesValidator.getAll,
   QuizzesController.getAll
 );
 QuizzesRouter.get(

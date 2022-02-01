@@ -8,6 +8,7 @@ const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/auth
 
 ContactUsRouter.get(
     '/',
+    ContactUsValidator.getAll,
     ContactUsController.getAll
 );
 ContactUsRouter.get(

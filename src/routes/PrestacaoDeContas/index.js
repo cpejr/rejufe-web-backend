@@ -8,6 +8,7 @@ const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/auth
 
 AccountabilityRouter.get(
   '/',
+  AccountabilityValidator.getAll,
   AccountabilityController.getAll
 );
 AccountabilityRouter.get(

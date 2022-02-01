@@ -8,6 +8,7 @@ const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/auth
 
 InformationsRouter.get(
     '/',
+    InformationsValidator.getAll,
     InformationsController.getAll
 );
 InformationsRouter.get(
