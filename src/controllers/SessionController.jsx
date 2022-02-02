@@ -34,6 +34,8 @@ module.exports = {
         expiresIn: "8h",
       });
 
+      request.session.user = user;
+
       return response.status(200).json({ user, accessToken });
     } catch (error) {
       console.warn(error);
