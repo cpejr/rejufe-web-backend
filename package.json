@@ -1,13 +1,13 @@
 {
   "name": "rejufe-web-backend",
   "version": "1.0.0",
-  "main": "index.jsx",
+  "main": "index.js",
   "repository": "https://github.com/cpejr/rejufe-web-backend.git",
   "author": "Pedro Babosa <pedrobarbosa@cpejr.com.br>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon index.jsx",
-    "start": "node index.jsx"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

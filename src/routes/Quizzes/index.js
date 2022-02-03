@@ -1,7 +1,7 @@
 const express = require('express');
 const QuizzesRouter = express.Router();
 
-const QuizzesController = require('../../controllers/QuizzesController.jsx');
+const QuizzesController = require('../../controllers/QuizzesController.js');
 const QuizzesValidator = require('../../validators/QuizzesValidator');
 
 const { authenticateToken } = require('../../middlewares/authentication');

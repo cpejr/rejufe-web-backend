@@ -1,7 +1,7 @@
 const express = require('express');
 const UserRouter = express.Router();
 
-const UserController = require('../../controllers/UsuarioController.jsx');
+const UserController = require('../../controllers/UsuarioController.js');
 const UserValidator = require('../../validators/UsuarioValidator');
 
 const { authenticateToken } = require('../../middlewares/authentication');
