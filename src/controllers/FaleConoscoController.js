@@ -1,12 +1,11 @@
-const ContactUs = require('../models/FaleConosco.jsx')
+const ContactUs = require('../models/FaleConosco.js');
 
 module.exports = {
     async getAll(req, res) {
         try {
             const contactUs = await ContactUs.find();
             return res.status(200).json(contactUs);
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to get all contactUs',
@@ -19,8 +18,7 @@ module.exports = {
             const { id } = req.params;
             const contactUs = await ContactUs.findOne({ _id: id });
             return res.status(200).json(contactUs);
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to get a contactUs by id',
@@ -33,8 +31,7 @@ module.exports = {
             const contactUs = req.body;
             await ContactUs.create(contactUs);
             return res.status(200).json(contactUs);
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to create a contactUs',
@@ -46,9 +43,8 @@ module.exports = {
         try {
             const { id } = req.params;
             const contactUs = await ContactUs.findByIdAndDelete({ _id: id });
-            return res.status(200).json({id: contactUs.id});
-        }
-        catch (err) {
+            return res.status(200).json({ id: contactUs.id });
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to delete a contactUs',
@@ -59,16 +55,15 @@ module.exports = {
     async update(req, res) {
         try {
             const { id } = req.params;
-            const contactUs = req.body
+            const contactUs = req.body;
             const result = await ContactUs.findByIdAndUpdate({ _id: id }, contactUs);
             return res.status(200).json(result);
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification:
                     'Internal server error while trying to update a contactUs by id',
             });
         }
-    }
-}
+    },
+};
