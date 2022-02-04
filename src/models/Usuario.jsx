@@ -60,6 +60,15 @@ const UserSchema = new mongoose.Schema({
         require: true,
         enum: ['SOLTEIRO(A)', 'CASADO(A)', 'DIVORCIADO(A)', 'DESQUITADO(A)', 'OUTROS'],
     },
+    status: {
+        type: String,
+        require: true,
+        default: 'A'
+    },
+    judicial_section: {
+        type: String,
+        require: false,
+    },
     spouse: {
         type: String,
         require: false,
