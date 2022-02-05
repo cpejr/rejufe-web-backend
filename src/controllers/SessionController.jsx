@@ -34,6 +34,7 @@ module.exports = {
         expiresIn: "8h",
       });
 
+      request.session.cookie.maxAge = rememberMe ? 1000 * 60 * 60 * 24 * 5 : 1000 * 60 * 60 * 5; // 8 dias se true ou 5 horas se false
       request.session.user = user;
 
       return response.status(200).json({ user, accessToken });

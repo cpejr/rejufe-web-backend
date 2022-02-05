@@ -4,7 +4,7 @@ const UserRouter = express.Router();
 const UserController = require('../../controllers/UsuarioController.jsx');
 const UserValidator = require('../../validators/UsuarioValidator');
 
-const { authenticateToken } = require('../../middlewares/authentication');
+const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
 UserRouter.get(
   '/getUserEmailByUsername',
@@ -19,25 +19,25 @@ UserRouter.get(
 UserRouter.get(
   '/:id',
   UserValidator.getById,
-  authenticateToken,
+  requiresLogin,
   UserController.getById
 );
 UserRouter.post(
   '/',
   UserValidator.create,
-  authenticateToken,
+  requiresLogin,
   UserController.create
 );
 UserRouter.put(
   '/:id',
   UserValidator.update,
-  authenticateToken,
+  requiresLogin,
   UserController.update
 );
 UserRouter.delete(
   '/:id',
   UserValidator.delete,
-  authenticateToken,
+  requiresLogin,
   UserController.delete
 );
 

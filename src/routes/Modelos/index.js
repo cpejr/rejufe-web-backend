@@ -4,7 +4,7 @@ const ModelsRouter = express.Router();
 const ModelsController = require('../../controllers/ModelosController.jsx');
 const ModelsValidator = require('../../validators/ModelosValidator.js');
 
-const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/authentication');
+const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
 ModelsRouter.get(
     '/',
@@ -14,27 +14,27 @@ ModelsRouter.get(
 ModelsRouter.get(
     '/:id',
     ModelsValidator.getById,
-    authenticateToken,
+    requiresLogin,
     ModelsController.getById
 );
 ModelsRouter.post(
     '/',
     ModelsValidator.create,
-    authenticateToken,
+    requiresLogin,
     checksUserIsAdmin,
     ModelsController.create
 );
 ModelsRouter.put(
     '/:id',
     ModelsValidator.update,
-    authenticateToken,
+    requiresLogin,
     checksUserIsAdmin,
     ModelsController.update
 );
 ModelsRouter.delete(
     '/:id',
     ModelsValidator.delete,
-    authenticateToken,
+    requiresLogin,
     checksUserIsAdmin,
     ModelsController.delete
 );

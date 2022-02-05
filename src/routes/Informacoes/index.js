@@ -4,7 +4,7 @@ const InformationsRouter = express.Router();
 const InformationsController = require('../../controllers/InformacoesController.jsx');
 const InformationsValidator = require('../../validators/InformacoesValidator.js');
 
-const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/authentication');
+const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
 InformationsRouter.get(
     '/',
@@ -14,27 +14,27 @@ InformationsRouter.get(
 InformationsRouter.get(
     '/:id',
     InformationsValidator.getById,
-    authenticateToken,
+    requiresLogin,
     InformationsController.getById
 );
 InformationsRouter.post(
     '/',
     InformationsValidator.create,
-    authenticateToken,
+    requiresLogin,
     checksUserIsAdmin,
     InformationsController.create
 );
 InformationsRouter.put(
     '/:id',
     InformationsValidator.update,
-    authenticateToken,
+    requiresLogin,
     checksUserIsAdmin,
     InformationsController.update
 );
 InformationsRouter.delete(
     '/:id',
     InformationsValidator.delete,
-    authenticateToken,
+    requiresLogin,
     checksUserIsAdmin,
     InformationsController.delete
 );

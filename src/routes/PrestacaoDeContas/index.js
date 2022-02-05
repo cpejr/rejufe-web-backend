@@ -4,7 +4,7 @@ const AccountabilityRouter = express.Router();
 const AccountabilityController = require('../../controllers/PrestacaoDeContasController.jsx');
 const AccountabilityValidator = require('../../validators/PrestacaoDeContasValidator');
 
-const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/authentication');
+const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
 AccountabilityRouter.get(
   '/',
@@ -14,27 +14,27 @@ AccountabilityRouter.get(
 AccountabilityRouter.get(
   '/:id',
   AccountabilityValidator.getById,
-  authenticateToken,
+  requiresLogin,
   AccountabilityController.getById
 );
 AccountabilityRouter.post(
   '/',
   AccountabilityValidator.create,
-  authenticateToken,
+  requiresLogin,
   checksUserIsAdmin,
   AccountabilityController.create
 );
 AccountabilityRouter.put(
   '/:id',
   AccountabilityValidator.update,
-  authenticateToken,
+  requiresLogin,
   checksUserIsAdmin,
   AccountabilityController.update
 );
 AccountabilityRouter.delete(
   '/:id',
   AccountabilityValidator.delete,
-  authenticateToken,
+  requiresLogin,
   checksUserIsAdmin,
   AccountabilityController.delete
 );

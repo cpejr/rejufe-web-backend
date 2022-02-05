@@ -4,7 +4,7 @@ const NoticeRouter = express.Router();
 const NoticeController = require('../../controllers/NoticiasController.jsx');
 const NoticeValidator = require('../../validators/NoticiasValidator');
 
-const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/authentication');
+const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
 NoticeRouter.get(
   '/',
@@ -14,27 +14,27 @@ NoticeRouter.get(
 NoticeRouter.get(
   '/:id',
   NoticeValidator.getById,
-  authenticateToken,
+  requiresLogin,
   NoticeController.getById
 );
 NoticeRouter.post(
   '/',
   NoticeValidator.create,
-  authenticateToken,
+  requiresLogin,
   checksUserIsAdmin,
   NoticeController.create
 );
 NoticeRouter.put(
   '/:id',
   NoticeValidator.update,
-  authenticateToken,
+  requiresLogin,
   checksUserIsAdmin,
   NoticeController.update
 );
 NoticeRouter.delete(
   '/:id',
   NoticeValidator.delete,
-  authenticateToken,
+  requiresLogin,
   checksUserIsAdmin,
   NoticeController.delete
 );
