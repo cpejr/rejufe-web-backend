@@ -9,6 +9,7 @@ const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../m
 ModelsRouter.get(
     '/',
     ModelsValidator.getAll,
+    requiresLogin,
     ModelsController.getAll
 );
 ModelsRouter.get(

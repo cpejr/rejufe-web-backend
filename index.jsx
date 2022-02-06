@@ -38,7 +38,7 @@ app.use(session({
     cookie: {
         httpOnly: true, // Deve ser definido como false em produção
         secure: false, // Deve ser definido como true em produção
-        maxAge: 1000 * 60 * 60 * 5 // 5 horas
+        maxAge: 1000 * 60 * 60 * 8 // 8 horas
     },
     store: MongoStore.create({
         mongoUrl: process.env.DB_URL

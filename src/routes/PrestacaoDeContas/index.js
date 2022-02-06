@@ -9,6 +9,7 @@ const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../m
 AccountabilityRouter.get(
   '/',
   AccountabilityValidator.getAll,
+  requiresLogin,
   AccountabilityController.getAll
 );
 AccountabilityRouter.get(

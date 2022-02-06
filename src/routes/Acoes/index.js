@@ -4,37 +4,38 @@ const ActionsRouter = express.Router();
 const ActionsController = require('../../controllers/AcoesController.jsx');
 const ActionsValidator = require('../../validators/AcoesValidator.js')
 
-const { authenticateToken, checksUserIsAdmin } = require('../../middlewares/authentication');
+const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
 ActionsRouter.get(
     '/',
     ActionsValidator.getAll,
+    requiresLogin,
     ActionsController.getAll
 );
 ActionsRouter.get(
     '/:id',
     ActionsValidator.getById,
-    authenticateToken,
+    requiresLogin,
     ActionsController.getById
 );
 ActionsRouter.post(
     '/',
     ActionsValidator.create,
-    authenticateToken,
+    requiresLogin,
     checksUserIsAdmin,
     ActionsController.create
 );
 ActionsRouter.put(
     '/:id',
     ActionsValidator.update,
-    authenticateToken,
+    requiresLogin,
     checksUserIsAdmin,
     ActionsController.update
 );
 ActionsRouter.delete(
     '/:id',
     ActionsValidator.delete,
-    authenticateToken,
+    requiresLogin,
     checksUserIsAdmin,
     ActionsController.delete
 );

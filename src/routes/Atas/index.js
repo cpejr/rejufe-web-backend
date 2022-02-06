@@ -9,6 +9,7 @@ const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../m
 AtasRouter.get(
     '/',
     AtasValidator.getAll,
+    requiresLogin,
     AtasController.getAll
 );
 AtasRouter.get(

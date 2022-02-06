@@ -14,6 +14,7 @@ UserRouter.get(
 UserRouter.get(
   '/',
   UserValidator.getAll,
+  checksUserIsAdmin,
   UserController.getAll
 );
 UserRouter.get(
@@ -25,7 +26,7 @@ UserRouter.get(
 UserRouter.post(
   '/',
   UserValidator.create,
-  requiresLogin,
+  checksUserIsAdmin.
   UserController.create
 );
 UserRouter.put(
@@ -37,7 +38,7 @@ UserRouter.put(
 UserRouter.delete(
   '/:id',
   UserValidator.delete,
-  requiresLogin,
+  checksUserIsAdmin,
   UserController.delete
 );
 

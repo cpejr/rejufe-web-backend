@@ -9,6 +9,7 @@ const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../m
 InformationsRouter.get(
     '/',
     InformationsValidator.getAll,
+    requiresLogin,
     InformationsController.getAll
 );
 InformationsRouter.get(

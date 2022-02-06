@@ -9,6 +9,7 @@ const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../m
 ContactUsRouter.get(
     '/',
     ContactUsValidator.getAll,
+    requiresLogin,
     ContactUsController.getAll
 );
 ContactUsRouter.get(
