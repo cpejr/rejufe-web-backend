@@ -16,6 +16,11 @@ module.exports = {
     }),
   }),
   getAll: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
     [Segments.QUERY]: Joi.object().keys({
       times: Joi.number().integer().required(),
       field: Joi.string().allow(null, ''),

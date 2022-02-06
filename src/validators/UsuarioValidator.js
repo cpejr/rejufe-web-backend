@@ -3,6 +3,11 @@ var strongRegex = new RegExp("^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,}
 
 module.exports = {
   create: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
     [Segments.BODY]: Joi.object().keys({
       type: Joi.string().valid('administrador', 'usuario').required(),
       name: Joi.string().required(),
@@ -43,6 +48,11 @@ module.exports = {
     }),
   }),
   getAll: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
     [Segments.QUERY]: Joi.object().keys({
       times: Joi.number().integer().required(),
       field: Joi.string().allow(null, ''),
