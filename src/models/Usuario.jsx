@@ -63,7 +63,9 @@ const UserSchema = new mongoose.Schema({
     status: {
         type: String,
         require: true,
-        default: 'A'
+        default: 'A',
+        enum: ['A'],
+
     },
     judicial_section: {
         type: String,
