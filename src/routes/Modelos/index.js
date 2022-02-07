@@ -1,7 +1,7 @@
 const express = require('express');
 const ModelsRouter = express.Router();
 
-const ModelsController = require('../../controllers/ModelosController.jsx');
+const ModelsController = require('../../controllers/ModelosController.js');
 const ModelsValidator = require('../../validators/ModelosValidator.js');
 
 const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');

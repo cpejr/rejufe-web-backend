@@ -1,7 +1,7 @@
 const express = require('express');
 const AccountabilityRouter = express.Router();
 
-const AccountabilityController = require('../../controllers/PrestacaoDeContasController.jsx');
+const AccountabilityController = require('../../controllers/PrestacaoDeContasController.js');
 const AccountabilityValidator = require('../../validators/PrestacaoDeContasValidator');
 
 const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');

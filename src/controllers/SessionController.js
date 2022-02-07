@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const Firebase = require('../utils/firebase');
-const UsuarioModel = require('../models/Usuario.jsx');
+const UsuarioModel = require('../models/Usuario.js');
 
 module.exports = {
   async forgottenPassword(request, response) {
@@ -25,13 +25,13 @@ module.exports = {
       } catch (error) {
         return response
           .status(403)
-          .json({ notification: "Invalid credentials" });
+          .json({ notification: 'Invalid credentials' });
       }
-      const user = await UsuarioModel.findOne({ firebaseId: firebaseId });
+      const user = await UsuarioModel.findOne({ firebaseId });
       const accessToken = rememberMe ? jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: "5d",
+        expiresIn: '5d',
       }) : jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: "8h",
+        expiresIn: '8h',
       });
 
       request.session.cookie.maxAge = rememberMe ? 1000 * 60 * 60 * 24 * 5 : 1000 * 60 * 60 * 8; // 5 dias se true ou 8 horas se false
@@ -42,7 +42,7 @@ module.exports = {
       console.warn(error);
       return response
         .status(500)
-        .json({ notification: "Internal server error while trying to get User" });
+        .json({ notification: 'Internal server error while trying to get User' });
     }
-  }
+  },
 };

@@ -1,7 +1,7 @@
 const express = require('express');
 const AtasRouter = express.Router();
 
-const AtasController = require('../../controllers/AtasController.jsx');
+const AtasController = require('../../controllers/AtasController.js');
 const AtasValidator = require('../../validators/AtasValidator.js')
 
 const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');

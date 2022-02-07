@@ -1,7 +1,7 @@
 const express = require('express');
 const NoticeRouter = express.Router();
 
-const NoticeController = require('../../controllers/NoticiasController.jsx');
+const NoticeController = require('../../controllers/NoticiasController.js');
 const NoticeValidator = require('../../validators/NoticiasValidator');
 
 const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');

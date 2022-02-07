@@ -1,12 +1,11 @@
-const Models = require('../models/Modelos.jsx')
+const Models = require('../models/Modelos.js');
 
 module.exports = {
     async getAll(req, res) {
         try {
             const models = await Models.find();
             return res.status(200).json(models);
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to get all models',
@@ -19,8 +18,7 @@ module.exports = {
             const { id } = req.params;
             const models = await Models.findOne({ _id: id });
             return res.status(200).json(models);
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to get a models by id',
@@ -33,8 +31,7 @@ module.exports = {
             const models = req.body;
             await Models.create(models);
             return res.status(200).json(models);
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to create a models',
@@ -46,9 +43,8 @@ module.exports = {
         try {
             const { id } = req.params;
             const models = await Models.findByIdAndDelete({ _id: id });
-            return res.status(200).json({id: models.id});
-        }
-        catch (err) {
+            return res.status(200).json({ id: models.id });
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to delete a models',
@@ -59,16 +55,15 @@ module.exports = {
     async update(req, res) {
         try {
             const { id } = req.params;
-            const models = req.body
+            const models = req.body;
             const result = await Models.findByIdAndUpdate({ _id: id }, models);
             return res.status(200).json(models);
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification:
                     'Internal server error while trying to update a models by id',
             });
         }
-    }
-}
+    },
+};
