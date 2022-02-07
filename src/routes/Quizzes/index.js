@@ -22,6 +22,7 @@ QuizzesRouter.post(
   '/',
   QuizzesValidator.create,
   requiresLogin,
+  checksUserIsAdmin,
   QuizzesController.create
 );
 QuizzesRouter.put(
