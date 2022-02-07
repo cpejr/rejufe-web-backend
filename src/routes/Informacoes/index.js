@@ -1,7 +1,7 @@
 const express = require('express');
 const InformationsRouter = express.Router();
 
-const InformationsController = require('../../controllers/InformacoesController.jsx');
+const InformationsController = require('../../controllers/InformacoesController.js');
 const InformationsValidator = require('../../validators/InformacoesValidator.js');
 
 const { authenticateToken } = require('../../middlewares/authentication');

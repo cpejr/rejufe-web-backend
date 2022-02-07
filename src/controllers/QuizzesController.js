@@ -1,4 +1,4 @@
-const Quizzes = require('../models/Quizzes.jsx')
+const Quizzes = require('../models/Quizzes.js');
 
 module.exports = {
   async create(req, res) {
@@ -6,8 +6,7 @@ module.exports = {
       const quizzes = req.body;
       await Quizzes.create(quizzes);
       return res.status(200).json(quizzes);
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err);
       return res.status(500).json({
         notification: 'Internal server error while trying to create a quiz',
@@ -18,8 +17,7 @@ module.exports = {
     try {
       const quizzes = await Quizzes.find();
       return res.status(200).json(quizzes);
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err);
       return res.status(500).json({
         notification: 'Internal server error while trying to get all quizzes',
@@ -31,8 +29,7 @@ module.exports = {
       const { id } = req.params;
       const quizzes = await Quizzes.findOne({ _id: id });
       return res.status(200).json(quizzes);
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err);
       return res.status(500).json({
         notification: 'Internal server error while trying to get a quiz by id',
@@ -42,11 +39,10 @@ module.exports = {
   async update(req, res) {
     try {
       const { id } = req.params;
-      const quizzes = req.body
+      const quizzes = req.body;
       const result = await Quizzes.findByIdAndUpdate({ _id: id }, quizzes);
       return res.status(200).json(result);
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err);
       return res.status(500).json({
         notification:
@@ -58,13 +54,12 @@ module.exports = {
     try {
       const { id } = req.params;
       const quizzes = await Quizzes.findByIdAndDelete({ _id: id });
-      return res.status(200).json({id: quizzes.id});
-    }
-    catch (err) {
+      return res.status(200).json({ id: quizzes.id });
+    } catch (err) {
       console.error(err);
       return res.status(500).json({
         notification: 'Internal server error while trying to delete a quiz',
       });
     }
-  }
-}
+  },
+};

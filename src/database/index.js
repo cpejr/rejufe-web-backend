@@ -1,4 +1,4 @@
-const mongoose = require('../database');
+const mongoose = require('.');
 
 mongoose.connect('mongodb://localhost/noderest', { useMongoClient: true });
 mongoose.Promise = global.Promise;

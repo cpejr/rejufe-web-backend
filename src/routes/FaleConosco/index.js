@@ -1,7 +1,7 @@
 const express = require('express');
 const ContactUsRouter = express.Router();
 
-const ContactUsController = require('../../controllers/FaleConoscoController.jsx');
+const ContactUsController = require('../../controllers/FaleConoscoController.js');
 const ContactUsValidator = require('../../validators/FaleConoscoValidator.js')
 
 const { authenticateToken } = require('../../middlewares/authentication');
