@@ -163,17 +163,23 @@ const UserSchema = new mongoose.Schema({
         require: true,
     },
     email_REJUFE: {
-        type: Boolean,
-        require: true,
+        type: String,
+        require: false,
     },
     email_ASCOM: {
-        type: Boolean,
-        require: true,
+        type: String,
+        require: false,
     },
     admission_date: {
         type: Date,
         require: true,
     },
+    sequencialId:{
+        type: Number,
+        unique: true,
+        require: true,
+        increment: true,
+    }
 });
 
 
