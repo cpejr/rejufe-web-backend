@@ -1,4 +1,4 @@
-const User = require('../models/Usuario.jsx');
+const User = require('../models/Usuario.js');
 const Firebase = require('../utils/Firebase');
 
 module.exports = {
@@ -13,8 +13,7 @@ module.exports = {
 
             await User.create(user);
             return res.status(200).json(user);
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to create a user',
@@ -25,9 +24,7 @@ module.exports = {
         try {
             const user = await User.find();
             return res.status(200).json(user);
-
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to get all users',
@@ -39,8 +36,7 @@ module.exports = {
             const { id } = req.params;
             const user = await User.findOne({ _id: id });
             return res.status(200).json(user);
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to get a user by id',
@@ -50,11 +46,10 @@ module.exports = {
     async getUserEmailByUsername(req, res) {
         try {
             const { user } = req.query;
-            const { email } = await User.findOne({ user: user });
+            const { email } = await User.findOne({ user });
 
             return res.status(200).json(email);
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to get a email by user',
@@ -65,11 +60,10 @@ module.exports = {
     async update(req, res) {
         try {
             const { id } = req.params;
-            const user = req.body
+            const user = req.body;
             const result = await User.findByIdAndUpdate({ _id: id }, user);
             return res.status(200).json(result);
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification:
@@ -82,12 +76,11 @@ module.exports = {
             const { id } = req.params;
             const user = await User.findByIdAndDelete({ _id: id });
             return res.status(200).json({ id: user.id });
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to delete a user',
             });
         }
-    }
-}
+    },
+};

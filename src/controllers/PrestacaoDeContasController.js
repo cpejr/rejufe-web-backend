@@ -1,4 +1,4 @@
-const Accountability = require('../models/PrestacaoDeContas.jsx')
+const Accountability = require('../models/PrestacaoDeContas.js');
 
 module.exports = {
   async create(req, res) {
@@ -6,8 +6,7 @@ module.exports = {
       const accountability = req.body;
       await Accountability.create(accountability);
       return res.status(200).json(accountability);
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err);
       return res.status(500).json({
         notification: 'Internal server error while trying to create an accountability',
@@ -18,8 +17,7 @@ module.exports = {
     try {
       const accountability = await Accountability.find();
       return res.status(200).json(accountability);
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err);
       return res.status(500).json({
         notification: 'Internal server error while trying to get all accountabilities',
@@ -31,8 +29,7 @@ module.exports = {
       const { id } = req.params;
       const accountability = await Accountability.findOne({ _id: id });
       return res.status(200).json(accountability);
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err);
       return res.status(500).json({
         notification: 'Internal server error while trying to get an accountability by id',
@@ -42,11 +39,10 @@ module.exports = {
   async update(req, res) {
     try {
       const { id } = req.params;
-      const accountability = req.body
+      const accountability = req.body;
       const result = await Accountability.findByIdAndUpdate({ _id: id }, accountability);
       return res.status(200).json(result);
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err);
       return res.status(500).json({
         notification:
@@ -58,13 +54,12 @@ module.exports = {
     try {
       const { id } = req.params;
       const accountability = await Accountability.findByIdAndDelete({ _id: id });
-      return res.status(200).json({id: accountability.id});
-    }
-    catch (err) {
+      return res.status(200).json({ id: accountability.id });
+    } catch (err) {
       console.error(err);
       return res.status(500).json({
         notification: 'Internal server error while trying to delete an accountability',
       });
     }
-  }
-}
+  },
+};
