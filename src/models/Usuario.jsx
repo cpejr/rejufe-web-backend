@@ -175,14 +175,8 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         require: true,
     },
-    sequencialId:{
-        type: Number,
-        unique: true,
-        require: true,
-        increment: true,
-    }
 });
 
-UserSchema.plugin(AutoIncrement, {inc_field: 'id'});
+UserSchema.plugin(AutoIncrement, {inc_field: 'sequential_Id'});
 const User = mongoose.model('Usuario', UserSchema);
 module.exports = User;
