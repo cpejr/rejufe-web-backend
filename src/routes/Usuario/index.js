@@ -26,7 +26,7 @@ UserRouter.get(
 UserRouter.post(
   '/',
   UserValidator.create,
-  checksUserIsAdmin.
+  checksUserIsAdmin,
   UserController.create
 );
 UserRouter.put(
