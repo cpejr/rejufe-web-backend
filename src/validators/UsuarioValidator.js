@@ -41,6 +41,7 @@ module.exports = {
       telephone: Joi.string(),
       fax: Joi.string(),
       cell_phone_number: Joi.string().required(),
+      judicial_section: Joi.string().optional(),
       email: Joi.string().email().required(),
       email_REJUFE: Joi.string().optional(),
       email_ASCOM: Joi.string().optional(),
