@@ -77,6 +77,12 @@ module.exports = {
     }),
   }),
 
+  getExcludedAssociate: celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      status: Joi.string().required(),
+    }),
+  }),
+
   update: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({

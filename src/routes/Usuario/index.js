@@ -12,6 +12,11 @@ UserRouter.get(
   UserController.getUserEmailByUsername
 );
 UserRouter.get(
+  '/getExcludedAssociate',
+  UserValidator.getExcludedAssociate,
+  UserController.getExcludedAssociate,
+)
+UserRouter.get(
   '/',
   UserValidator.getAll,
   checksUserIsAdmin,
