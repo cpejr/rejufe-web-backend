@@ -30,6 +30,11 @@ const UserSchema = new mongoose.Schema({
         require: true,
         unique: true,
     },
+    status: {
+        type: String,
+        require: false,
+        enum: ['ATIVO', 'EXCLUIDO'],
+    },
     office: {
         type: String,
         require: true,

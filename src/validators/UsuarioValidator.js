@@ -12,6 +12,7 @@ module.exports = {
       type: Joi.string().valid('administrador', 'usuario').required(),
       name: Joi.string().required(),
       user: Joi.string().required(),
+      status: Joi.string().valid('ATIVO', 'EXCLUIDO'),
       office: Joi.string().required(),
       nacionality: Joi.string().required(),
       cpf: Joi.string().required(),
