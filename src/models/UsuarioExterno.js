@@ -23,6 +23,11 @@ const ExternalUserSchema = new mongoose.Schema({
         require: true,
         unique: true,
     },
+    status: {
+        type: String,
+        require: false,
+        enum: ['ATIVO', 'EXCLUIDO'],
+    },
     office: {
         type: String,
         require: true,
@@ -53,6 +58,16 @@ const ExternalUserSchema = new mongoose.Schema({
         type: String,
         require: true,
         enum: ['SOLTEIRO(A)', 'CASADO(A)', 'DIVORCIADO(A)', 'DESQUITADO(A)', 'OUTROS'],
+    },
+    status: {
+        type: String,
+        require: true,
+        default: 'USUARIO EM ESPERA',
+
+    },
+    judicial_section: {
+        type: String,
+        require: false,
     },
     spouse: {
         type: String,
@@ -146,12 +161,12 @@ const ExternalUserSchema = new mongoose.Schema({
         require: true,
     },
     email_REJUFE: {
-        type: Boolean,
-        require: true,
+        type: String,
+        require: false,
     },
     email_ASCOM: {
-        type: Boolean,
-        require: true,
+        type: String,
+        require: false,
     },
     admission_date: {
         type: Date,
