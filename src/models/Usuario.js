@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 const bcrypt = require('bcryptjs');
 
 
@@ -64,6 +65,17 @@ const UserSchema = new mongoose.Schema({
         type: String,
         require: true,
         enum: ['SOLTEIRO(A)', 'CASADO(A)', 'DIVORCIADO(A)', 'DESQUITADO(A)', 'OUTROS'],
+    },
+    status: {
+        type: String,
+        require: true,
+        default: 'A',
+        enum: ['A', 'E'],
+
+    },
+    judicial_section: {
+        type: String,
+        require: false,
     },
     spouse: {
         type: String,
@@ -157,12 +169,12 @@ const UserSchema = new mongoose.Schema({
         require: true,
     },
     email_REJUFE: {
-        type: Boolean,
-        require: true,
+        type: String,
+        require: false,
     },
     email_ASCOM: {
-        type: Boolean,
-        require: true,
+        type: String,
+        require: false,
     },
     admission_date: {
         type: Date,
@@ -170,6 +182,6 @@ const UserSchema = new mongoose.Schema({
     },
 });
 
-
+UserSchema.plugin(AutoIncrement, {inc_field: 'sequential_Id'});
 const User = mongoose.model('Usuario', UserSchema);
 module.exports = User;
