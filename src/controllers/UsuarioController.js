@@ -1,4 +1,5 @@
 const User = require('../models/Usuario.js');
+const ExternalUser = require('../models/UsuarioExterno.js');
 const Firebase = require('../utils/Firebase');
 
 module.exports = {
@@ -12,6 +13,19 @@ module.exports = {
             user.firebaseId = uid;
 
             await User.create(user);
+            return res.status(200).json(user);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to create a user',
+            });
+        }
+    },
+    async createExternalAssociate(req, res) {
+        try {
+            const user = req.body;
+
+            await ExternalUser.create(user);
             return res.status(200).json(user);
         } catch (err) {
             console.error(err);
