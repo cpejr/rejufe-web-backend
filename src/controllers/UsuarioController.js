@@ -6,10 +6,10 @@ module.exports = {
     async create(req, res) {
         try {
             const user = req.body;
+            const randomPassword = Math.random().toString(36).slice(-8);
+            const uid = await Firebase.createNewUser(user.email, randomPassword);
 
-            const uid = await Firebase.createNewUser(user.email, user.password);
-
-            delete user.password;
+            delete randomPassword;
             user.firebaseId = uid;
 
             await User.create(user);
