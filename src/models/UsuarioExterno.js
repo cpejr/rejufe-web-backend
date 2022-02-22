@@ -1,15 +1,7 @@
 const mongoose = require('mongoose');
-const AutoIncrement = require('mongoose-sequence')(mongoose);
-const bcrypt = require('bcryptjs');
 
 
-const UserSchema = new mongoose.Schema({
-    firebaseId: {
-        type: String,
-        unique: true,
-        require: true,
-        select: false,
-    },
+const ExternalUserSchema = new mongoose.Schema({
     type: {
         type: String,
         require: true,
@@ -29,11 +21,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         require: true,
         unique: true,
-    },
-    status: {
-        type: String,
-        require: false,
-        enum: ['ATIVO', 'EXCLUIDO'],
     },
     office: {
         type: String,
@@ -69,8 +56,7 @@ const UserSchema = new mongoose.Schema({
     status: {
         type: String,
         require: true,
-        default: 'A',
-        enum: ['A', 'E'],
+        default: 'USUARIO EM ESPERA',
 
     },
     judicial_section: {
@@ -182,6 +168,6 @@ const UserSchema = new mongoose.Schema({
     },
 });
 
-UserSchema.plugin(AutoIncrement, {inc_field: 'sequential_Id'});
-const User = mongoose.model('Usuario', UserSchema);
-module.exports = User;
+
+const ExternalUser = mongoose.model('UsuarioExterno', ExternalUserSchema);
+module.exports = ExternalUser;
