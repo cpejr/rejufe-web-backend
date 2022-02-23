@@ -72,6 +72,19 @@ module.exports = {
         }
     },
 
+    async getExcludedAssociate(req, res){
+        try{
+            const { status } = req.query;
+            const user = await User.find({ status });
+            return res.status(200).json(user)
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get a email by user',
+            });
+        }
+    },
+
     async update(req, res) {
         try {
             const { id } = req.params;
