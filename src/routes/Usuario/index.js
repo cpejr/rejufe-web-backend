@@ -14,6 +14,7 @@ UserRouter.get(
 UserRouter.get(
   '/getExcludedAssociate',
   UserValidator.getExcludedAssociate,
+  checksUserIsAdmin,
   UserController.getExcludedAssociate,
 )
 UserRouter.get(
