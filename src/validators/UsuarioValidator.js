@@ -12,7 +12,7 @@ module.exports = {
       type: Joi.string().valid('administrador', 'usuario').required(),
       name: Joi.string().required(),
       user: Joi.string().required(),
-      status: Joi.string().valid('ATIVO', 'EXCLUIDO'),
+      status: Joi.string().valid('A', 'E'),
       office: Joi.string().required(),
       nacionality: Joi.string().required(),
       cpf: Joi.string().required(),
@@ -95,6 +95,7 @@ module.exports = {
     [Segments.BODY]: Joi.object().keys({
       firebaseId: Joi.string(),
       type: Joi.string().valid('ADMINISTRADOR', 'USUÁRIO').insensitive(),
+      status: Joi.string().valid('A', 'E'),
       name: Joi.string(),
       user: Joi.string(),
       office: Joi.string(),

@@ -32,7 +32,7 @@ const UserSchema = new mongoose.Schema({
     status: {
         type: String,
         require: false,
-        enum: ['ATIVO', 'EXCLUIDO'],
+        enum: ['A', 'E'],
     },
     office: {
         type: String,
