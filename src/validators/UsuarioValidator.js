@@ -122,6 +122,7 @@ module.exports = {
       email_REJUFE: Joi.boolean(),
       email_ASCOM: Joi.boolean(),
       admission_date: Joi.date(),
+      status: Joi.string(),
     }).min(1),
   }),
 

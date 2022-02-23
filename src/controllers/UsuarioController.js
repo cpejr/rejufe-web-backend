@@ -64,6 +64,7 @@ module.exports = {
             const { id } = req.params;
             const user = req.body;
             const result = await User.findByIdAndUpdate({ _id: id }, user);
+            console.log(result);
             return res.status(200).json(result);
         } catch (err) {
             console.error(err);
