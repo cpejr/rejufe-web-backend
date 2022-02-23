@@ -33,7 +33,7 @@ const UserSchema = new mongoose.Schema({
     status: {
         type: String,
         require: false,
-        enum: ['ATIVO', 'EXCLUIDO'],
+        enum: ['A', 'E'],
     },
     office: {
         type: String,
@@ -136,7 +136,7 @@ const UserSchema = new mongoose.Schema({
         required: false,
     },
     personal_number: {
-        type: String,
+        type: Number,
         require: false,
     },
     personal_complement: {
@@ -182,6 +182,6 @@ const UserSchema = new mongoose.Schema({
     },
 });
 
-UserSchema.plugin(AutoIncrement, {inc_field: 'sequential_Id'});
+UserSchema.plugin(AutoIncrement, { inc_field: 'sequential_Id' });
 const User = mongoose.model('Usuario', UserSchema);
 module.exports = User;
