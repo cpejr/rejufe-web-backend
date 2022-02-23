@@ -36,7 +36,7 @@ module.exports = {
     },
     async getAll(req, res) {
         try {
-            const user = await User.find().limit(50);
+            const user = await User.find();
 
             return res.status(200).json(user);
         } catch (err) {
