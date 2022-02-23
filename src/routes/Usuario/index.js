@@ -34,6 +34,11 @@ UserRouter.post(
   checksUserIsAdmin,
   UserController.create
 );
+UserRouter.post(
+  '/externalAssociateRegister',
+  UserValidator.createExternalAssociate,
+  UserController.createExternalAssociate
+);
 UserRouter.put(
   '/:id',
   UserValidator.update,
