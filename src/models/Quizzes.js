@@ -13,24 +13,6 @@ const QuizzesSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    openingDate: {
-        type: Date,
-        require: true,
-    },
-    closingDate: {
-        type: Date,
-        require: true,
-    },
-    options: [{
-        description: {
-            type: String,
-            require: true,
-        },
-        votes: {
-            type: Number,
-            require: true,
-        },
-    }],
 });
 
 const Quizzes = mongoose.model('Quizzes', QuizzesSchema);
