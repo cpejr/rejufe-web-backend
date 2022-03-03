@@ -22,9 +22,7 @@ module.exports = {
     },
     async getAll(req, res) {
         try {
-            console.log('oi');
             const user = await User.find().skip(req.query.times * 50).limit(50);
-            console.log(user);
             return res.status(200).json(user);
         } catch (err) {
             console.error(err);
@@ -64,7 +62,6 @@ module.exports = {
             const { id } = req.params;
             const user = req.body;
             const result = await User.findByIdAndUpdate({ _id: id }, user);
-            console.log(result);
             return res.status(200).json(result);
         } catch (err) {
             console.error(err);

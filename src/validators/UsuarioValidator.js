@@ -87,7 +87,7 @@ module.exports = {
     }),
     [Segments.BODY]: Joi.object().keys({
       firebaseId: Joi.string(),
-      type: Joi.string().valid('ADMINISTRADOR', 'USUÁRIO').insensitive(),
+      type: Joi.string().valid('administrador', 'usuário').insensitive(),
       name: Joi.string(),
       user: Joi.string(),
       office: Joi.string(),
