@@ -117,7 +117,7 @@ module.exports = {
       })
       .unknown(),
     [Segments.QUERY]: Joi.object().keys({
-      section: Joi.array().required(),
+      filter: Joi.allow(null, ''),
       times: Joi.number().integer().required(),
       field: Joi.string().allow(null, ''),
     }),

@@ -34,7 +34,7 @@ module.exports = {
             });
         }
     },
-    
+
     async getAll(req, res) {
         try {
             const user = await User.find().skip(req.query.times * 50).limit(50);

@@ -9,11 +9,15 @@ module.exports = {
       })
       .unknown(),
     [Segments.BODY]: Joi.object().keys({
-      description: Joi.string().required(),
+      title: Joi.string().required(),
       toVote: Joi.string().required(),
       alreadyVoted: Joi.string().required(),
+      openingDate: Joi.date().required(),
+      closingDate: Joi.date().required(),
+      options: Joi.array().required(),
     }),
   }),
+  
   getAll: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({

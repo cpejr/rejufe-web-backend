@@ -13,14 +13,14 @@ const QuizzesSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    // openingDate: {
-    //     type: Date,
-    //     require: true,
-    // },
-    // closingDate: {
-    //     type: Date,
-    //     require: true,
-    // },
+    openingDate: {
+        type: Date,
+        require: true,
+    },
+    closingDate: {
+        type: Date,
+        require: true,
+    },
     options: {
         description: {
             type: String,
