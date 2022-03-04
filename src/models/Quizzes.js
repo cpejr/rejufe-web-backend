@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const QuizzesSchema = new mongoose.Schema({
-    description: {
+    title: {
         type: String,
         require: true,
     },
@@ -13,24 +13,23 @@ const QuizzesSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    openingDate: {
-        type: Date,
-        require: true,
-    },
-    closingDate: {
-        type: Date,
-        require: true,
-    },
-    options: [{
+    // openingDate: {
+    //     type: Date,
+    //     require: true,
+    // },
+    // closingDate: {
+    //     type: Date,
+    //     require: true,
+    // },
+    options: {
         description: {
             type: String,
             require: true,
         },
         votes: {
-            type: Number,
-            require: true,
+            type: Number
         },
-    }],
+    },
 });
 
 const Quizzes = mongoose.model('Quizzes', QuizzesSchema);

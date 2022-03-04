@@ -18,6 +18,12 @@ UserRouter.get(
   UserController.getAll
 );
 UserRouter.get(
+  '/:section',
+  UserValidator.getBySection,
+  checksUserIsAdmin,
+  UserController.getUsersBySection,
+);
+UserRouter.get(
   '/:id',
   UserValidator.getById,
   requiresLogin,

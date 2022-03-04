@@ -35,6 +35,7 @@ module.exports = {
         }
     },
     async getAll(req, res) {
+        console.log('oi3');
         try {
             const user = await User.find().limit(50);
 
@@ -46,6 +47,21 @@ module.exports = {
             });
         }
     },
+
+    async getUsersBySection(req, res) {
+        try {
+            const { section } = req.params;
+            const user = await User.find({ judicial_section: section }).limit(50);
+
+            return res.status(200).json(user);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get all users',
+            });
+        }
+    },
+
     async getById(req, res) {
         try {
             const { id } = req.params;
