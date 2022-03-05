@@ -6,8 +6,10 @@ const QuizzesSchema = new mongoose.Schema({
         require: true,
     },
     toVote: {
-        type: String,
-        require: true,
+        _id: {
+          type: String,
+          require: true,
+        }
     },
     alreadyVoted: {
         type: String,

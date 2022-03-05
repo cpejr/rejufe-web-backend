@@ -3,6 +3,7 @@ const Quizzes = require('../models/Quizzes.js');
 module.exports = {
   async create(req, res) {
     try {
+      console.log('oi3');
       const quizzes = req.body;
       await Quizzes.create(quizzes);
       return res.status(200).json(quizzes);
