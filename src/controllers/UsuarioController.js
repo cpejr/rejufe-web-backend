@@ -123,4 +123,16 @@ module.exports = {
             });
         }
     },
+    async deleteExternalAssociate(req, res) {
+        try {
+            const { id } = req.params;
+            const user = await ExternalUser.findByIdAndDelete({ _id: id });
+            return res.status(200).json({ id: user.id });
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to delete a user',
+            });
+        }
+    },
 };

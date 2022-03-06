@@ -204,4 +204,15 @@ module.exports = {
       id: Joi.string().required(),
     }),
   }),
+
+  deleteExternalAssociate: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
+    [Segments.PARAMS]: Joi.object().keys({
+      id: Joi.string().required(),
+    }),
+  }),
 };

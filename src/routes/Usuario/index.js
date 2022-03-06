@@ -57,5 +57,11 @@ UserRouter.delete(
   checksUserIsAdmin,
   UserController.delete
 );
+UserRouter.delete(
+  '/externalAssociate/:id',
+  UserValidator.deleteExternalAssociate,
+  checksUserIsAdmin,
+  UserController.deleteExternalAssociate
+);
 
 module.exports = UserRouter;
