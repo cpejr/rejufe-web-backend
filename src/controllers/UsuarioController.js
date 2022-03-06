@@ -49,8 +49,9 @@ module.exports = {
 
     async getUsersBySection(req, res) {
         try {
+            console.log('hello');
             const { section } = req.params;
-            const user = await User.find({ judicial_section: section }).limit(50);
+            const user = await User.find({ judicial_section: section }).skip(req.query.times * 50).limit(50);
 
             return res.status(200).json(user);
         } catch (err) {
