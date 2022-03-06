@@ -46,6 +46,18 @@ module.exports = {
             });
         }
     },
+    async getExternalAssociates(req, res) {
+        try {
+            const user = await ExternalUser.find().limit(50);
+
+            return res.status(200).json(user);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get all users',
+            });
+        }
+    },
     async getById(req, res) {
         try {
             const { id } = req.params;

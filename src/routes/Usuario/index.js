@@ -24,6 +24,11 @@ UserRouter.get(
   UserController.getAll
 );
 UserRouter.get(
+  '/externalAssociate',
+  UserValidator.getExternalAssociates,
+  UserController.getExternalAssociates
+);
+UserRouter.get(
   '/:id',
   UserValidator.getById,
   requiresLogin,
