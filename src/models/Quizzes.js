@@ -5,6 +5,10 @@ const QuizzesSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
+    description: {
+        type: String,
+        require: true,
+    },
     toVote: {
         _id: {
             type: String,
@@ -12,8 +16,10 @@ const QuizzesSchema = new mongoose.Schema({
         }
     },
     alreadyVoted: {
-        type: String,
-        require: true,
+        _id: {
+            type: String,
+            require: true,
+        }
     },
     openingDate: {
         type: Date,
