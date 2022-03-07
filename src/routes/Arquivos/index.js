@@ -10,4 +10,19 @@ FilesRouter.post(
     FilesController.create
 );
 
+FilesRouter.get(
+    '/',
+    FilesController.getAll
+);
+
+FilesRouter.get(
+    '/:filename',
+    FilesController.getById
+);
+
+FilesRouter.delete(
+    '/:id',
+    FilesController.delete
+);
+
 module.exports = FilesRouter;

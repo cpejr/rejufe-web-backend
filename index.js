@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
+var Grid = require("gridfs-stream");
 const session = require('express-session');
 const methodOverride = require('method-override');
 var MongoStore = require('connect-mongo');
@@ -21,6 +22,8 @@ mongoose.connect(process.env.DB_URL, {
         console.log(err);
     }
     else {
+        gfs = Grid(mongoose.connection.db, mongoose.mongo);
+        gfs.collection('uploads');
         console.log('Connected to bucket')
     }
 })
