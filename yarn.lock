@@ -70,12 +70,12 @@
     "@firebase/util" "1.4.3"
     tslib "^2.1.0"
 
-"@firebase/app-compat@0.1.18":
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/@firebase/app-compat/-/app-compat-0.1.18.tgz#7d86c711c73231aaa408d04a331b468cb74ec7cb"
-  integrity sha512-YXmMLQro2g2xlNnzB6zVxYoFx9sJS/JDEQy6vsj3FpMUuARaImipL6W8KuGfH+tJ3M+q38qRaFROk5gK6PoCrQ==
+"@firebase/app-compat@0.1.19":
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/@firebase/app-compat/-/app-compat-0.1.19.tgz#8a842b0a684899ec7213a26c8be08bcd5bfd7a07"
+  integrity sha512-a0TgAXcjF3htSdi10mRwAks1+73nwbmSMXzjlOQDYJ8t3HE7FvHxfB4hjuwHKfgr3MWZjcarsGKVr7LWhUAE8w==
   dependencies:
-    "@firebase/app" "0.7.17"
+    "@firebase/app" "0.7.18"
     "@firebase/component" "0.5.10"
     "@firebase/logger" "0.3.2"
     "@firebase/util" "1.4.3"
@@ -86,14 +86,15 @@
   resolved "https://registry.yarnpkg.com/@firebase/app-types/-/app-types-0.7.0.tgz#c9e16d1b8bed1a991840b8d2a725fb58d0b5899f"
   integrity sha512-6fbHQwDv2jp/v6bXhBw2eSRbNBpxHcd1NBF864UksSMVIqIyri9qpJB1Mn6sGZE+bnDsSQBC5j2TbMxYsJQkQg==
 
-"@firebase/app@0.7.17":
-  version "0.7.17"
-  resolved "https://registry.yarnpkg.com/@firebase/app/-/app-0.7.17.tgz#b6a75c03bc1236bf852e56ff7876e431835e18f1"
-  integrity sha512-OnZab790eMwRxkUs7o/kgniAzSBxecDTGEk1PVhiG0HQhKrIf+R7lgqOZHDb/2GJsX12jby1p/Z5+WJCBxVbJQ==
+"@firebase/app@0.7.18":
+  version "0.7.18"
+  resolved "https://registry.yarnpkg.com/@firebase/app/-/app-0.7.18.tgz#69660cbf02da80a1e1a1ab38b76b96231f9bb81d"
+  integrity sha512-jomDaPaEQEWfFUqvxQw4TYSs2gCT2BN0Ec1//3CdMsc1NcppduS31bxsjhn3KdPbtx4opkaZ2FcA+buHtdw9dw==
   dependencies:
     "@firebase/component" "0.5.10"
     "@firebase/logger" "0.3.2"
     "@firebase/util" "1.4.3"
+    idb "3.0.2"
     tslib "^2.1.0"
 
 "@firebase/auth-compat@0.2.9":
@@ -247,13 +248,13 @@
   dependencies:
     tslib "^2.1.0"
 
-"@firebase/messaging-compat@0.1.8":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@firebase/messaging-compat/-/messaging-compat-0.1.8.tgz#3d8ae0302bfbd26e4e9b5cf05c832bffeb215e3d"
-  integrity sha512-1q0Bp/auG6XUSEBzmExrn6uU6JUtB5JxIHwTj8wmUf+JcdNqPMWou040Mem421Sxgd4GLn+vHHlVIRxv1yLYUA==
+"@firebase/messaging-compat@0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@firebase/messaging-compat/-/messaging-compat-0.1.9.tgz#05e905bc5a26a3034635cdb2b1e7a1f257c2b08d"
+  integrity sha512-smcBhvTLfgE2KDtvDj1Pm9zQ7GeyR5BLarYLxtvmhhbV6tpa8g+UUE3pCdqN+y1kx6mIYqNOmEEXv+1YnSiYwQ==
   dependencies:
     "@firebase/component" "0.5.10"
-    "@firebase/messaging" "0.9.8"
+    "@firebase/messaging" "0.9.9"
     "@firebase/util" "1.4.3"
     tslib "^2.1.0"
 
@@ -262,10 +263,10 @@
   resolved "https://registry.yarnpkg.com/@firebase/messaging-interop-types/-/messaging-interop-types-0.1.0.tgz#bdac02dd31edd5cb9eec37b1db698ea5e2c1a631"
   integrity sha512-DbvUl/rXAZpQeKBnwz0NYY5OCqr2nFA0Bj28Fmr3NXGqR4PAkfTOHuQlVtLO1Nudo3q0HxAYLa68ZDAcuv2uKQ==
 
-"@firebase/messaging@0.9.8":
-  version "0.9.8"
-  resolved "https://registry.yarnpkg.com/@firebase/messaging/-/messaging-0.9.8.tgz#a7f38c268801513e7b02be10e951a1b2e825a082"
-  integrity sha512-X588ZFA/plaO4de7MyZs2gukrkdp+ounwqZ7JerHHVa6eKl1WNi9AuAfoXOJUMq+nX2DsOWYjohciCkC6qLrWw==
+"@firebase/messaging@0.9.9":
+  version "0.9.9"
+  resolved "https://registry.yarnpkg.com/@firebase/messaging/-/messaging-0.9.9.tgz#28ed74e82b849dcedebe2b41693d24fe6e99e8ad"
+  integrity sha512-Fe6+VqFgVuvFOiVerQkPzdmHXnB7urujcKAxK3lRKxgafH89CRvXO1sPnPMvox5/JOCBZrAPok5KA7rOCxBguw==
   dependencies:
     "@firebase/component" "0.5.10"
     "@firebase/installations" "0.5.5"
@@ -631,6 +632,13 @@ asn1.js@^5.4.1:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
     safer-buffer "^2.1.0"
+
+async@^2.5.0:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
+  integrity sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg==
+  dependencies:
+    lodash "^4.17.14"
 
 balanced-match@^1.0.0:
   version "1.0.2"
@@ -1358,16 +1366,16 @@ find-up@^2.1.0:
     locate-path "^2.0.0"
 
 firebase@^9.6.4:
-  version "9.6.7"
-  resolved "https://registry.yarnpkg.com/firebase/-/firebase-9.6.7.tgz#fad619416c9c16f569cbfd2ba63a937bdc081e33"
-  integrity sha512-WiqGC26cepwVy0CZ4n3ZrLSNpVj1RCPJTB6j1tZU4SadPOrGmuPAt71qcWwaLyqKtRzNTyOA9F5J4ygGDplchw==
+  version "9.6.8"
+  resolved "https://registry.yarnpkg.com/firebase/-/firebase-9.6.8.tgz#9a2da35ff97f89813306bdc504b0d302b40d1558"
+  integrity sha512-a/RcgiqK9L5d/ZKpHZ21c3x/KKIo2XwXp2droukbBTuaX0Md8ppHQWYlSqLmWIDR0y2zwN17lrfNVsE6f+4ncA==
   dependencies:
     "@firebase/analytics" "0.7.5"
     "@firebase/analytics-compat" "0.1.6"
-    "@firebase/app" "0.7.17"
+    "@firebase/app" "0.7.18"
     "@firebase/app-check" "0.5.3"
     "@firebase/app-check-compat" "0.2.3"
-    "@firebase/app-compat" "0.1.18"
+    "@firebase/app-compat" "0.1.19"
     "@firebase/app-types" "0.7.0"
     "@firebase/auth" "0.19.9"
     "@firebase/auth-compat" "0.2.9"
@@ -1378,8 +1386,8 @@ firebase@^9.6.4:
     "@firebase/functions" "0.7.8"
     "@firebase/functions-compat" "0.1.9"
     "@firebase/installations" "0.5.5"
-    "@firebase/messaging" "0.9.8"
-    "@firebase/messaging-compat" "0.1.8"
+    "@firebase/messaging" "0.9.9"
+    "@firebase/messaging-compat" "0.1.9"
     "@firebase/performance" "0.5.5"
     "@firebase/performance-compat" "0.1.5"
     "@firebase/polyfill" "0.3.36"
@@ -1546,9 +1554,9 @@ has-flag@^4.0.0:
   integrity sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==
 
 has-symbols@^1.0.1, has-symbols@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/has-symbols/-/has-symbols-1.0.2.tgz#165d3070c00309752a1236a479331e3ac56f1423"
-  integrity sha512-chXa79rL/UC2KlX17jo3vRGz0azaWEx5tGqZg5pO3NUyEJVB17dMruQlzCCOfUvElghKcm5194+BCRvi2Rv/Gw==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/has-symbols/-/has-symbols-1.0.3.tgz#bb7b2c4349251dce87b125f7bdf874aa7c8b39f8"
+  integrity sha512-l3LCuF6MgDNwTDKkdYGEihYjt5pRPbEg46rtlmnSPlUbgmB8LOIrKJbYYFBSbnPaJexMKtiPO8hmeRjRz2Td+A==
 
 has-tostringtag@^1.0.0:
   version "1.0.0"
@@ -1586,9 +1594,9 @@ http-errors@1.8.1:
     toidentifier "1.0.1"
 
 http-parser-js@>=0.5.1:
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/http-parser-js/-/http-parser-js-0.5.5.tgz#d7c30d5d3c90d865b4a2e870181f9d6f22ac7ac5"
-  integrity sha512-x+JVEkO2PoM8qqpbPbOL3cqHPwerep7OwzK7Ay+sMQjKzaKCqWvjoXm5tqMP9tXWWTnTzAjIhXg+J99XYuPhPA==
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/http-parser-js/-/http-parser-js-0.5.6.tgz#2e02406ab2df8af8a7abfba62e0da01c62b95afd"
+  integrity sha512-vDlkRPDJn93swjcjqMSaGSPABbIarsr1TLAui/gLDXzV5VsJNdXNzMYDyNBLQkjWQCJ1uizu8T2oDMhmGt0PRA==
 
 iconv-lite@0.4.24:
   version "0.4.24"
@@ -2028,7 +2036,7 @@ lodash.once@^4.0.0:
   resolved "https://registry.yarnpkg.com/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
   integrity sha1-DdOXEhPHxW34gJd9UEyI+0cal6w=
 
-lodash@4.17.x:
+lodash@4.17.x, lodash@^4.17.14, lodash@^4.17.20:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -2141,10 +2149,18 @@ mongodb@4.3.1:
   optionalDependencies:
     saslprep "^1.0.3"
 
+mongoose-sequence@^5.3.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/mongoose-sequence/-/mongoose-sequence-5.3.1.tgz#b1acc6f860550692a73cdc948578c9974a8e3630"
+  integrity sha512-kQB1ctCdAQT8YdQzoHV0CpBRsO4RNVy03SOkzM6TQKBbGBs1ZgVS4UlKsuvBPaiPt9q5tKgQZvorGJ1awbHDqA==
+  dependencies:
+    async "^2.5.0"
+    lodash "^4.17.20"
+
 mongoose@^6.0.13:
-  version "6.2.3"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.2.3.tgz#146f718a8af95893827c5ab621697117be426256"
-  integrity sha512-FxF2D0MGGIw9bAJ57nSyM4Hs4tDHbu6dn9gQwT1J/lxmRB8jfaWWJ3FSJXTmeYlQ6BpyKeIaT8fj6SAX0YMNBA==
+  version "6.2.4"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.2.4.tgz#c6ff4f84ab47b6c760e773424b0fd1f392d98563"
+  integrity sha512-3hA3IGxBzZdlp1+/I9qn53NjEAd01qvKAH2WUCPahjVO8+uAmR0B4m+1bC3x9a4r0ExY8QYQ2ryG3E/v5Tj+jA==
   dependencies:
     bson "^4.2.2"
     kareem "2.3.4"
@@ -2860,9 +2876,9 @@ tr46@~0.0.3:
   integrity sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=
 
 tsconfig-paths@^3.12.0:
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.12.0.tgz#19769aca6ee8f6a1a341e38c8fa45dd9fb18899b"
-  integrity sha512-e5adrnOYT6zqVnWqZu7i/BQ3BnhzvGbjEjejFXO20lKIKpwTaupkCPgEfv4GZK1IBciJUEhYs3J3p75FdaTFVg==
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.13.0.tgz#f3e9b8f6876698581d94470c03c95b3a48c0e3d7"
+  integrity sha512-nWuffZppoaYK0vQ1SQmkSsQzJoHA4s6uzdb2waRpD806x9yfq153AdVsWz4je2qZcW+pENrMQXbGQ3sMCkXuhw==
   dependencies:
     "@types/json5" "^0.0.29"
     json5 "^1.0.1"

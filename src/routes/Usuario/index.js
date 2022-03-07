@@ -12,6 +12,12 @@ UserRouter.get(
   UserController.getUserEmailByUsername
 );
 UserRouter.get(
+  '/getExcludedAssociate',
+  UserValidator.getExcludedAssociate,
+  checksUserIsAdmin,
+  UserController.getExcludedAssociate,
+)
+UserRouter.get(
   '/',
   UserValidator.getAll,
   checksUserIsAdmin,
@@ -28,6 +34,11 @@ UserRouter.post(
   UserValidator.create,
   checksUserIsAdmin,
   UserController.create
+);
+UserRouter.post(
+  '/externalAssociateRegister',
+  UserValidator.createExternalAssociate,
+  UserController.createExternalAssociate
 );
 UserRouter.put(
   '/:id',
