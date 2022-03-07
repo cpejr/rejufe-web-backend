@@ -10,6 +10,7 @@ module.exports = {
       .unknown(),
     [Segments.BODY]: Joi.object().keys({
       title: Joi.string().required(),
+      description: Joi.string().required(),
       toVote: Joi.array().required(),
       alreadyVoted: Joi.array(),
       openingDate: Joi.date().required(),
