@@ -2,18 +2,16 @@ var Grid = require("gridfs-stream");
 var mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
 
-// Create mongo connection
-const conn = mongoose.createConnection(process.env.DB_URL);
-
 let gfs, gridfsBucket;
-conn.once("open", () => {
-  gridfsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
+mongoose.connection.once("open", () => {
+  gridfsBucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
     bucketName: "uploads",
   });
 
-  gfs = Grid(conn.db, mongoose.mongo);
+  gfs = Grid(mongoose.connection.db, mongoose.mongo);
   gfs.collection("uploads");
 });
+
 
 module.exports = {
   async getAll(req, res) {
