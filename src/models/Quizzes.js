@@ -22,14 +22,18 @@ const QuizzesSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
+    description: {
+      type: String,
+      require: true,
+    },
     toVote: [{
         type: String,
         require: true,
     }],
-    alreadyVoted: {
+    alreadyVoted: [{
         type: String,
         require: true,
-    },
+    }],
     openingDate: {
         type: Date,
         require: true,
