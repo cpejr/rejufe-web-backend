@@ -140,6 +140,12 @@ module.exports = {
     }),
   }),
 
+  getExcludedAssociate: celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      status: Joi.string().required(),
+    }),
+  }),
+
   update: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
@@ -150,9 +156,11 @@ module.exports = {
       id: Joi.string().required(),
     }),
     [Segments.BODY]: Joi.object().keys({
+      firebaseId: Joi.string(),
+      type: Joi.string().valid('administrador', 'usuario').insensitive(),
+      status: Joi.string().valid('A', 'E'),
       name: Joi.string(),
       user: Joi.string(),
-      status: Joi.string().valid('A', 'E'),
       office: Joi.string(),
       nacionality: Joi.string(),
       cpf: Joi.string(),

@@ -49,9 +49,9 @@ module.exports = {
 
     async getUsersBySection(req, res) {
         try {
-            console.log('hello');
-            const { section } = req.params;
-            const user = await User.find({ judicial_section: section }).skip(req.query.times * 50).limit(50);
+            const limit = 50;
+            const times = req.query.times;
+            const user = await User.find().limit(limit).skip(limit * times);
 
             return res.status(200).json(user);
         } catch (err) {
@@ -81,6 +81,19 @@ module.exports = {
             const { email } = await User.findOne({ user });
 
             return res.status(200).json(email);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get a email by user',
+            });
+        }
+    },
+
+    async getExcludedAssociate(req, res){
+        try{
+            const { status } = req.query;
+            const user = await User.find({ status });
+            return res.status(200).json(user)
         } catch (err) {
             console.error(err);
             return res.status(500).json({
