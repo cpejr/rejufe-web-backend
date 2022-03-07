@@ -65,7 +65,7 @@ module.exports = {
     async getById(req, res) {
         console.log('oi');
         try {
-            const { id } = req.query.id;
+            const { id } = req.params;
             const user = await User.findOne({ _id: id });
             return res.status(200).json(user);
         } catch (err) {

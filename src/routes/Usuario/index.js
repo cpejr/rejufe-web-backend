@@ -24,7 +24,7 @@ UserRouter.get(
   UserController.getAll
 );
 UserRouter.get(
-  '/:section',
+  '/section/:section',
   UserValidator.getBySection,
   checksUserIsAdmin,
   UserController.getUsersBySection,
