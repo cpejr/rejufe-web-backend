@@ -12,7 +12,6 @@ mongoose.connection.once("open", () => {
   gfs.collection("uploads");
 });
 
-
 module.exports = {
   async getAll(req, res) {
     try {
@@ -44,27 +43,20 @@ module.exports = {
 
   async getById(req, res) {
     try {
-      gridfsBucket.find({ _id: new ObjectId(req.params.id) }).toArray((err, files) => {
+      gfs.files.findOne({ _id: new ObjectId(req.params.id) }, (err, file) => {
         // Check if file
-        if (!files || files.length === 0) {
-          return res.status(200).json("No files found");
-        } else {
-          files.map((file) => {
-            if (
-              file.contentType === "image/jpeg" ||
-              file.contentType === "image/png"
-            ) {
-              file.isImage = true;
-            } else {
-              file.isImage = false;
-            }
+        if (!file || file.length === 0) {
+          return res.status(404).json({
+            err: "No file exists",
           });
-          res.contentType(files[0].contentType);
-          const readStream = gridfsBucket.openDownloadStream(
-            new ObjectId(req.params.id)
-          );
-          readStream.pipe(res);
         }
+        // File exists
+
+        res.contentType(file.contentType);
+        const readStream = gridfsBucket.openDownloadStream(
+          new ObjectId(req.params.id)
+        );
+        readStream.pipe(res);
       });
     } catch (err) {
       console.error(err);
