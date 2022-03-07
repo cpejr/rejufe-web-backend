@@ -28,13 +28,13 @@ module.exports = {
       return next();
     } else {
       return response
-          .status(401)
-          .json({ error: 'You must be logged in to view this page.' });
+        .status(401)
+        .json({ error: 'You must be logged in to view this page.' });
     }
   },
   async checksUserIsAdmin(request, response, next) {
     /* Verificar se o usuario logado na sessão é do tipo administrator */
-    if (request.session && request.session.user && request.session.user.type === 'ADMINISTRADOR') {
+    if (request.session && request.session.user && request.session.user.type === 'administrador') {
       next();
     } else {
       response

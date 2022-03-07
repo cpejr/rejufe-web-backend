@@ -25,6 +25,7 @@ const ExternalUserSchema = new mongoose.Schema({
     office: {
         type: String,
         require: true,
+        enum: ['JUIZ FEDERAL', 'JUIZ FEDERAL SUBSTITUTO', 'JUIZ FEDERAL APOSENTADO', 'DESEMBARGADOR FEDERAL', 'DESEMBARGADOR FEDERAL SUBSTITUTO', 'DESEMBARGADOR FEDERAL APOSENTADO'],
     },
     nacionality: {
         type: String,
@@ -62,6 +63,7 @@ const ExternalUserSchema = new mongoose.Schema({
     judicial_section: {
         type: String,
         require: false,
+        enum: ['SE', 'AL', 'PE', 'PB', 'RN', 'CE'],
     },
     spouse: {
         type: String,
