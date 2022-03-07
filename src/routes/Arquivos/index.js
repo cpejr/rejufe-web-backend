@@ -16,7 +16,7 @@ FilesRouter.get(
 );
 
 FilesRouter.get(
-    '/:filename',
+    '/:id',
     FilesController.getById
 );
 
