@@ -50,7 +50,9 @@ module.exports = {
     },
     async getExternalAssociates(req, res) {
         try {
-            const user = await ExternalUser.find().limit(50);
+            const limit = 50;
+            const times = req.query.times;
+            const user = await ExternalUser.find().limit(limit).skip(limit * times);
 
             return res.status(200).json(user);
         } catch (err) {
