@@ -26,6 +26,7 @@ UserRouter.get(
 UserRouter.get(
   '/externalAssociate',
   UserValidator.getExternalAssociates,
+  checksUserIsAdmin,
   UserController.getExternalAssociates
 );
 UserRouter.get(
