@@ -3,8 +3,9 @@ const Noticias = require('../models/Noticias.js');
 module.exports = {
   async create(req, res) {
     try {
+      console.log(req.body)
       const noticias = req.body;
-      await Noticias.create(noticias);
+      // await Noticias.create(noticias);
       return res.status(200).json(noticias);
     } catch (err) {
       console.error(err);
