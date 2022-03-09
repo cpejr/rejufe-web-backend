@@ -6,7 +6,6 @@ const path = require('path');
 const mongoose = require('mongoose');
 var Grid = require("gridfs-stream");
 const session = require('express-session');
-const methodOverride = require('method-override');
 var MongoStore = require('connect-mongo');
 const { errors } = require('celebrate');
 
@@ -33,7 +32,6 @@ app.use(cors({
     credentials: true
  }));
 app.use(bodyParser.json());
-app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(session({
