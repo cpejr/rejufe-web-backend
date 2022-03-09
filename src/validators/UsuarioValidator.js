@@ -25,7 +25,7 @@ module.exports = {
       sons: Joi.string().optional(),
       cep: Joi.string().required(),
       profissional_address: Joi.string().required(),
-      profissional_number: Joi.string().required(),
+      profissional_number: Joi.number().required(),
       profissional_complement: Joi.string().optional(),
       profissional_district: Joi.string().required(),
       profissional_city: Joi.string().required(),
@@ -72,7 +72,7 @@ module.exports = {
       sons: Joi.string().optional(),
       cep: Joi.string().required(),
       profissional_address: Joi.string().required(),
-      profissional_number: Joi.string().required(),
+      profissional_number: Joi.number().required(),
       profissional_complement: Joi.string().optional(),
       profissional_district: Joi.string().required(),
       profissional_city: Joi.string().required(),
@@ -97,6 +97,18 @@ module.exports = {
     }),
   }),
   getAll: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
+    [Segments.QUERY]: Joi.object().keys({
+      times: Joi.number().integer().required(),
+      field: Joi.string().allow(null, ''),
+      filter: Joi.allow(null, ''),
+    }),
+  }),
+  getExternalAssociates: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
         authorization: Joi.string().required(),
@@ -184,6 +196,17 @@ module.exports = {
   }),
 
   delete: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
+    [Segments.PARAMS]: Joi.object().keys({
+      id: Joi.string().required(),
+    }),
+  }),
+
+  deleteExternalAssociate: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
         authorization: Joi.string().required(),
