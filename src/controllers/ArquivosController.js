@@ -36,7 +36,7 @@ module.exports = {
     } catch (err) {
       console.error(err);
       return res.status(500).json({
-        notification: "Internal server error while trying to get all images",
+        notification: "Internal server error while trying to get all files",
       });
     }
   },
@@ -74,7 +74,7 @@ module.exports = {
     } catch (err) {
       console.error(err);
       return res.status(500).json({
-        notification: "Internal server error while trying to upload image",
+        notification: "Internal server error while trying to upload a file",
       });
     }
   },
