@@ -1,3 +1,4 @@
+const { SchemaTypeOptions } = require('mongoose');
 const User = require('../models/Usuario.js');
 const ExternalUser = require('../models/UsuarioExterno.js');
 const Firebase = require('../utils/Firebase');
@@ -51,7 +52,9 @@ module.exports = {
         try {
             const limit = 50;
             const times = req.query.times;
-            const user = await User.find().limit(limit).skip(limit * times);
+            const { section } = req.params;
+            console.log(section);
+            const user = await User.find({ judicial_section: section }).limit(limit).skip(limit * times);
 
             return res.status(200).json(user);
         } catch (err) {
