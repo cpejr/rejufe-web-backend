@@ -21,7 +21,7 @@ module.exports = {
         noticias[`${file.fieldname}`] = file.id;
       })
       await Noticias.create(noticias);
-      return res.status(200).json('sucesso');
+      return res.status(200).json(noticias);
     } catch (err) {
       try {
         req.files.forEach(file => {
