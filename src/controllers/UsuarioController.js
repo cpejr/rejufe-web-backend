@@ -53,8 +53,8 @@ module.exports = {
             const limit = 50;
             const times = req.query.times;
             const { section } = req.params;
-            console.log(section);
             const user = await User.find({ judicial_section: section }).limit(limit).skip(limit * times);
+            console.log("🚀 ~ file: UsuarioController.js ~ line 57 ~ getUsersBySection ~ user", user);
 
             return res.status(200).json(user);
         } catch (err) {
@@ -66,7 +66,6 @@ module.exports = {
     },
 
     async getById(req, res) {
-        console.log('oi');
         try {
             const { id } = req.params;
             const user = await User.findOne({ _id: id });
