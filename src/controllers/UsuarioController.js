@@ -36,7 +36,22 @@ module.exports = {
     },
     async getAll(req, res) {
         try {
-            const user = await User.find().limit(50);
+            const limit = 50;
+            const times = req.query.times;
+            const user = await User.find().limit(limit).skip(limit * times);
+            return res.status(200).json(user);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get all users',
+            });
+        }
+    },
+    async getExternalAssociates(req, res) {
+        try {
+            const limit = 50;
+            const times = req.query.times;
+            const user = await ExternalUser.find().limit(limit).skip(limit * times);
 
             return res.status(200).json(user);
         } catch (err) {
@@ -103,6 +118,18 @@ module.exports = {
         try {
             const { id } = req.params;
             const user = await User.findByIdAndDelete({ _id: id });
+            return res.status(200).json({ id: user.id });
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to delete a user',
+            });
+        }
+    },
+    async deleteExternalAssociate(req, res) {
+        try {
+            const { id } = req.params;
+            const user = await ExternalUser.findByIdAndDelete({ _id: id });
             return res.status(200).json({ id: user.id });
         } catch (err) {
             console.error(err);
