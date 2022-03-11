@@ -3,8 +3,9 @@ const NoticeRouter = express.Router();
 
 const NoticeController = require('../../controllers/NoticiasController.js');
 const NoticeValidator = require('../../validators/NoticiasValidator');
+const upload = require('../../middlewares/Upload.js');
 
-const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
+const { requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
 NoticeRouter.get(
   '/',
@@ -19,6 +20,7 @@ NoticeRouter.get(
 );
 NoticeRouter.post(
   '/',
+  upload.any(),
   NoticeValidator.create,
   requiresLogin,
   checksUserIsAdmin,
