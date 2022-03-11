@@ -192,6 +192,7 @@ module.exports = {
       email_REJUFE: Joi.string().optional(),
       email_ASCOM: Joi.string().optional(),
       admission_date: Joi.date(),
+      status: Joi.string(),
     }).min(1),
   }),
 
