@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const NoticeSchema = new mongoose.Schema({
     section: {
@@ -47,5 +48,6 @@ const NoticeSchema = new mongoose.Schema({
 
 });
 
+NoticeSchema.plugin(AutoIncrement, { inc_field: 'news_sequential_id' });
 const Notice = mongoose.model('Noticias', NoticeSchema);
 module.exports = Notice;
