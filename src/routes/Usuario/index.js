@@ -30,6 +30,12 @@ UserRouter.get(
   UserController.getUsersBySection,
 );
 UserRouter.get(
+  '/externalAssociate',
+  UserValidator.getExternalAssociates,
+  checksUserIsAdmin,
+  UserController.getExternalAssociates
+);
+UserRouter.get(
   '/:id',
   UserValidator.getById,
   requiresLogin,
@@ -57,6 +63,12 @@ UserRouter.delete(
   UserValidator.delete,
   checksUserIsAdmin,
   UserController.delete
+);
+UserRouter.delete(
+  '/externalAssociate/:id',
+  UserValidator.deleteExternalAssociate,
+  checksUserIsAdmin,
+  UserController.deleteExternalAssociate
 );
 
 module.exports = UserRouter;
