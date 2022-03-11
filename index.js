@@ -27,7 +27,7 @@ mongoose.connect(process.env.DB_URL, {
 app.use(cors({
     origin: "http://localhost:3000",
     credentials: true
- }));
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
@@ -43,7 +43,7 @@ app.use(session({
     store: MongoStore.create({
         mongoUrl: process.env.DB_URL
     }),
-  }));
+}));
 app.use(routes)
 
 app.use(errors());
