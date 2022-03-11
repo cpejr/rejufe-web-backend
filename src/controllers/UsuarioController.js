@@ -54,7 +54,6 @@ module.exports = {
             const times = req.query.times;
             const { section } = req.params;
             const user = await User.find({ judicial_section: section }).limit(limit).skip(limit * times);
-            console.log("🚀 ~ file: UsuarioController.js ~ line 57 ~ getUsersBySection ~ user", user);
 
             return res.status(200).json(user);
         } catch (err) {
