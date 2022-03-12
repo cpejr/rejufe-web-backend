@@ -3,7 +3,7 @@ const NoticeRouter = express.Router();
 
 const NoticeController = require('../../controllers/NoticiasController.js');
 const NoticeValidator = require('../../validators/NoticiasValidator');
-const upload = require('../../middlewares/Upload.js');
+const upload = require('../../middlewares/upload');
 
 const { requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
