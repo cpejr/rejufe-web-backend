@@ -12,7 +12,7 @@ module.exports = {
       title: Joi.string().required(),
       description: Joi.string().required(),
       toVote: Joi.array().required(),
-      alreadyVoted: Joi.array(),
+      alreadyVoted: Joi.array().required(),
       openingDate: Joi.date().required(),
       closingDate: Joi.date().required(),
       options: Joi.array().required(),
