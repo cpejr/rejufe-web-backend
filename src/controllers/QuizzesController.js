@@ -15,7 +15,9 @@ module.exports = {
   },
   async getAll(req, res) {
     try {
-      const quizzes = await Quizzes.find();
+      const limit = 50;
+      const times = req.query.times;
+      const quizzes = await Quizzes.find().limit(limit).skip(limit * times);
       return res.status(200).json(quizzes);
     } catch (err) {
       console.error(err);
@@ -24,6 +26,22 @@ module.exports = {
       });
     }
   },
+
+  async getToVoteQuizzes(req, res) {
+    try {
+      const limit = 50;
+      const times = req.query.times;
+      const { id } = req.params;
+      const quizzes = await Quizzes.find({ toVote: id }).limit(limit).skip(limit * times)
+      return res.status(200).json(quizzes);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({
+        notification: 'Internal server error while trying to get all quizzes',
+      });
+    }
+  },
+
   async getById(req, res) {
     try {
       const { id } = req.params;

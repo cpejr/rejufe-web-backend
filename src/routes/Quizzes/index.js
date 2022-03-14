@@ -18,6 +18,12 @@ QuizzesRouter.get(
   requiresLogin,
   QuizzesController.getById
 );
+QuizzesRouter.get(
+  '/toVote/:id',
+  QuizzesValidator.getToVoteQuizzes,
+  requiresLogin,
+  QuizzesController.getToVoteQuizzes
+);
 QuizzesRouter.post(
   '/',
   QuizzesValidator.create,

@@ -27,6 +27,19 @@ module.exports = {
     }),
   }),
 
+  getToVoteQuizzes: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string(),
+      })
+      .unknown(),
+    [Segments.QUERY]: Joi.object().keys({
+      times: Joi.number().integer().required(),
+      field: Joi.string().allow(null, ''),
+      filter: Joi.allow(null, ''),
+    }),
+  }),
+
   getById: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
