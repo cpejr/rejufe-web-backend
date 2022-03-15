@@ -32,8 +32,9 @@ module.exports = {
       const limit = 50;
       const times = req.query.times;
       const { id } = req.params;
-      const { date } = req.params;
-      const quizzes = await Quizzes.find({ $or:[{ toVote: id }, { alreadyVoted: id }], openingDate: {$gte: date } }).limit(limit).skip(limit * times)
+      const { date } = req.query.date;
+      console.log(req.query);
+      const quizzes = await Quizzes.find({ $or:[{ toVote: id }, { alreadyVoted: id }], openingDate: {$lte: date } }).limit(limit).skip(limit * times)
       return res.status(200).json(quizzes);
     } catch (err) {
       console.error(err);
