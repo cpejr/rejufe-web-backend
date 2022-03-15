@@ -33,8 +33,8 @@ module.exports = {
       const times = req.query.times;
       const { id } = req.params;
       const { date } = req.query.date;
-      console.log(req.query);
-      const quizzes = await Quizzes.find({ $or:[{ toVote: id }, { alreadyVoted: id }], openingDate: {$lte: date } }).limit(limit).skip(limit * times)
+      console.log(req.query.date);
+      const quizzes = await Quizzes.find({ $or:[{ toVote: id }, { alreadyVoted: id }] }).limit(limit).skip(limit * times)
       return res.status(200).json(quizzes);
     } catch (err) {
       console.error(err);
