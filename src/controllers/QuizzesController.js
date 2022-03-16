@@ -34,7 +34,8 @@ module.exports = {
       const { id } = req.params;
       const { date } = req.query.date;
       console.log(req.query.date);
-      const quizzes = await Quizzes.find({ $or:[{ toVote: id }, { alreadyVoted: id }] }).limit(limit).skip(limit * times)
+      const quizzes = await Quizzes.find({ $or:[{ toVote: id }, { alreadyVoted: id }], openingDate: { $lte: '2022-03-15' } }).limit(limit).skip(limit * times)
+      console.log(quizzes);
       return res.status(200).json(quizzes);
     } catch (err) {
       console.error(err);
@@ -61,6 +62,7 @@ module.exports = {
       const { id } = req.params;
       const quizzes = req.body;
       const result = await Quizzes.findByIdAndUpdate({ _id: id }, quizzes);
+      console.log(result);
       return res.status(200).json(result);
     } catch (err) {
       console.error(err);

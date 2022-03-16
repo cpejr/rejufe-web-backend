@@ -34,7 +34,7 @@ module.exports = {
       })
       .unknown(),
     [Segments.QUERY]: Joi.object().keys({
-      date: Joi.date(),
+      date: Joi.date().required(),
       times: Joi.number().integer().required(),
       field: Joi.string().allow(null, ''),
       filter: Joi.allow(null, ''),
@@ -62,9 +62,26 @@ module.exports = {
       id: Joi.string().required(),
     }),
     [Segments.BODY]: Joi.object().keys({
+      title: Joi.string().optional(),
       description: Joi.string().optional(),
-      toVote: Joi.string().optional(),
-      alreadyVoted: Joi.string().optional(),
+      toVote: Joi.array().optional(),
+      alreadyVoted: Joi.array().optional(),
+      openingDate: Joi.date().optional(),
+      closingDate: Joi.date().optional(),
+      options: Joi.array().optional(),
+    }).min(1),
+  }),
+
+  updateVote: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .unknown(),
+    [Segments.PARAMS]: Joi.object().keys({
+      id: Joi.string().required(),
+    }),
+    [Segments.BODY]: Joi.object().keys({
+      toVote: Joi.array().optional(),
+      alreadyVoted: Joi.array().optional(),
+      options: Joi.array().optional(),
     }).min(1),
   }),
 

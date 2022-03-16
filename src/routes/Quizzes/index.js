@@ -38,6 +38,12 @@ QuizzesRouter.put(
   checksUserIsAdmin,
   QuizzesController.update
 );
+QuizzesRouter.put(
+  '/vote/:id',
+  QuizzesValidator.updateVote,
+  requiresLogin,
+  QuizzesController.update
+);
 QuizzesRouter.delete(
   '/:id',
   QuizzesValidator.delete,
