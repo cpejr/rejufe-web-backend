@@ -6,6 +6,7 @@ module.exports = {
     async create(req, res) {
         try {
             const user = req.body;
+            console.log("🚀 ~ file: UsuarioController.js ~ line 9 ~ create ~ user", user)
             const randomPassword = Math.random().toString(36).slice(-8);
             const uid = await Firebase.createNewUser(user.email, randomPassword);
 
