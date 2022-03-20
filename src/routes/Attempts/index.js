@@ -35,4 +35,9 @@ AttemptsRouter.put(
     AttemptsController.deleteByEmail
 );
 
+AttemptsRouter.put(
+    '/updateTime',
+    AttemptsController.updateTimeByEmail
+);
+
 module.exports = AttemptsRouter

@@ -10,6 +10,7 @@ module.exports = {
     [Segments.BODY]: Joi.object().keys({
       email: Joi.string().required(),
       quantity: Joi.number().optional(),
+      lock_time: Joi.date().optional(),
     }),
   }),
   getAll: celebrate({
@@ -48,6 +49,7 @@ module.exports = {
     [Segments.BODY]: Joi.object().keys({
       email: Joi.string().required(),
       quantity: Joi.number().optional(),
+      lock_time: Joi.date().optional(),
     }).min(1),
   }),
 

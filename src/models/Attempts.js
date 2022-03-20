@@ -11,6 +11,9 @@ const AttemptsSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
+    lock_time: {
+        type: Date,
+    }
 });
 
 const Attempts = mongoose.model('Attempts', AttemptsSchema);

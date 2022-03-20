@@ -31,9 +31,9 @@ module.exports = {
         try {
             const { email } = req.query;
             console.log("🚀 ~ file: AttemptsController.js ~ line 33 ~ getAttemptsByEmail ~ email", email)
-            const { quantity } = await Attempts.findOne({ email });
+            const result = await Attempts.findOne({ email });
 
-            return res.status(200).json(quantity);
+            return res.status(200).json(result);
         } catch (err) {
             console.error(err);
             return res.status(500).json({
@@ -95,6 +95,24 @@ module.exports = {
             console.log("🚀 ~ file: AttemptsController.js ~ line x ~ getAttemptsByEmail ~ email", email)
             const { quantity } = await Attempts.findOne({ email });
             const result = await Attempts.findOneAndUpdate({email}, {quantity: quantity + 1})
+            console.log("🚀 ~ file: AttemptsController.js ~ line 93 ~ updateAttemptsByEmail ~ result", result)
+
+            return res.status(200).json(result);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get attempts by email',
+            });
+        }
+    },
+
+    async updateTimeByEmail(req, res) {
+        console.log("🚀 ~ file: AttemptsController.js ~ line 89 ~ updateAttemptsByEmail ~ req", req.body.params.email)
+        try {
+            const email = req.body.params.email;
+            const time = req.body.params.time;
+            console.log("🚀 ~ file: AttemptsController.js ~ line x ~ getAttemptsByEmail ~ email", email)
+            const result = await Attempts.findOneAndUpdate({email}, {lock_time: time })
             console.log("🚀 ~ file: AttemptsController.js ~ line 93 ~ updateAttemptsByEmail ~ result", result)
 
             return res.status(200).json(result);
