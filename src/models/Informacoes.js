@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const InformationSchema = new mongoose.Schema({
     number: {
-        type: Number,
+        type: String,
         require: true,
     },
     description: {
