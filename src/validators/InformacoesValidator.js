@@ -11,8 +11,8 @@ module.exports = {
       number: Joi.string().required(),
       description: Joi.string().required(),
       type: Joi.string().valid('INFORMATIVO', 'COMUNICADO').required(),
-      archive_1: Joi.string().optional(),
-      archive_2: Joi.string().optional(),
+      archive_1: Joi.string().allow('').optional(),
+      archive_2: Joi.string().allow('').optional(),
     }),
   }),
   getAll: celebrate({
