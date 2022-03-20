@@ -28,7 +28,6 @@ module.exports = {
 
     async create(req, res) {
         try {
-            console.log(req);
             const informations = req.body;
             console.log("🚀 ~ file: InformacoesController.js ~ line 32 ~ create ~ informations", informations)
             await Informations.create(informations);
