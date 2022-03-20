@@ -96,6 +96,7 @@ module.exports = {
       admission_date: Joi.date().required(),
     }),
   }),
+
   getAll: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
@@ -108,6 +109,20 @@ module.exports = {
       filter: Joi.allow(null, ''),
     }),
   }),
+
+  getBySection: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
+    [Segments.QUERY]: Joi.object().keys({
+      filter: Joi.allow(null, ''),
+      times: Joi.number().integer().required(),
+      field: Joi.string().allow(null, ''),
+    }),
+  }),
+
   getExternalAssociates: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
@@ -120,6 +135,7 @@ module.exports = {
       filter: Joi.allow(null, ''),
     }),
   }),
+
   getById: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
