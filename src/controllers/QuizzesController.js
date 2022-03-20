@@ -15,7 +15,10 @@ module.exports = {
   },
   async getAll(req, res) {
     try {
-      const quizzes = await Quizzes.find();
+      const limit = 50;
+      const times = req.query.times;
+      const quizzes = await Quizzes.find().limit(limit).skip(limit * times);
+
       return res.status(200).json(quizzes);
     } catch (err) {
       console.error(err);

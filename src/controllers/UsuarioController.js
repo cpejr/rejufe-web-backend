@@ -1,3 +1,4 @@
+const { SchemaTypeOptions } = require('mongoose');
 const User = require('../models/Usuario.js');
 const ExternalUser = require('../models/UsuarioExterno.js');
 const Firebase = require('../utils/Firebase');
@@ -34,11 +35,10 @@ module.exports = {
             });
         }
     },
+
     async getAll(req, res) {
         try {
-            const limit = 50;
-            const times = req.query.times;
-            const user = await User.find().limit(limit).skip(limit * times);
+            const user = await User.find().skip(req.query.times * 50).limit(50);
             return res.status(200).json(user);
         } catch (err) {
             console.error(err);
@@ -47,6 +47,36 @@ module.exports = {
             });
         }
     },
+
+    async getUsersBySection(req, res) {
+        try {
+            const limit = 50;
+            const times = req.query.times;
+            const { section } = req.params;
+            const user = await User.find({ judicial_section: section }).limit(limit).skip(limit * times);
+            return res.status(200).json(user);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get all users',
+            });
+        }
+    },
+    async getExternalAssociates(req, res) {
+        try {
+            const limit = 50;
+            const times = req.query.times;
+            const user = await ExternalUser.find().limit(limit).skip(limit * times);
+
+            return res.status(200).json(user);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get all users',
+            });
+        }
+    },
+
     async getById(req, res) {
         try {
             const { id } = req.params;
@@ -104,6 +134,18 @@ module.exports = {
         try {
             const { id } = req.params;
             const user = await User.findByIdAndDelete({ _id: id });
+            return res.status(200).json({ id: user.id });
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to delete a user',
+            });
+        }
+    },
+    async deleteExternalAssociate(req, res) {
+        try {
+            const { id } = req.params;
+            const user = await ExternalUser.findByIdAndDelete({ _id: id });
             return res.status(200).json({ id: user.id });
         } catch (err) {
             console.error(err);

@@ -13,7 +13,7 @@ module.exports = {
       name: Joi.string().required(),
       user: Joi.string().required(),
       status: Joi.string().valid('A', 'E'),
-      office: Joi.string().required(),
+      office: Joi.string().valid('JUIZ FEDERAL', 'JUIZ FEDERAL SUBSTITUTO', 'JUIZ FEDERAL APOSENTADO', 'DESEMBARGADOR FEDERAL', 'DESEMBARGADOR FEDERAL SUBSTITUTO', 'DESEMBARGADOR FEDERAL APOSENTADO').required(),
       nacionality: Joi.string().required(),
       cpf: Joi.string().required(),
       birth: Joi.date().required(),
@@ -25,7 +25,7 @@ module.exports = {
       sons: Joi.string().optional(),
       cep: Joi.string().required(),
       profissional_address: Joi.string().required(),
-      profissional_number: Joi.string().required(),
+      profissional_number: Joi.number().required(),
       profissional_complement: Joi.string().optional(),
       profissional_district: Joi.string().required(),
       profissional_city: Joi.string().required(),
@@ -60,7 +60,7 @@ module.exports = {
       name: Joi.string().required(),
       user: Joi.string().required(),
       status: Joi.string().valid('USUARIO EM ESPERA'),
-      office: Joi.string().required(),
+      office: Joi.string().valid('JUIZ FEDERAL', 'JUIZ FEDERAL SUBSTITUTO', 'JUIZ FEDERAL APOSENTADO', 'DESEMBARGADOR FEDERAL', 'DESEMBARGADOR FEDERAL SUBSTITUTO', 'DESEMBARGADOR FEDERAL APOSENTADO').required(),
       nacionality: Joi.string().required(),
       cpf: Joi.string().required(),
       birth: Joi.date().required(),
@@ -72,7 +72,7 @@ module.exports = {
       sons: Joi.string().optional(),
       cep: Joi.string().required(),
       profissional_address: Joi.string().required(),
-      profissional_number: Joi.string().required(),
+      profissional_number: Joi.number().required(),
       profissional_complement: Joi.string().optional(),
       profissional_district: Joi.string().required(),
       profissional_city: Joi.string().required(),
@@ -89,13 +89,14 @@ module.exports = {
       telephone: Joi.string(),
       fax: Joi.string(),
       cell_phone_number: Joi.string().required(),
-      judicial_section: Joi.string().optional(),
+      judicial_section: Joi.string().valid('CE', 'RN', 'PB', 'PE', 'AL', 'SE').optional(),
       email: Joi.string().email().required(),
       email_REJUFE: Joi.string().optional(),
       email_ASCOM: Joi.string().optional(),
       admission_date: Joi.date().required(),
     }),
   }),
+
   getAll: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
@@ -108,6 +109,33 @@ module.exports = {
       filter: Joi.allow(null, ''),
     }),
   }),
+
+  getBySection: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
+    [Segments.QUERY]: Joi.object().keys({
+      filter: Joi.allow(null, ''),
+      times: Joi.number().integer().required(),
+      field: Joi.string().allow(null, ''),
+    }),
+  }),
+
+  getExternalAssociates: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
+    [Segments.QUERY]: Joi.object().keys({
+      times: Joi.number().integer().required(),
+      field: Joi.string().allow(null, ''),
+      filter: Joi.allow(null, ''),
+    }),
+  }),
+
   getById: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
@@ -146,7 +174,7 @@ module.exports = {
       status: Joi.string().valid('A', 'E'),
       name: Joi.string(),
       user: Joi.string(),
-      office: Joi.string(),
+      office: Joi.string().valid('JUIZ FEDERAL', 'JUIZ FEDERAL SUBSTITUTO', 'JUIZ FEDERAL APOSENTADO', 'DESEMBARGADOR FEDERAL', 'DESEMBARGADOR FEDERAL SUBSTITUTO', 'DESEMBARGADOR FEDERAL APOSENTADO').required(),
       nacionality: Joi.string(),
       cpf: Joi.string(),
       birth: Joi.date(),
@@ -175,6 +203,7 @@ module.exports = {
       telephone: Joi.string().optional(),
       fax: Joi.string().optional(),
       cell_phone_number: Joi.string(),
+      judicial_section: Joi.string().valid('CE', 'RN', 'PB', 'PE', 'AL', 'SE').optional(),
       email: Joi.string().email(),
       email_REJUFE: Joi.string().optional(),
       email_ASCOM: Joi.string().optional(),
@@ -184,6 +213,17 @@ module.exports = {
   }),
 
   delete: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
+    [Segments.PARAMS]: Joi.object().keys({
+      id: Joi.string().required(),
+    }),
+  }),
+
+  deleteExternalAssociate: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
         authorization: Joi.string().required(),
