@@ -60,7 +60,6 @@ module.exports = {
       const { id } = req.params;
       const quizzes = req.body;
       const result = await Quizzes.findByIdAndUpdate({ _id: id }, quizzes);
-      console.log(result);
       return res.status(200).json(result);
     } catch (err) {
       console.error(err);
