@@ -30,7 +30,6 @@ module.exports = {
     async getAttemptsByEmail(req, res) {
         try {
             const { email } = req.query;
-            console.log("🚀 ~ file: AttemptsController.js ~ line 33 ~ getAttemptsByEmail ~ email", email)
             const result = await Attempts.findOne({ email });
 
             return res.status(200).json(result);
@@ -45,9 +44,7 @@ module.exports = {
     async create(req, res) {
         try {
             const attempt = req.body;
-            console.log("🚀 ~ file: AttemptsController.js ~ line 33 ~ create ~ attempt", attempt)
             tentativa = await Attempts.create(attempt)
-            console.log("🚀 ~ file: AttemptsController.js ~ line 35 ~ create ~ tentativa", tentativa)
             return res.status(200).json(attempt);
         } catch (err) {
             console.error(err);
@@ -60,9 +57,7 @@ module.exports = {
     async deleteByEmail(req, res) {
         try {
             const email = req.body.params.email;
-            console.log("🚀 ~ file: AttemptsController.js ~ line d ~ getAttemptsByEmail ~ email", email)
             const result = await Attempts.findOneAndUpdate({email}, {quantity: 0})
-            console.log("🚀 ~ file: AttemptsController.js ~ line e ~ updateAttemptsByEmail ~ result", result)
 
             return res.status(200).json(result);
         } catch (err) {
@@ -89,13 +84,10 @@ module.exports = {
     },
 
     async updateAttemptsByEmail(req, res) {
-        console.log("🚀 ~ file: AttemptsController.js ~ line 89 ~ updateAttemptsByEmail ~ req", req.body.params.email)
         try {
             const email = req.body.params.email;
-            console.log("🚀 ~ file: AttemptsController.js ~ line x ~ getAttemptsByEmail ~ email", email)
             const { quantity } = await Attempts.findOne({ email });
             const result = await Attempts.findOneAndUpdate({email}, {quantity: quantity + 1})
-            console.log("🚀 ~ file: AttemptsController.js ~ line 93 ~ updateAttemptsByEmail ~ result", result)
 
             return res.status(200).json(result);
         } catch (err) {
@@ -107,13 +99,10 @@ module.exports = {
     },
 
     async updateTimeByEmail(req, res) {
-        console.log("🚀 ~ file: AttemptsController.js ~ line 89 ~ updateAttemptsByEmail ~ req", req.body.params.email)
         try {
             const email = req.body.params.email;
             const time = req.body.params.time;
-            console.log("🚀 ~ file: AttemptsController.js ~ line x ~ getAttemptsByEmail ~ email", email)
             const result = await Attempts.findOneAndUpdate({email}, {lock_time: time })
-            console.log("🚀 ~ file: AttemptsController.js ~ line 93 ~ updateAttemptsByEmail ~ result", result)
 
             return res.status(200).json(result);
         } catch (err) {
