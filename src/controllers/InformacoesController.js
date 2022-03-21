@@ -1,4 +1,16 @@
 const Informations = require('../models/Informacoes.js');
+var Grid = require("gridfs-stream");
+var mongoose = require("mongoose");
+
+let gfs, gridfsBucket;
+mongoose.connection.once("open", () => {
+  gridfsBucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
+    bucketName: "uploads",
+  });
+
+  gfs = Grid(mongoose.connection.db, mongoose.mongo);
+  gfs.collection("uploads");
+});
 
 module.exports = {
     async getAll(req, res) {
@@ -29,10 +41,20 @@ module.exports = {
     async create(req, res) {
         try {
             const informations = req.body;
-            console.log("🚀 ~ file: InformacoesController.js ~ line 32 ~ create ~ informations", informations)
+            const files = req.files;
+            files.forEach(file => {
+                informations[`${file.fieldname}`] = file.id;
+            })
             await Informations.create(informations);
             return res.status(200).json(informations);
         } catch (err) {
+            try {
+                req.files.forEach(file => {
+                  gridfsBucket.delete(file.id);
+                })
+            } catch (deleteFileErr) {
+                console.error(deleteFileErr);
+            }
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to create an information',

@@ -5,7 +5,7 @@ const InformationsController = require('../../controllers/InformacoesController.
 const InformationsValidator = require('../../validators/InformacoesValidator.js');
 const upload = require('../../middlewares/Upload.js');
 
-const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
+const { requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
 InformationsRouter.get(
     '/',

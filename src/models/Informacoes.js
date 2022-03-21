@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const InformationSchema = new mongoose.Schema({
     number: {
@@ -24,5 +25,6 @@ const InformationSchema = new mongoose.Schema({
     },
 });
 
+InformationSchema.plugin(AutoIncrement, { inc_field: 'informations_sequential_id' });
 const Information = mongoose.model('Informacoes', InformationSchema);
 module.exports = Information;
