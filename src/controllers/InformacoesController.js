@@ -42,7 +42,7 @@ module.exports = {
         try {
             const informations = req.body;
             const files = req.files;
-            files.forEach(file => {
+            files?.forEach(file => {
                 informations[`${file.fieldname}`] = file.id;
             })
             await Informations.create(informations);
