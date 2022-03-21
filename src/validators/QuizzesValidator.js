@@ -54,8 +54,8 @@ module.exports = {
     }),
     [Segments.BODY]: Joi.object().keys({
       description: Joi.string().optional(),
-      toVote: Joi.string().optional(),
-      alreadyVoted: Joi.string().optional(),
+      toVote: Joi.array().optional(),
+      alreadyVoted: Joi.array().optional(),
     }).min(1),
   }),
 
