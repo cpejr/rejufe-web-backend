@@ -1,3 +1,4 @@
+const { SchemaTypeOptions } = require('mongoose');
 const User = require('../models/Usuario.js');
 const ExternalUser = require('../models/UsuarioExterno.js');
 const Firebase = require('../utils/Firebase');
@@ -35,11 +36,25 @@ module.exports = {
             });
         }
     },
+
     async getAll(req, res) {
+        try {
+            const user = await User.find().skip(req.query.times * 50).limit(50);
+            return res.status(200).json(user);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get all users',
+            });
+        }
+    },
+
+    async getUsersBySection(req, res) {
         try {
             const limit = 50;
             const times = req.query.times;
-            const user = await User.find().limit(limit).skip(limit * times);
+            const { section } = req.params;
+            const user = await User.find({ judicial_section: section }).limit(limit).skip(limit * times);
             return res.status(200).json(user);
         } catch (err) {
             console.error(err);
@@ -62,6 +77,7 @@ module.exports = {
             });
         }
     },
+
     async getById(req, res) {
         try {
             const { id } = req.params;
