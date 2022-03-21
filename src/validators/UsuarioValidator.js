@@ -174,7 +174,7 @@ module.exports = {
       status: Joi.string().valid('A', 'E'),
       name: Joi.string(),
       user: Joi.string(),
-      office: Joi.string().valid('JUIZ FEDERAL', 'JUIZ FEDERAL SUBSTITUTO', 'JUIZ FEDERAL APOSENTADO', 'DESEMBARGADOR FEDERAL', 'DESEMBARGADOR FEDERAL SUBSTITUTO', 'DESEMBARGADOR FEDERAL APOSENTADO').required(),
+      office: Joi.string().valid('JUIZ FEDERAL', 'JUIZ FEDERAL SUBSTITUTO', 'JUIZ FEDERAL APOSENTADO', 'DESEMBARGADOR FEDERAL', 'DESEMBARGADOR FEDERAL SUBSTITUTO', 'DESEMBARGADOR FEDERAL APOSENTADO'),
       nacionality: Joi.string(),
       cpf: Joi.string(),
       birth: Joi.date(),
