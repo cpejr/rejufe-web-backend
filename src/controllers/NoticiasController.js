@@ -38,7 +38,9 @@ module.exports = {
   },
   async getAll(req, res) {
     try {
-      const noticias = await Noticias.find();
+      const limit = 50;
+      const times = req.query.times;
+      const noticias = await Noticias.find().limit(limit).skip(limit * times);
       return res.status(200).json(noticias);
     } catch (err) {
       console.error(err);

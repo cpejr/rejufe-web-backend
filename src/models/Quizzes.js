@@ -6,21 +6,17 @@ const QuizzesSchema = new mongoose.Schema({
         require: true,
     },
     description: {
+      type: String,
+      require: true,
+    },
+    toVote: [{
         type: String,
         require: true,
-    },
-    toVote: {
-        _id: {
-            type: String,
-            require: true,
-        }
-    },
-    alreadyVoted: {
-        _id: {
-            type: String,
-            require: true,
-        }
-    },
+    }],
+    alreadyVoted: [{
+        type: String,
+        require: true,
+    }],
     openingDate: {
         type: Date,
         require: true,
@@ -29,15 +25,15 @@ const QuizzesSchema = new mongoose.Schema({
         type: Date,
         require: true,
     },
-    options: {
+    options: [{
         description: {
             type: String,
             require: true,
         },
         votes: {
-            type: Number
-        },
-    },
+            type: Number,
+        }
+    }],
 });
 
 const Quizzes = mongoose.model('Quizzes', QuizzesSchema);
