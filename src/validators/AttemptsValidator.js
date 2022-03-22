@@ -13,54 +13,32 @@ module.exports = {
       lock_time: Joi.date().optional(),
     }),
   }),
-  getAll: celebrate({
-    [Segments.HEADERS]: Joi.object()
-      .keys({
-        authorization: Joi.string().required(),
-      })
-      .unknown(),
-    [Segments.QUERY]: Joi.object().keys({
-      times: Joi.number().integer().required(),
-      field: Joi.string().allow(null, ''),
-      filter: Joi.allow(null, ''),
+
+  getAttemptsByEmail: celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+      email: Joi.string().required(),
     }),
   }),
 
-  getById: celebrate({
-    [Segments.HEADERS]: Joi.object()
-      .keys({
-        authorization: Joi.string().required(),
-      })
-      .unknown(),
+  deleteByEmail: celebrate({
     [Segments.PARAMS]: Joi.object().keys({
-      id: Joi.string().required(),
+      email: Joi.string().required(),
     }),
   }),
 
-  update: celebrate({
-    [Segments.HEADERS]: Joi.object()
-      .keys({
-        authorization: Joi.string().required(),
-      })
-      .unknown(),
+  updateAttemptsByEmail: celebrate({
     [Segments.PARAMS]: Joi.object().keys({
-      id: Joi.string().required(),
+      email: Joi.string().required(),
+    }),
+  }),
+
+  updateTimeByEmail: celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+      email: Joi.string().required(),
     }),
     [Segments.BODY]: Joi.object().keys({
-      email: Joi.string().required(),
       quantity: Joi.number().optional(),
       lock_time: Joi.date().optional(),
-    }).min(1),
-  }),
-
-  delete: celebrate({
-    [Segments.HEADERS]: Joi.object()
-      .keys({
-        authorization: Joi.string().required(),
-      })
-      .unknown(),
-    [Segments.PARAMS]: Joi.object().keys({
-      id: Joi.string().required(),
     }),
   }),
 };

@@ -8,19 +8,10 @@ const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../m
 
 AttemptsRouter.get(
     '/getAttemptsByEmail',
-    AttemptsController.getAttemptsByEmail
-)
+    AttemptsController.getAttemptsByEmail,
+    AttemptsValidator.getAttemptsByEmail
 
-AttemptsRouter.get(
-    '/',
-    AttemptsController.getAll,
-    AttemptsValidator.getAll
-);
-AttemptsRouter.get(
-    '/:user',
-    AttemptsController.getById,
-    AttemptsValidator.getById
-);
+)
 AttemptsRouter.post(
     '/',
     AttemptsController.create,
@@ -29,15 +20,18 @@ AttemptsRouter.post(
 AttemptsRouter.put(
     '/updateAttempts',
     AttemptsController.updateAttemptsByEmail,
+    AttemptsValidator.updateAttemptsByEmail
 );
 AttemptsRouter.put(
     '/deleteByEmail',
-    AttemptsController.deleteByEmail
+    AttemptsController.deleteByEmail,
+    AttemptsValidator.deleteByEmail
 );
 
 AttemptsRouter.put(
     '/updateTime',
-    AttemptsController.updateTimeByEmail
+    AttemptsController.updateTimeByEmail,
+    AttemptsValidator.updateTimeByEmail
 );
 
 module.exports = AttemptsRouter

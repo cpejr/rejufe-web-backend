@@ -1,31 +1,6 @@
 const Attempts = require('../models/Attempts.js');
 
 module.exports = {
-    async getAll(req, res) {
-        try {
-            const attempt = await Attempts.find();
-            return res.status(200).json(attempt);
-        } catch (err) {
-            console.error(err);
-            return res.status(500).json({
-                notification: 'Internal server error while trying to get all atas',
-            });
-        }
-    },
-
-    async getById(req, res) {
-        try {
-            const { user } = req.query;
-            const { email } = await User.findOne({ user });
-            const attempt = await Attempts.findOne(id);
-            return res.status(200).json(attempt);
-        } catch (err) {
-            console.error(err);
-            return res.status(500).json({
-                notification: 'Internal server error while trying to get an atas by id',
-            });
-        }
-    },
 
     async getAttemptsByEmail(req, res) {
         try {
@@ -63,22 +38,7 @@ module.exports = {
         } catch (err) {
             console.error(err);
             return res.status(500).json({
-                notification: 'Internal server error while trying to delete an atas',
-            });
-        }
-    },
-
-    async update(req, res) {
-        try {
-            const { id } = req.params;
-            const attempt = req.body;
-            const result = await Attempts.findByIdAndUpdate({ _id: id }, attempt);
-            return res.status(200).json(result);
-        } catch (err) {
-            console.error(err);
-            return res.status(500).json({
-                notification:
-                    'Internal server error while trying to update an atas by id',
+                notification: 'Internal server error while trying to delete attempts',
             });
         }
     },
@@ -93,7 +53,7 @@ module.exports = {
         } catch (err) {
             console.error(err);
             return res.status(500).json({
-                notification: 'Internal server error while trying to get attempts by email',
+                notification: 'Internal server error while trying to update attempts by email',
             });
         }
     },
@@ -102,13 +62,15 @@ module.exports = {
         try {
             const email = req.body.params.email;
             const time = req.body.params.time;
-            const result = await Attempts.findOneAndUpdate({email}, {lock_time: time })
+            const { quantity } = await Attempts.findOne({ email });
+            await Attempts.findOneAndUpdate({email}, {quantity: quantity + 1})
+            await Attempts.findOneAndUpdate({email}, {lock_time: time })
 
-            return res.status(200).json(result);
+            return res.status(200).json({notification: 'Time and attempts updated!'});
         } catch (err) {
             console.error(err);
             return res.status(500).json({
-                notification: 'Internal server error while trying to get attempts by email',
+                notification: 'Internal server error while trying to update attempts by email',
             });
         }
     },
