@@ -27,6 +27,12 @@ FilesRouter.get(
     FilesController.getById
 );
 
+FilesRouter.get(
+    '/image/:id',
+    requiresLogin,
+    FilesController.getImageById
+);
+
 FilesRouter.delete(
     '/:id',
     requiresLogin,
