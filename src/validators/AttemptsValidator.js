@@ -26,12 +26,6 @@ module.exports = {
     }),
   }),
 
-  updateAttemptsByEmail: celebrate({
-    [Segments.PARAMS]: Joi.object().keys({
-      email: Joi.string().required(),
-    }),
-  }),
-
   updateTimeByEmail: celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       email: Joi.string().required(),

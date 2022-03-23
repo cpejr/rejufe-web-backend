@@ -18,11 +18,6 @@ AttemptsRouter.post(
     AttemptsValidator.create
 );
 AttemptsRouter.put(
-    '/updateAttempts',
-    AttemptsController.updateAttemptsByEmail,
-    AttemptsValidator.updateAttemptsByEmail
-);
-AttemptsRouter.put(
     '/deleteByEmail',
     AttemptsController.deleteByEmail,
     AttemptsValidator.deleteByEmail

@@ -43,21 +43,6 @@ module.exports = {
         }
     },
 
-    async updateAttemptsByEmail(req, res) {
-        try {
-            const email = req.body.params.email;
-            const { quantity } = await Attempts.findOne({ email });
-            const result = await Attempts.findOneAndUpdate({email}, {quantity: quantity + 1})
-
-            return res.status(200).json(result);
-        } catch (err) {
-            console.error(err);
-            return res.status(500).json({
-                notification: 'Internal server error while trying to update attempts by email',
-            });
-        }
-    },
-
     async updateTimeByEmail(req, res) {
         try {
             const email = req.body.params.email;
