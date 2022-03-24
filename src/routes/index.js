@@ -2,6 +2,7 @@ const express = require('express');
 
 // Principais
 const ActionsRouter = require('./Acoes');
+const AttemptsRouter = require('./Attempts')
 const FilesRouter = require('./Arquivos');
 const AtasRouter = require('./Atas');
 const ContactUsRouter = require('./FaleConosco');
@@ -17,6 +18,7 @@ const routes = express.Router();
 
 // Principais
 routes.use('/acoes', ActionsRouter);
+routes.use('/attempts', AttemptsRouter);
 routes.use('/arquivos', FilesRouter);
 routes.use('/atas', AtasRouter);
 routes.use('/faleconosco', ContactUsRouter);
