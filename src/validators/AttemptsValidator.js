@@ -20,7 +20,7 @@ module.exports = {
     }),
   }),
 
-  deleteByEmail: celebrate({
+  resetByEmail: celebrate({
     [Segments.PARAMS]: Joi.object().keys({
       email: Joi.string().required(),
     }),

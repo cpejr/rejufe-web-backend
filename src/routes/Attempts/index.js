@@ -18,9 +18,9 @@ AttemptsRouter.post(
     AttemptsValidator.create
 );
 AttemptsRouter.put(
-    '/deleteByEmail',
-    AttemptsController.deleteByEmail,
-    AttemptsValidator.deleteByEmail
+    '/resetByEmail',
+    AttemptsController.resetByEmail,
+    AttemptsValidator.resetByEmail
 );
 
 AttemptsRouter.put(

@@ -7,7 +7,7 @@ module.exports = {
             const { email } = req.query;
             const result = await Attempts.findOne({ email });
 
-            return res.status(200).json(result);
+            return res.status(200).json({email:result.email, quantity:result.quantity, lock_time: result.lock_time});
         } catch (err) {
             console.error(err);
             return res.status(500).json({
@@ -29,7 +29,7 @@ module.exports = {
         }
     },
 
-    async deleteByEmail(req, res) {
+    async resetByEmail(req, res) {
         try {
             const email = req.body.params.email;
             const result = await Attempts.findOneAndUpdate({email}, {quantity: 0})
