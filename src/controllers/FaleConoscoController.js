@@ -1,3 +1,4 @@
+const mail = require('../mail/mail.js');
 const ContactUs = require('../models/FaleConosco.js');
 
 module.exports = {
@@ -30,6 +31,7 @@ module.exports = {
         try {
             const contactUs = req.body;
             await ContactUs.create(contactUs);
+            mail.ContactUsForm('matheusbastos@cpejr.com.br',req.body.email, req.body.name, req.body.message);
             return res.status(200).json(contactUs);
         } catch (err) {
             console.error(err);
