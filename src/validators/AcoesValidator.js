@@ -9,7 +9,7 @@ module.exports = {
       .unknown(),
     [Segments.BODY]: Joi.object().keys({
       type: Joi.string().valid('ADMINISTRATIVAS', 'JUDICIAIS').required(),
-      date: Joi.date().required(),
+      number: Joi.string().required(),
       description: Joi.string().required(),
       archive_1: Joi.string().allow('').optional(),
       archive_2: Joi.string().allow('').optional(),
