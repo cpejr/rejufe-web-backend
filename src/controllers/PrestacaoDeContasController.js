@@ -16,14 +16,14 @@ module.exports = {
   async create(req, res) {
     try {
       const accountability = req.body;
-      console.log("alo")
       const files = req.files;
-      console.log("🚀 ~ file: PrestacaoDeContasController.js ~ line 20 ~ create ~  req.files", req.files);
-      files.forEach(file => {
+      files?.forEach(file => {
         accountability[`${file.fieldname}`] = file.id;
       })
+      if (req.body.pdf === '') {
+        return res.status(400).json({ error: `pdf is required` });
+      }
       await Accountability.create(accountability);
-      console.log("🚀 ~ file: PrestacaoDeContasController.js ~ line 26 ~ create ~ accountability", accountability);
       return res.status(200).json(accountability);
     } catch (err) {
       try {
