@@ -1,4 +1,5 @@
 const { SchemaTypeOptions } = require('mongoose');
+const moment = require('moment');
 const User = require('../models/Usuario.js');
 const ExternalUser = require('../models/UsuarioExterno.js');
 const Firebase = require('../utils/Firebase');
@@ -103,8 +104,22 @@ module.exports = {
         }
     },
 
-    async getExcludedAssociate(req, res){
-        try{
+    async getUsersByTodaysBirthday(req, res) {
+        try {
+            const birth = moment().format("DD MM");
+            const users = await User.find({ birth }).select('email').select('name');
+
+            return res.status(200).json(users);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get users by birthday',
+            });
+        }
+    },
+
+    async getExcludedAssociate(req, res) {
+        try {
             const { status } = req.query;
             const user = await User.find({ status });
             return res.status(200).json(user)
