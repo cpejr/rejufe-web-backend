@@ -15,7 +15,9 @@ mongoose.connection.once("open", () => {
 module.exports = {
     async getAll(req, res) {
         try {
-            const atas = await Atas.find();
+            const limit = 50;
+            const times = req.query.times;
+            const atas = await Atas.find().limit(limit).skip(limit * times);
             return res.status(200).json(atas);
         } catch (err) {
             console.error(err);
