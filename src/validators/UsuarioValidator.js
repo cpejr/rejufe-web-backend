@@ -96,6 +96,7 @@ module.exports = {
       admission_date: Joi.date().required(),
     }),
   }),
+
   getAll: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
@@ -108,6 +109,20 @@ module.exports = {
       filter: Joi.allow(null, ''),
     }),
   }),
+
+  getBySection: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
+    [Segments.QUERY]: Joi.object().keys({
+      filter: Joi.allow(null, ''),
+      times: Joi.number().integer().required(),
+      field: Joi.string().allow(null, ''),
+    }),
+  }),
+
   getExternalAssociates: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
@@ -120,6 +135,7 @@ module.exports = {
       filter: Joi.allow(null, ''),
     }),
   }),
+
   getById: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
@@ -158,7 +174,7 @@ module.exports = {
       status: Joi.string().valid('A', 'E'),
       name: Joi.string(),
       user: Joi.string(),
-      office: Joi.string().valid('JUIZ FEDERAL', 'JUIZ FEDERAL SUBSTITUTO', 'JUIZ FEDERAL APOSENTADO', 'DESEMBARGADOR FEDERAL', 'DESEMBARGADOR FEDERAL SUBSTITUTO', 'DESEMBARGADOR FEDERAL APOSENTADO').required(),
+      office: Joi.string().valid('JUIZ FEDERAL', 'JUIZ FEDERAL SUBSTITUTO', 'JUIZ FEDERAL APOSENTADO', 'DESEMBARGADOR FEDERAL', 'DESEMBARGADOR FEDERAL SUBSTITUTO', 'DESEMBARGADOR FEDERAL APOSENTADO'),
       nacionality: Joi.string(),
       cpf: Joi.string(),
       birth: Joi.date(),
