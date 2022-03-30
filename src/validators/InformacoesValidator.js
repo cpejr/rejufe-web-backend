@@ -8,11 +8,11 @@ module.exports = {
       })
       .unknown(),
     [Segments.BODY]: Joi.object().keys({
-      number: Joi.number().required(),
+      number: Joi.string().required(),
       description: Joi.string().required(),
       type: Joi.string().valid('INFORMATIVO', 'COMUNICADO').required(),
-      archive_1: Joi.string().optional(),
-      archive_2: Joi.string().optional(),
+      archive_1: Joi.string().allow('').optional(),
+      archive_2: Joi.string().allow('').optional(),
     }),
   }),
   getAll: celebrate({
@@ -49,7 +49,7 @@ module.exports = {
       id: Joi.string().required(),
     }),
     [Segments.BODY]: Joi.object().keys({
-      number: Joi.number().optional(),
+      number: Joi.string().optional(),
       description: Joi.string().optional(),
       type: Joi.string().valid('INFORMATIVO', 'COMUNICADO').optional(),
       archive_1: Joi.string().optional(),

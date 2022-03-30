@@ -3,8 +3,9 @@ const InformationsRouter = express.Router();
 
 const InformationsController = require('../../controllers/InformacoesController.js');
 const InformationsValidator = require('../../validators/InformacoesValidator.js');
+const upload = require('../../middlewares/Upload.js');
 
-const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
+const { requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
 InformationsRouter.get(
     '/',
@@ -20,6 +21,7 @@ InformationsRouter.get(
 );
 InformationsRouter.post(
     '/',
+    upload.any(),
     InformationsValidator.create,
     requiresLogin,
     checksUserIsAdmin,
