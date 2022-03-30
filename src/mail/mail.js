@@ -40,4 +40,15 @@ module.exports = {
         };
         return Email.sendEmail(emailContent);
     },
+    BirthdayNotificationEmail(to, name) {
+        const content = `Eu, ${process.env.name}, te desejo um ótimo aniversário ${name}`;
+        const subject = `Feliz aniversário, ${name}!`;
+
+        const emailContent = {
+            to,
+            subject,
+            text: content,
+        };
+        return Email.sendEmail(emailContent);
+    }
 }

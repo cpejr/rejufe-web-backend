@@ -1,17 +1,13 @@
-const BirthdayNotification = require('../models/BirthdayNotification');
 const UserController = require('./UsuarioController');
 const mail = require('../mail/mail');
 
 
 module.exports = {
-  async create(req, res) {
+  async sendEmail(req, res) {
     const { email, name } = UserController.getUsersByTodaysBirthday;
-    const message = ''
     mail.ContactUsForm(
       email,
-      email,
-      name,
-      message
+      name
     )
   }
 }
