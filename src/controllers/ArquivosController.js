@@ -90,4 +90,17 @@ module.exports = {
       });
     }
   },
+
+  async getFileNameById(req, res) {
+    console.log("🚀 ~ file: ArquivosController.js ~ line 95 ~ getFileNameById ~ req", req.params)
+    try {
+      return res.status(200).json("to aqui");
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({
+        notification: "Internal server error while trying to get a file by id",
+      });
+    }
+  },
 };
+
