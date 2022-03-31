@@ -9,7 +9,7 @@ const AcoesSchema = new mongoose.Schema({
     },
     numberAction: {
         type: String,
-        require: true,
+        require: false,
     },
     description: {
         type: String,
