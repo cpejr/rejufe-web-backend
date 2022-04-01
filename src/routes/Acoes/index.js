@@ -3,8 +3,9 @@ const ActionsRouter = express.Router();
 
 const ActionsController = require('../../controllers/AcoesController.js');
 const ActionsValidator = require('../../validators/AcoesValidator.js')
+const upload = require('../../middlewares/upload.js');
 
-const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
+const { requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
 ActionsRouter.get(
     '/',
@@ -20,6 +21,7 @@ ActionsRouter.get(
 );
 ActionsRouter.post(
     '/',
+    upload.any(),
     ActionsValidator.create,
     requiresLogin,
     checksUserIsAdmin,
