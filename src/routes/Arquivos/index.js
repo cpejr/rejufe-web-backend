@@ -15,6 +15,12 @@ FilesRouter.post(
 );
 
 FilesRouter.get(
+    '/getFileNameById',
+    requiresLogin,
+    FilesController.getFileNameById
+);
+
+FilesRouter.get(
     '/',
     requiresLogin,
     checksUserIsAdmin,
@@ -25,12 +31,6 @@ FilesRouter.get(
     '/:id',
     requiresLogin,
     FilesController.getById
-);
-
-FilesRouter.get(
-    '/getFileNameById',
-    requiresLogin,
-    FilesController.getFileNameById
 );
 
 FilesRouter.delete(
