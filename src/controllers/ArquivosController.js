@@ -78,30 +78,6 @@ module.exports = {
       });
     }
   },
-  async getFileNameById(req, res) {
-    try {
-      const { archiveId } = req.query
-      console.log("🚀 ~ file: ArquivosController.js ~ line 84 ~ getFileNameById ~  archiveId", archiveId);
-      gfs.files.findOne({ _id: new ObjectId(archiveId) }, (err, file) => {
-        // Check if file
-        console.log(file.filename);
-        if (!file || file.length === 0) {
-          return res.status(404).json({
-            err: "No file exists",
-          });
-        }
-        // File exists
-
-        return res.status(200).json(file.filename);
-      });
-    } catch (err) {
-      console.error(err);
-      return res.status(500).json({
-        notification: "Internal server error while trying to get a file by id",
-      });
-    }
-  },
-
 
   async delete(req, res) {
     try {
