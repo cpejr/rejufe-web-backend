@@ -8,7 +8,7 @@ const ModelSchema = new mongoose.Schema({
     },
     numberModels: {
         type: String,
-        require: true,
+        require: false,
     },
     description: {
         type: String,
