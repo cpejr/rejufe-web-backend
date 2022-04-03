@@ -96,7 +96,6 @@ module.exports = {
       const { archiveId } = req.query
       gfs.files.findOne({ _id: new ObjectId(archiveId) }, (err, file) => {
         // Check if file
-        console.log(file.filename);
         if (!file || file.length === 0) {
           return res.status(404).json({
             err: "No file exists",
