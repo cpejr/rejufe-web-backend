@@ -9,7 +9,7 @@ module.exports = {
       .unknown(),
     [Segments.BODY]: Joi.object().keys({
       type: Joi.string().valid('REQUERIMENTOS ADMINISTRATIVOS', 'PETIÇÕES INICIAIS', 'JURISPRUDÊNCIA').required(),
-      date: Joi.date().required(),
+      numberModels: Joi.string().required(),
       description: Joi.string().required(),
       archive_1: Joi.string().optional(),
       archive_2: Joi.string().optional(),
@@ -50,7 +50,7 @@ module.exports = {
     }),
     [Segments.BODY]: Joi.object().keys({
       type: Joi.string().valid('REQUERIMENTOS ADMINISTRATIVOS', 'PETIÇÕES INICIAIS', 'JURISPRUDÊNCIA').optional(),
-      date: Joi.date().optional(),
+      numberModels: Joi.string().optional(),
       description: Joi.string().optional(),
       archive_1: Joi.string().optional(),
       archive_2: Joi.string().optional(),
