@@ -81,9 +81,20 @@ module.exports = {
         try {
             const { id } = req.params;
             const action = req.body;
+            const files = req.files;
+            files.forEach(file => {
+                action[`${file.fieldname}`] = file.id;
+            })
             const actions = await Actions.findByIdAndUpdate({ _id: id }, action);
             return res.status(200).json(actions);
         } catch (err) {
+            try {
+                req.files.forEach(file => {
+                    gridfsBucket.delete(file.id);
+                })
+            } catch (deleteFileErr) {
+                console.error(deleteFileErr);
+            }
             console.error(err);
             return res.status(500).json({
                 notification:
