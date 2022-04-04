@@ -7,7 +7,7 @@ const ModelSchema = new mongoose.Schema({
         enum: ['REQUERIMENTOS ADMINISTRATIVOS', 'PETIÇÕES INICIAIS', 'JURISPRUDÊNCIA'],
     },
     numberModels: {
-        type: String,
+        type: Number,
         require: false,
     },
     description: {

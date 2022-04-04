@@ -5,7 +5,7 @@ const ModelsController = require('../../controllers/ModelosController.js');
 const ModelsValidator = require('../../validators/ModelosValidator.js');
 const upload = require('../../middlewares/upload.js');
 
-const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
+const { requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
 ModelsRouter.get(
     '/',
