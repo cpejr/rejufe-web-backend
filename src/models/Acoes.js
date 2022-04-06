@@ -7,9 +7,9 @@ const AcoesSchema = new mongoose.Schema({
         require: true,
         enum: ['ADMINISTRATIVAS', 'JUDICIAIS'],
     },
-    date: {
-        type: Date,
-        require: true,
+    numberAction: {
+        type: String,
+        require: false,
     },
     description: {
         type: String,
