@@ -42,16 +42,16 @@ module.exports = {
         try {
             const informations = req.body;
             const files = req.files;
-            // files?.forEach(file => {
-            //     informations[`${file.fieldname}`] = file.id;
-            // })
+            files.forEach(file => {
+                informations[`${file.fieldname}`] = file.id;
+            })
             await Informations.create(informations);
             return res.status(200).json(informations);
         } catch (err) {
             try {
-                // req.files.forEach(file => {
-                //   gridfsBucket.delete(file.id);
-                // })
+                req.files.forEach(file => {
+                  gridfsBucket.delete(file.id);
+                })
             } catch (deleteFileErr) {
                 console.error(deleteFileErr);
             }

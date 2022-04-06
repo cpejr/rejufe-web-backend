@@ -3,7 +3,9 @@ const Models = require('../models/Modelos.js');
 module.exports = {
     async getAll(req, res) {
         try {
-            const models = await Models.find();
+            const limit = 50;
+            const times = req.query.times;
+            const models = await Models.find().limit(limit).skip(limit * times);
             return res.status(200).json(models);
         } catch (err) {
             console.error(err);
@@ -30,16 +32,16 @@ module.exports = {
         try {
             const models = req.body;
             const files = req.files;
-            // files?.forEach(file => {
-            //     models[`${file.fieldname}`] = file.id;
-            // })
+            files.forEach(file => {
+                models[`${file.fieldname}`] = file.id;
+            })
             await Models.create(models);
             return res.status(200).json(models);
         } catch (err) {
             try {
-                // req?.files.forEach(file => {
-                //     gridfsBucket.delete(file.id);
-                // })
+                req.files.forEach(file => {
+                    gridfsBucket.delete(file.id);
+                })
             } catch (deleteFileErr) {
                 console.error(deleteFileErr);
             }
