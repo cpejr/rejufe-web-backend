@@ -1,4 +1,17 @@
 const Accountability = require('../models/PrestacaoDeContas.js');
+var Grid = require("gridfs-stream");
+var mongoose = require("mongoose");
+
+
+let gfs, gridfsBucket;
+mongoose.connection.once("open", () => {
+  gridfsBucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
+    bucketName: "uploads",
+  });
+
+  gfs = Grid(mongoose.connection.db, mongoose.mongo);
+  gfs.collection("uploads");
+});
 
 module.exports = {
   async create(req, res) {
@@ -40,9 +53,22 @@ module.exports = {
     try {
       const { id } = req.params;
       const accountability = req.body;
+      const files = req.files;
+      const account = await Accountability.findOne({ _id: id });
+      gridfsBucket.delete(account.pdf);
+      files.forEach(file => {
+        noticias[`${file.pdf}`] = file.id;
+      })
       const result = await Accountability.findByIdAndUpdate({ _id: id }, accountability);
       return res.status(200).json(result);
     } catch (err) {
+      try {
+        req.files.forEach(file => {
+          gridfsBucket.delete(file.id);
+        })
+      } catch (deleteFileErr) {
+        console.error(deleteFileErr);
+      }
       console.error(err);
       return res.status(500).json({
         notification:
