@@ -52,7 +52,7 @@ module.exports = {
       date: Joi.date(),
       title: Joi.string(),
       description: Joi.string(),
-      pdf: Joi.string(),
+      pdf: Joi.string().allow(''),
     }).min(1),
   }),
 
