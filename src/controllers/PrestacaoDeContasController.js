@@ -56,10 +56,12 @@ module.exports = {
       const accountability = req.body;
       const files = req.files;
       const account = await Accountability.findOne({ _id: id });
-      gridfsBucket.delete(new ObjectId(account.pdf));
       files.forEach(file => {
         accountability[`${file.fieldname}`] = file.id;
       })
+      if (req.files.length > 0 && account.pdf.length > 0) {
+        gridfsBucket.delete(new ObjectId(account.pdf));
+      }
       const result = await Accountability.findByIdAndUpdate({ _id: id }, accountability);
       return res.status(200).json(result);
     } catch (err) {
