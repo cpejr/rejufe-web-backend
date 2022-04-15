@@ -1,6 +1,7 @@
 const Accountability = require('../models/PrestacaoDeContas.js');
 var Grid = require("gridfs-stream");
 var mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 
 
 let gfs, gridfsBucket;
@@ -54,11 +55,14 @@ module.exports = {
       const { id } = req.params;
       const accountability = req.body;
       const files = req.files;
-      const account = await Accountability.findOne({ _id: id });
-      gridfsBucket.delete(account.pdf);
       files.forEach(file => {
-        noticias[`${file.pdf}`] = file.id;
+        accountability[`${file.fieldname}`] = file.id;
       })
+      console.log("🚀 ~ file: PrestacaoDeContasController.js ~ line 58 ~ update ~ files", files)
+      const account = await Accountability.findOne({ _id: id });
+      console.log("🚀 ~ file: PrestacaoDeContasController.js ~ line 59 ~ update ~ account", account);
+      // gridfsBucket.delete(account.pdf);
+      // accountability[`${files.pdf}`] = files.id;
       const result = await Accountability.findByIdAndUpdate({ _id: id }, accountability);
       return res.status(200).json(result);
     } catch (err) {
