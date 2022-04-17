@@ -1,6 +1,7 @@
 const Actions = require('../models/Acoes.js');
 var Grid = require("gridfs-stream");
 var mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 
 let gfs, gridfsBucket;
 mongoose.connection.once("open", () => {
@@ -86,8 +87,11 @@ module.exports = {
             files.forEach(file => {
                 actions[`${file.fieldname}`] = file.id;
             })
-            if (req.files.length > 0 && action.pdf.length > 0) {
-                gridfsBucket.delete(new ObjectId(action.pdf));
+            if (req.files.length > 0 && action.archive_1.length > 0) {
+                gridfsBucket.delete(new ObjectId(action.archive_1));
+            }
+            if (req.files.length > 0 && action.archive_2.length > 0) {
+                gridfsBucket.delete(new ObjectId(action.archive_2));
             }
             const result = await Actions.findByIdAndUpdate({ _id: id }, actions);
             return res.status(200).json(result);
