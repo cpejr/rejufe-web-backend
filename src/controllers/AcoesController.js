@@ -80,13 +80,17 @@ module.exports = {
     async update(req, res) {
         try {
             const { id } = req.params;
-            const action = req.body;
+            const actions = req.body;
             const files = req.files;
+            const action = await Actions.findOne({ _id: id });
             files.forEach(file => {
-                action[`${file.fieldname}`] = file.id;
+                actions[`${file.fieldname}`] = file.id;
             })
-            const actions = await Actions.findByIdAndUpdate({ _id: id }, action);
-            return res.status(200).json(actions);
+            if (req.files.length > 0 && action.pdf.length > 0) {
+                gridfsBucket.delete(new ObjectId(action.pdf));
+            }
+            const result = await Actions.findByIdAndUpdate({ _id: id }, actions);
+            return res.status(200).json(result);
         } catch (err) {
             try {
                 req.files.forEach(file => {
@@ -98,7 +102,7 @@ module.exports = {
             console.error(err);
             return res.status(500).json({
                 notification:
-                    'Internal server error while trying to update a bank by id',
+                    'Internal server error while trying to update an action by id',
             });
         }
     },
