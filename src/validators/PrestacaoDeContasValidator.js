@@ -12,7 +12,7 @@ module.exports = {
       date: Joi.date().required(),
       title: Joi.string().required(),
       description: Joi.string().required(),
-      pdf: Joi.string().required(),
+      pdf: Joi.string().allow(''),
     }),
   }),
   getAll: celebrate({

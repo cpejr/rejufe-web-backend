@@ -21,6 +21,7 @@ AccountabilityRouter.get(
 );
 AccountabilityRouter.post(
   '/',
+  upload.any(),
   AccountabilityValidator.create,
   requiresLogin,
   checksUserIsAdmin,
