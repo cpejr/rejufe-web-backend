@@ -16,6 +16,7 @@ module.exports = {
       openingDate: Joi.date().required(),
       closingDate: Joi.date().required(),
       options: Joi.array().required(),
+      privateResult: Joi.boolean().required(),
     }),
   }),
   
@@ -74,6 +75,7 @@ module.exports = {
       openingDate: Joi.date().optional(),
       closingDate: Joi.date().optional(),
       options: Joi.array().optional(),
+      privateResult: Joi.boolean().optional(),
     }).min(1),
   }),
 
