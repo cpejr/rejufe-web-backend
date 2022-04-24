@@ -147,6 +147,17 @@ module.exports = {
     }),
   }),
 
+  getExternalUserById: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
+    [Segments.PARAMS]: Joi.object().keys({
+      id: Joi.string().required(),
+    }),
+  }),
+
   getUserEmailByUsername: celebrate({
     [Segments.BODY]: Joi.object().keys({
       user: Joi.string().required(),
