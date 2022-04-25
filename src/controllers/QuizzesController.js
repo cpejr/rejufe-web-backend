@@ -60,7 +60,7 @@ module.exports = {
       const { id } = req.params;
       const quizzes = req.body;
       const result = await Quizzes.findByIdAndUpdate({ _id: id }, quizzes);
-      return res.status(200).json(result);
+      return res.status(200).json({_id:result?.id, alreadyVoted:result?.alreadyVoted, closingDate: result?.closingDate, description: result?.description, openingDate: result?.openingDate, title: result?.title, toVote: result?.toVote});
     } catch (err) {
       console.error(err);
       return res.status(500).json({
