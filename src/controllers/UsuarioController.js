@@ -103,8 +103,21 @@ module.exports = {
         }
     },
 
-    async getExcludedAssociate(req, res){
-        try{
+    async getUserEmailByCpf(req, res) {
+        try {
+            const { cpf } = req.query;
+            const { email } = await User.findOne({ 'cpf': cpf });
+            return res.status(200).json(email);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get a email by user',
+            });
+        }
+    },
+
+    async getExcludedAssociate(req, res) {
+        try {
             const { status } = req.query;
             const user = await User.find({ status });
             return res.status(200).json(user)
