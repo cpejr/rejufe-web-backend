@@ -69,6 +69,9 @@ module.exports = {
         try {
             const { id } = req.params;
             const models = req.body;
+            const files = req.files;
+            // console.log(files);
+            // console.log(models);
             const result = await Models.findByIdAndUpdate({ _id: id }, models);
             return res.status(200).json(models);
         } catch (err) {
