@@ -1,4 +1,16 @@
 const Models = require('../models/Modelos.js');
+var Grid = require("gridfs-stream");
+var mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
+
+let gfs, gridfsBucket;
+mongoose.connection.once("open", () => {
+  gridfsBucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
+    bucketName: "uploads",
+  });
+  gfs = Grid(mongoose.connection.db, mongoose.mongo);
+  gfs.collection("uploads");
+});
 
 module.exports = {
     async getAll(req, res) {
@@ -70,8 +82,14 @@ module.exports = {
             const { id } = req.params;
             const models = req.body;
             const files = req.files;
-            // console.log(files);
-            // console.log(models);
+            const account = await Models.findOne({ _id: id });
+            files.forEach(file => {
+              models[`${file.fieldname}`] = file.id;
+            })
+            // if (req.files.length > 0 && account.archive_1.length > 0 ) {
+            //   gridfsBucket.delete(new ObjectId(account.pdf));
+            // }
+            console.log(files);
             const result = await Models.findByIdAndUpdate({ _id: id }, models);
             return res.status(200).json(models);
         } catch (err) {
