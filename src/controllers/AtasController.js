@@ -44,7 +44,7 @@ module.exports = {
         try {
             const atas = req.body;
             const files = req.files;
-            files?.forEach(file => {
+            files.forEach(file => {
                 atas[`${file.fieldname}`] = file.id;
             })
             await Atas.create(atas);

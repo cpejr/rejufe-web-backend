@@ -30,14 +30,14 @@ module.exports = {
         try {
             const models = req.body;
             const files = req.files;
-            files?.forEach(file => {
+            files.forEach(file => {
                 models[`${file.fieldname}`] = file.id;
             })
             await Models.create(models);
             return res.status(200).json(models);
         } catch (err) {
             try {
-                req?.files.forEach(file => {
+                req.files.forEach(file => {
                     gridfsBucket.delete(file.id);
                 })
             } catch (deleteFileErr) {
