@@ -17,6 +17,11 @@ module.exports = {
             return res.status(200).json(user);
         } catch (err) {
             console.error(err);
+            if (err.code === 'auth/email-already-in-use'){
+                return res.status(500).json({
+                    notification: 'Email already in use',
+                });
+            }
             return res.status(500).json({
                 notification: 'Internal server error while trying to create a user',
             });
