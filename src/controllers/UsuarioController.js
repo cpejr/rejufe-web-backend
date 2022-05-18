@@ -110,7 +110,7 @@ module.exports = {
         try {
             const birthDay = moment().format("DD MM");
             const users = await User.find({ birthDay }).select('email').select('name');
-
+            console.log(users);
             return res.status(200).json(users);
         } catch (err) {
             console.error(err);

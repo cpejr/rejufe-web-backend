@@ -1,14 +1,16 @@
-const nodemailer = require("nodemailer");
+const nodemailer = require('nodemailer');
 const { create } = require('../models/Usuario');
 require("dotenv").config();
+
+const testAccount = nodemailer.createTestAccount();
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
     secure: false,
     auth: {
-        user: process.env.EMAIL_LOGIN,
-        pass: process.env.EMAIL_PASSWORD,
+        user: testAccount.user,
+        pass: testAccount.pass,
     },
 });
 
@@ -40,7 +42,8 @@ module.exports = {
         };
         return Email.sendEmail(emailContent);
     },
-    BirthdayNotificationEmail(to, name) {
+    async BirthdayNotificationEmail(to, name) {
+        console.log(testAccount);
         const content = `Eu, ${process.env.name}, te desejo um ótimo aniversário ${name}`;
         const subject = `Feliz aniversário, ${name}!`;
 
@@ -49,6 +52,9 @@ module.exports = {
             subject,
             text: content,
         };
-        return Email.sendEmail(emailContent);
+        return Email.sendEmail(emailContent).catch((err) => {
+            console.err(err);
+        });
+
     }
 }
