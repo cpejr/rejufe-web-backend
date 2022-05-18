@@ -103,7 +103,7 @@ module.exports = {
         }
         // File exists
 
-        return res.status(200).json(file.filename);
+        return res.status(200).json(file.originalname);
       });
     } catch (err) {
       console.error(err);
