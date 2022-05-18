@@ -82,14 +82,14 @@ module.exports = {
             const { id } = req.params;
             const models = req.body;
             const files = req.files;
-            const account = await Models.findOne({ _id: id });
+            const model = await Models.findOne({ _id: id });
             files.forEach(file => {
+              if (model[`${file.fieldname}`]) {
+                console.log(model);
+                gridfsBucket.delete(model[`${file.fieldname}`]);
+              } 
               models[`${file.fieldname}`] = file.id;
             })
-            // if (req.files.length > 0 && account.archive_1.length > 0 ) {
-            //   gridfsBucket.delete(new ObjectId(account.pdf));
-            // }
-            console.log(files);
             const result = await Models.findByIdAndUpdate({ _id: id }, models);
             return res.status(200).json(models);
         } catch (err) {
