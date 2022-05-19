@@ -17,9 +17,9 @@ module.exports = {
     try {
       const accountability = req.body;
       const files = req.files;
-      // files?.forEach(file => {
-      //   accountability[`${file.fieldname}`] = file.id;
-      // })
+      files?.forEach(file => {
+        accountability[`${file.fieldname}`] = file.id;
+      })
       if (req.body.pdf === '') {
         return res.status(400).json({ error: `pdf is required` });
       }
