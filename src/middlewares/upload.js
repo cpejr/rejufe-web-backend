@@ -13,7 +13,7 @@ const storage = new GridFsStorage({
           return reject(err);
         }
         const fileInfo = {
-          filename: originalname,
+          filename: file.originalname,
           bucketName: 'uploads'
         };
         resolve(fileInfo);
