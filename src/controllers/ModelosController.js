@@ -67,6 +67,12 @@ module.exports = {
     async delete(req, res) {
         try {
             const { id } = req.params;
+            const model = await Models.findOne({ _id: id });
+            if (model.archive_1) {
+                gridfsBucket.delete(ObjectId(model.archive_1));
+            } else if (model.archive_2) {
+                gridfsBucket.delete(ObjectId(model.archive_2));
+            }
             const models = await Models.findByIdAndDelete({ _id: id });
             return res.status(200).json({ id: models.id });
         } catch (err) {
@@ -86,7 +92,7 @@ module.exports = {
             files.forEach(file => {
               if (model[`${file.fieldname}`]) {
                 console.log(model);
-                gridfsBucket.delete(model[`${file.fieldname}`]);
+                gridfsBucket.delete(ObjectId(model[`${file.fieldname}`]));
               } 
               models[`${file.fieldname}`] = file.id;
             })
