@@ -67,29 +67,23 @@ module.exports = {
   async update(req, res) {
     try {
       const { id } = req.params;
-      const accountability = req.body;
+      const accountabilities = req.body;
       const files = req.files;
-      const account = await Accountability.findOne({ _id: id });
+      const accountability = await Accountability.findOne({ _id: id });
       files.forEach(file => {
-        accountability[`${file.fieldname}`] = file.id;
+        if (accountability[`${file.fieldname}`]) {
+          console.log(accountability);
+          gridfsBucket.delete(accountability[`${file.fieldname}`]);
+        }
+        accountabilities[`${file.fieldname}`] = file.id;
       })
-      if (req.files.length > 0 && account.pdf.length > 0) {
-        gridfsBucket.delete(new ObjectId(account.pdf));
-      }
-      const result = await Accountability.findByIdAndUpdate({ _id: id }, accountability);
-      return res.status(200).json(result);
+      const result = await Accountability.findByIdAndUpdate({ _id: id }, accountabilities);
+      return res.status(200).json(accountabilities);
     } catch (err) {
-      try {
-        req.files.forEach(file => {
-          gridfsBucket.delete(file.id);
-        })
-      } catch (deleteFileErr) {
-        console.error(deleteFileErr);
-      }
       console.error(err);
       return res.status(500).json({
         notification:
-          'Internal server error while trying to update an accountability by id',
+          'Internal server error while trying to update a accountability by id',
       });
     }
   },
