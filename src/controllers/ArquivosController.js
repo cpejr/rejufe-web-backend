@@ -112,4 +112,50 @@ module.exports = {
       });
     }
   },
+
+  async getImageById(req, res) {
+    try {
+      gfs.files.findOne({ _id: new ObjectId(req.params.id) }, (err, file) => {
+
+        // Check if file
+        if (!file || file.length === 0) {
+          return res.status(404).json({
+            err: "No file exists",
+          });
+        }
+
+        // Check if file is image
+        if (
+          file.contentType === "image/jpeg" ||
+          file.contentType === "image/png"
+        ) {
+          file.isImage = true;
+        } else {
+          return res.status(404).json({
+            err: "File are not a image",
+          });
+        }
+
+        // File exists and is image
+        res.contentType(file.contentType);
+        const readStream = gridfsBucket.openDownloadStream(
+          new ObjectId(req.params.id)
+        );
+        let data = "";
+        readStream.on("data", (chunk) => {
+          data += chunk.toString("base64");
+        });
+        readStream.on("end", () => {
+          res.send(data);
+        });
+      });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({
+        notification: "Internal server error while trying to get a file by id",
+      });
+    }
+  },
 };
+
+
