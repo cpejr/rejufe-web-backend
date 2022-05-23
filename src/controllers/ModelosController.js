@@ -91,7 +91,6 @@ module.exports = {
             const model = await Models.findOne({ _id: id });
             files.forEach(file => {
               if (model[`${file.fieldname}`]) {
-                console.log(model);
                 gridfsBucket.delete(ObjectId(model[`${file.fieldname}`]));
               } 
               models[`${file.fieldname}`] = file.id;
