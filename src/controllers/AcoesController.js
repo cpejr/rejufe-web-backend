@@ -49,7 +49,7 @@ module.exports = {
             return res.status(200).json(action);
         } catch (err) {
             try {
-                req.files.forEach(file => {
+                req?.files.forEach(file => {
                     gridfsBucket.delete(file.id);
                 })
             } catch (deleteFileErr) {
