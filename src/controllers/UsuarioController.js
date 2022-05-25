@@ -108,8 +108,10 @@ module.exports = {
 
     async getUsersByTodaysBirthday(req, res) {
         try {
-            const birthDay = moment().format("DD MM");
-            const users = await User.find({ birthDay }).select('email').select('name');
+            const date = moment().format("MM-DD");
+            const birthDay = `${date}T00:00:00Z`
+            console.log(date);
+            const users = await User.find({ birth: { "$in": [date] } }).select('email').select('name');
             console.log(users);
             return res.status(200).json(users);
         } catch (err) {
