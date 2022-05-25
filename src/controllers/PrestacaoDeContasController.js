@@ -17,7 +17,7 @@ module.exports = {
     try {
       const accountability = req.body;
       const files = req.files;
-      files.forEach(file => {
+      files?.forEach(file => {
         accountability[`${file.fieldname}`] = file.id;
       })
       if (req.body.pdf === '') {
