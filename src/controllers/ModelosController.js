@@ -8,6 +8,7 @@ module.exports = {
             const limit = 50;
             const times = req.query.times;
             const models = await Models.find({ [field]: filter }).limit(limit).skip(limit * times);
+          
             return res.status(200).json(models);
         } catch (err) {
             console.error(err);
