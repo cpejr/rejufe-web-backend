@@ -19,6 +19,11 @@ module.exports = {
             return res.status(200).json(user);
         } catch (err) {
             console.error(err);
+            if (err.code === 'auth/email-already-in-use'){
+                return res.status(500).json({
+                    notification: 'Email already in use',
+                });
+            }
             return res.status(500).json({
                 notification: 'Internal server error while trying to create a user',
             });
@@ -109,9 +114,8 @@ module.exports = {
     async getUsersByTodaysBirthday(req, res) {
         try {
             const date = moment().format("MM-DD");
-            const birthDay = `${date}T00:00:00Z`
             console.log(date);
-            const users = await User.find({ birth: { "$in": [date] } }).select('email').select('name');
+            const users = await User.find({ birth: { $regex: date } }).select('email').select('name');
             console.log(users);
             return res.status(200).json(users);
         } catch (err) {
