@@ -113,9 +113,23 @@ module.exports = {
 
     async getUsersByTodaysBirthday(req, res) {
         try {
-            const date = moment().format("MM-DD");
-            console.log(date);
-            const users = await User.find({ birth: { $regex: date } }).select('email').select('name');
+            // const day = (new Date()).getDate();
+            // const month = (new Date()).getMonth();
+            // console.log(day);
+            // console.log(month);
+            const users = await User.aggregate([
+                { 
+                  $match: {
+                    $expr: {
+                      $and: [
+                        { $eq: [{ $dayOfMonth: '$birth' }, { $dayOfMonth: new Date() }] },
+                        { $eq: [{ $month: '$birth' }, { $month: new Date() }] },
+                      ],
+                    },
+                  }
+                },
+                { $group: {"name": "$name", "email": "$email" }},
+              ])
             console.log(users);
             return res.status(200).json(users);
         } catch (err) {
