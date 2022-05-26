@@ -3,7 +3,7 @@ const InformationsRouter = express.Router();
 
 const InformationsController = require('../../controllers/InformacoesController.js');
 const InformationsValidator = require('../../validators/InformacoesValidator.js');
-const upload = require('../../middlewares/Upload.js');
+const upload = require('../../middlewares/upload.js');
 
 const { requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
