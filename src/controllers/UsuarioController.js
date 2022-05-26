@@ -44,7 +44,6 @@ module.exports = {
     async getAll(req, res) {
         try {
             const user = await User.find().skip(req.query.times * 50).limit(50);
-            console.log("🚀 ~ file: UsuarioController.js ~ line 47 ~ getAll ~ user", user)
             return res.status(200).json(user);
         } catch (err) {
             console.error(err);
