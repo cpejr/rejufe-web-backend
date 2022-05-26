@@ -78,7 +78,7 @@ const UserSchema = new mongoose.Schema({
     judicial_section: {
         type: String,
         require: false,
-        enum: ['SE', 'AL', 'PE', 'PB', 'RN', 'CE'],
+        enum: ['', 'SE', 'AL', 'PE', 'PB', 'RN', 'CE'],
     },
     spouse: {
         type: String,
