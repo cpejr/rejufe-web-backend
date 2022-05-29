@@ -113,6 +113,7 @@ module.exports = {
 
     async getUsersByTodaysBirthday(req, res) {
         try {
+            console.log(new Date());
             // const day = (new Date()).getDate();
             // const month = (new Date()).getMonth();
             // console.log(day);
@@ -128,7 +129,7 @@ module.exports = {
                     },
                   }
                 },
-                { $group: {"name": "$name", "email": "$email" }},
+                { $project: {name: "$name", email: "$email", cell_phone_number: "$cell_phone_number" }},
               ])
             console.log(users);
             return res.status(200).json(users);
