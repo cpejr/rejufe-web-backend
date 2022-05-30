@@ -9,7 +9,8 @@ const transporter = nodemailer.createTransport({
     port: 587,
     secure: false,
     auth: {
-        user: testAccount.user,
+        type: 'OAuth2',
+        user: 'projetorejufe@gmail.com',
         pass: testAccount.pass,
     },
 });
@@ -43,17 +44,19 @@ module.exports = {
         return Email.sendEmail(emailContent);
     },
     async BirthdayNotificationEmail(to, name) {
-        console.log(testAccount);
+        console.log(process.env);
+        const from = 'projetorejufe@gmail.com';
         const content = `Eu, ${process.env.name}, te desejo um ótimo aniversário ${name}`;
         const subject = `Feliz aniversário, ${name}!`;
 
         const emailContent = {
+            from,
             to,
             subject,
             text: content,
         };
-        return Email.sendEmail(emailContent).catch((err) => {
-            console.err(err);
+        return transporter.sendMail(emailContent).catch((err) => {
+            console.console.error(err);
         });
 
     }
