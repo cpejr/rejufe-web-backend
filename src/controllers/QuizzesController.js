@@ -15,10 +15,14 @@ module.exports = {
   },
   async getAll(req, res) {
     try {
+      let allQuizzes = [];
       const limit = 50;
       const times = req.query.times;
       const quizzes = await Quizzes.find().limit(limit).skip(limit * times);
-      return res.status(200).json(quizzes);
+      quizzes?.map((quizz) => (
+        allQuizzes = allQuizzes.concat(quizz)
+      ))
+      return res.status(200).json(allQuizzes);
     } catch (err) {
       console.error(err);
       return res.status(500).json({
