@@ -11,7 +11,8 @@ const transporter = nodemailer.createTransport({
     auth: {
         type: 'OAuth2',
         user: 'projetorejufe@gmail.com',
-        pass: testAccount.pass,
+        serviceClient: process.env.CLIENT_ID,
+        privateKey: process.env.PRIVATE_KEY.replace(/\\n/g, '\n'),
     },
 });
 
@@ -44,7 +45,7 @@ module.exports = {
         return Email.sendEmail(emailContent);
     },
     async BirthdayNotificationEmail(to, name) {
-        console.log(process.env);
+        console.log(process.service_account_key);
         const from = 'projetorejufe@gmail.com';
         const content = `Eu, ${process.env.name}, te desejo um ótimo aniversário ${name}`;
         const subject = `Feliz aniversário, ${name}!`;
@@ -56,7 +57,7 @@ module.exports = {
             text: content,
         };
         return transporter.sendMail(emailContent).catch((err) => {
-            console.console.error(err);
+            console.error(err);
         });
 
     }
