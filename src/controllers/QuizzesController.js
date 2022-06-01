@@ -19,10 +19,15 @@ module.exports = {
       const limit = 50;
       const times = req.query.times;
       const quizzes = await Quizzes.find().limit(limit).skip(limit * times);
-      quizzes?.map((quizz) => (
-        allQuizzes = allQuizzes.concat(quizz)
-      ))
-      return res.status(200).json(allQuizzes);
+      quizzes?.forEach((quizz) => {
+        if (quizz?.privateResult === true) {
+          console.log("🚀 ~ file: QuizzesController.js ~ line 24 ~ quizzes?.forEach ~ quizz", quizz.options)
+          quizz?.options = null;
+          console.log("🚀 ~ file: QuizzesController.js ~ line 26 ~ quizzes?.forEach ~ quizz", quizz.options)
+        } 
+        
+    })
+      return res.status(200).json(quizzes);
     } catch (err) {
       console.error(err);
       return res.status(500).json({
