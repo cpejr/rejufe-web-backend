@@ -15,19 +15,21 @@ module.exports = {
   },
   async getAll(req, res) {
     try {
-      let allQuizzes = [];
       const limit = 50;
       const times = req.query.times;
+      const date = req.query.date;
       const quizzes = await Quizzes.find().limit(limit).skip(limit * times);
-      quizzes?.forEach((quizz) => {
-        if (quizz?.privateResult === true) {
-          console.log("🚀 ~ file: QuizzesController.js ~ line 24 ~ quizzes?.forEach ~ quizz", quizz.options)
-          quizz?.options = null;
-          console.log("🚀 ~ file: QuizzesController.js ~ line 26 ~ quizzes?.forEach ~ quizz", quizz.options)
-        } 
+      let allQuizzes = quizzes?.map((quizz) => {
+        if (quizz?.privateResult === true && quizz.closingDate > date ) {
+          quizz['options'] = undefined;
+          quizz['toVote'] = undefined;
+          return quizz
+        } else {
+          return quizz
+        }
         
     })
-      return res.status(200).json(quizzes);
+      return res.status(200).json(allQuizzes);
     } catch (err) {
       console.error(err);
       return res.status(500).json({
