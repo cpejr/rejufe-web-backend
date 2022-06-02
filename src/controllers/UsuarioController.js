@@ -113,10 +113,9 @@ module.exports = {
 
     async getUsersByTodaysBirthday(req, res) {
         try {
-            // const day = (new Date()).getDate();
-            // const month = (new Date()).getMonth();
-            // console.log(day);
-            // console.log(month);
+            const date = new Date();
+            const day = moment(date).format('DD');
+            const month = moment(date).format('MM');
             const users = await User.aggregate([
                 { 
                   $match: {

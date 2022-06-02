@@ -12,10 +12,10 @@ module.exports = {
       const userInfo = users?.data;
 
       for (const user in userInfo) {
-        // console.log(user.email);
         await mail.BirthdayNotificationEmail(
          userInfo[user]?.email,
-         userInfo[user]?.name
+         userInfo[user]?.name,
+         req?.session?.user?.name
         )
       }
     }
