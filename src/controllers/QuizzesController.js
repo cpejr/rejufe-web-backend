@@ -45,7 +45,17 @@ module.exports = {
       const { id } = req.params;
       const date = req.query.date;
       const quizzes = await Quizzes.find({ $or:[{ toVote: id }, { alreadyVoted: id }], openingDate: { $lte: date } }).limit(limit).skip(limit * times);
-      return res.status(200).json(quizzes);
+      let allQuizzes = quizzes?.map((quizz) => {
+        if (quizz?.privateResult === true && quizz.closingDate > date ) {
+          quizz['options'] = undefined;
+          quizz['toVote'] = undefined;
+          return quizz
+        } else {
+          return quizz
+        }
+        
+    })
+      return res.status(200).json(allQuizzes);
     } catch (err) {
       console.error(err);
       return res.status(500).json({
