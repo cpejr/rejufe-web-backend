@@ -3,9 +3,12 @@ const Models = require('../models/Modelos.js');
 module.exports = {
     async getAll(req, res) {
         try {
+            const field = req.query.field;
+            const { filter } = req.query
             const limit = 50;
             const times = req.query.times;
-            const models = await Models.find().limit(limit).skip(limit * times);
+            const models = await Models.find({ [field]: filter }).limit(limit).skip(limit * times);
+          
             return res.status(200).json(models);
         } catch (err) {
             console.error(err);
