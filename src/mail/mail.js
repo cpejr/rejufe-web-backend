@@ -9,8 +9,8 @@ const transporter = nodemailer.createTransport({
     port: 587,
     secure: false,
     auth: {
-        user: 'projetorejufe@gmail.com',
-        pass: 'Sirius123@'
+        user: process.env.MAIL_USERNAME,
+        pass: process.env.MAIL_PASSWORD
     },
 });
 
@@ -54,7 +54,7 @@ module.exports = {
             text: content,
         };
         return transporter.sendMail(emailContent).catch((err) => {
-            console.error(err);
+            console.err(err);
         });
 
     }

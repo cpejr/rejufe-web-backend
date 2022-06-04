@@ -7,17 +7,16 @@ module.exports = {
   async sendEmail(req, res) {
     try {
       const users = await axios.get('http://localhost:3333/usuario/getUsersByTodaysBirthday');
-      //      const users = UserController.getUsersByTodaysBirthday;
-
       const userInfo = users?.data;
-
+      let email;
       for (const user in userInfo) {
-        await mail.BirthdayNotificationEmail(
-         userInfo[user]?.email,
-         userInfo[user]?.name,
-         req?.session?.user?.name
+        email = await mail.BirthdayNotificationEmail(
+          userInfo[user]?.email,
+          userInfo[user]?.name,
+          req?.session?.user?.name
         )
       }
+      return res.status(200).json(email);
     }
     catch (err) {
       console.error(err);
