@@ -1,6 +1,7 @@
 const express = require('express');
 const AtasRouter = express.Router();
 
+const upload = require('../../middlewares/upload.js');
 const AtasController = require('../../controllers/AtasController.js');
 const AtasValidator = require('../../validators/AtasValidator.js')
 
