@@ -6,9 +6,9 @@ const ModelSchema = new mongoose.Schema({
         require: true,
         enum: ['REQUERIMENTOS ADMINISTRATIVOS', 'PETIÇÕES INICIAIS', 'JURISPRUDÊNCIA'],
     },
-    date: {
-        type: Date,
-        require: true,
+    numberModels: {
+        type: Number,
+        require: false,
     },
     description: {
         type: String,
