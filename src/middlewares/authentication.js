@@ -24,6 +24,7 @@ module.exports = {
     });
   },
   async requiresLogin(request, response, next) {
+    console.log(request.session);
     if (request.session && request.session.user) {
       return next();
     } else {
@@ -34,6 +35,7 @@ module.exports = {
   },
   async checksUserIsAdmin(request, response, next) {
     /* Verificar se o usuario logado na sessão é do tipo administrator */
+    console.log(request.session);
     if (request.session && request.session.user && request.session.user.type === 'administrador') {
       next();
     } else {
