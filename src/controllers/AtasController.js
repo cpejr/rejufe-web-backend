@@ -81,13 +81,29 @@ module.exports = {
         try {
             const { id } = req.params;
             const atas = req.body;
+            const files = req.files;
+            const ata = await Atas.findOne({ _id: id });
+            files?.forEach(file => {
+              if (ata[`${file.fieldname}`]) {
+                gridfsBucket.delete(ObjectId(ata[`${file.fieldname}`]));
+              } 
+              atas[`${file.fieldname}`] = file.id;
+            })
             const result = await Atas.findByIdAndUpdate({ _id: id }, atas);
+            console.log(result);
             return res.status(200).json(result);
         } catch (err) {
+            try {
+                req?.files.forEach(file => {
+                    gridfsBucket.delete(file.id);
+                })
+            } catch (deleteFileErr) {
+                console.error(deleteFileErr);
+            }
             console.error(err);
             return res.status(500).json({
                 notification:
-                    'Internal server error while trying to update an atas by id',
+                    'Internal server error while trying to update a atas by id',
             });
         }
     },
