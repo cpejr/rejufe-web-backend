@@ -42,7 +42,7 @@ module.exports = {
       telephone: Joi.string(),
       fax: Joi.string(),
       cell_phone_number: Joi.string().required(),
-      judicial_section: Joi.string().optional(),
+      judicial_section: Joi.string().valid('', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE').optional(),
       email: Joi.string().email().required(),
       email_REJUFE: Joi.string().optional(),
       email_ASCOM: Joi.string().optional(),
@@ -89,7 +89,7 @@ module.exports = {
       telephone: Joi.string(),
       fax: Joi.string(),
       cell_phone_number: Joi.string().required(),
-      judicial_section: Joi.string().valid('CE', 'RN', 'PB', 'PE', 'AL', 'SE').optional(),
+      judicial_section: Joi.string().valid('CE', 'RN', 'PB', 'PE', 'AL', 'SE').optional().allow(''),
       email: Joi.string().email().required(),
       email_REJUFE: Joi.string().optional(),
       email_ASCOM: Joi.string().optional(),
@@ -137,6 +137,17 @@ module.exports = {
   }),
 
   getById: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
+    [Segments.PARAMS]: Joi.object().keys({
+      id: Joi.string().required(),
+    }),
+  }),
+
+  getExternalUserById: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
         authorization: Joi.string().required(),
@@ -203,7 +214,7 @@ module.exports = {
       telephone: Joi.string().optional(),
       fax: Joi.string().optional(),
       cell_phone_number: Joi.string(),
-      judicial_section: Joi.string().valid('CE', 'RN', 'PB', 'PE', 'AL', 'SE').optional(),
+      judicial_section: Joi.string().valid('', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE').optional().allow(''),
       email: Joi.string().email(),
       email_REJUFE: Joi.string().optional(),
       email_ASCOM: Joi.string().optional(),

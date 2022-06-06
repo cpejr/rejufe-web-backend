@@ -16,6 +16,7 @@ module.exports = {
       openingDate: Joi.date().required(),
       closingDate: Joi.date().required(),
       options: Joi.array().required(),
+      privateResult: Joi.boolean().required(),
     }),
   }),
   
@@ -26,6 +27,7 @@ module.exports = {
       })
       .unknown(),
     [Segments.QUERY]: Joi.object().keys({
+      date: Joi.date().required(),
       times: Joi.number().integer().required(),
       field: Joi.string().allow(null, ''),
       filter: Joi.allow(null, ''),
@@ -39,7 +41,7 @@ module.exports = {
       })
       .unknown(),
     [Segments.QUERY]: Joi.object().keys({
-      date: Joi.string().required(),
+      date: Joi.date().required(),
       times: Joi.number().integer().required(),
       field: Joi.string().allow(null, ''),
       filter: Joi.allow(null, ''),
@@ -74,6 +76,7 @@ module.exports = {
       openingDate: Joi.date().optional(),
       closingDate: Joi.date().optional(),
       options: Joi.array().optional(),
+      privateResult: Joi.boolean().optional(),
     }).min(1),
   }),
 

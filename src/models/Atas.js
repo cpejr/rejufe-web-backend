@@ -6,9 +6,10 @@ const AtaSchema = new mongoose.Schema({
         require: true,
         enum: ['ATAS', 'EDITAIS'],
     },
-    date: {
-        type: Date,
+    number: {
+        type: String,
         require: true,
+        unique: true,
     },
     description: {
         type: String,
