@@ -53,9 +53,6 @@ module.exports = {
             subject,
             text: content,
         };
-        return transporter.sendMail(emailContent).catch((err) => {
-            console.err(err);
-        });
-
+        return transporter.sendMail(emailContent);
     }
 }
