@@ -58,6 +58,10 @@ module.exports = {
       photos: Joi.string().allow(''),
       status: Joi.string().valid('I', 'A').insensitive(),
       send_site: Joi.boolean(),
+      _id: Joi.string(),
+      date: Joi.date(),
+      news_sequential_id: Joi.string(),
+      __v: Joi.string(),
     }).min(1),
   }),
 

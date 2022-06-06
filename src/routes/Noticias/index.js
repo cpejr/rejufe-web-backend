@@ -28,6 +28,7 @@ NoticeRouter.post(
 );
 NoticeRouter.put(
   '/:id',
+  upload.any(),
   NoticeValidator.update,
   requiresLogin,
   checksUserIsAdmin,
