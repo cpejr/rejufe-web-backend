@@ -94,6 +94,18 @@ module.exports = {
             });
         }
     },
+    async getExternalUserById(req, res) {
+        try {
+            const { id } = req.params;
+            const externalUser = await ExternalUser.findOne({ _id: id });
+            return res.status(200).json(externalUser);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get a external user by id',
+            });
+        }
+    },
     async getUserEmailByUsername(req, res) {
         try {
             const { user } = req.query;

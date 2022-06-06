@@ -41,6 +41,12 @@ UserRouter.get(
   requiresLogin,
   UserController.getById
 );
+UserRouter.get(
+  '/externalAssociate/:id',
+  UserValidator.getExternalUserById,
+  requiresLogin,
+  UserController.getExternalUserById
+);
 UserRouter.post(
   '/',
   UserValidator.create,
