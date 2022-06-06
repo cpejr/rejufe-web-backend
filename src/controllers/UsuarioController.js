@@ -8,7 +8,6 @@ module.exports = {
     async create(req, res) {
         try {
             const user = req.body;
-            user.birthDay = moment(user.birth).add(1, 'day').format("DD MM");
             const randomPassword = Math.random().toString(36).slice(-8);
             const uid = await Firebase.createNewUser(user.email, randomPassword);
 
@@ -32,7 +31,6 @@ module.exports = {
     async createExternalAssociate(req, res) {
         try {
             const user = req.body;
-            user.birthDay = moment(user.birth).add(1, 'day').format("DD MM");
 
             await ExternalUser.create(user);
             return res.status(200).json(user);

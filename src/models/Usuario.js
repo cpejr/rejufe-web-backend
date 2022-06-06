@@ -54,10 +54,6 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         require: true,
     },
-    birthDay: {
-        type: String,
-        require: true,
-    },
     place_of_birth: {
         type: String,
         require: true,
