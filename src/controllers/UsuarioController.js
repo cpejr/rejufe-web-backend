@@ -109,8 +109,14 @@ module.exports = {
     async getUserEmailByUsername(req, res) {
         try {
             const { user } = req.query;
-            const { email } = await User.findOne({ user });
+            const userData = await User.findOne({ user });
 
+            if (userData === null) {
+                return res.status(500).json({
+                    notification: 'Usuário inválido',
+                });
+            }
+            const { email } = userData;
             return res.status(200).json(email);
         } catch (err) {
             console.error(err);
