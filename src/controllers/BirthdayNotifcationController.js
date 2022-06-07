@@ -1,18 +1,30 @@
 const UserController = require('./UsuarioController');
 const mail = require('../mail/mail');
-const axios = require('axios');
+const User = require('../models/Usuario.js');
 
 
 module.exports = {
   async sendEmail(req, res) {
     try {
-      const users = await axios.get('http://localhost:3333/usuario/getUsersByTodaysBirthday');
-      const userInfo = users?.data;
+      const users = await User.aggregate([
+        { 
+          $match: {
+            $expr: {
+              $and: [
+                { $eq: [{ $dayOfMonth: '$birth' }, { $dayOfMonth: new Date() }] },
+                { $eq: [{ $month: '$birth' }, { $month: new Date() }] },
+              ],
+            },
+          }
+        },
+        { $project: {name: "$name", email: "$email", cell_phone_number: "$cell_phone_number" }},
+      ])
       let email;
-      for (const user in userInfo) {
+      for (const user in users) {
         email = await mail.BirthdayNotificationEmail(
-          userInfo[user]?.email,
-          userInfo[user]?.name,
+          console.log(user),
+          users[user]?.email,
+          users[user]?.name,
           req?.session?.user?.name
         )
       }
