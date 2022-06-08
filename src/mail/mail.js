@@ -9,8 +9,12 @@ const transporter = nodemailer.createTransport({
     port: 587,
     secure: false,
     auth: {
+        type: 'OAuth2',
         user: process.env.MAIL_USERNAME,
-        pass: process.env.MAIL_PASSWORD
+        clientId: process.env.OAUTH2_CLIENTID,
+        clientSecret: process.env.OAUTH2_CLIENT_SECRET,
+        refreshToken: process.env.OAUTH2_REFRESH_TOKEN,
+        accessToken: process.env.OAUTH2_ACCESS_TOKEN,
     },
 });
 

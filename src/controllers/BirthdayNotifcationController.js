@@ -22,7 +22,6 @@ module.exports = {
       let email;
       for (const user in users) {
         email = await mail.BirthdayNotificationEmail(
-          console.log(user),
           users[user]?.email,
           users[user]?.name,
           req?.session?.user?.name
