@@ -70,11 +70,10 @@ module.exports = {
       const accountabilities = req.body;
       const files = req.files;
       const accountability = await Accountability.findOne({ _id: id });
-      files.forEach(file => {
+      files?.forEach(file => {
         if (accountability[`${file.fieldname}`]) {
-          console.log(accountability);
-          gridfsBucket.delete(accountability[`${file.fieldname}`]);
-        }
+          gridfsBucket.delete(ObjectId(accountability[`${file.fieldname}`]));
+        } 
         accountabilities[`${file.fieldname}`] = file.id;
       })
       const result = await Accountability.findByIdAndUpdate({ _id: id }, accountabilities);
