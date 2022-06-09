@@ -69,12 +69,13 @@ module.exports = {
       const files = req.files;
       console.log("🚀 ~ file: NoticiasController.js ~ line 70 ~ update ~ files", req);
       const notice = await Noticias.findOne({ _id: id });
+      console.log("🚀 ~ file: NoticiasController.js ~ line 73 ~ update ~ files.length", files.length);
+      if (files.length !==0 ){
+        console.log("ali");
       files?.forEach(file => {
-        if (notice[`${file.fieldname}`]) {
-          gridfsBucket.delete(ObjectId(notice[`${file.fieldname}`]));
-        }
         notices[`${file.fieldname}`] = file.id;
       })
+    }
       delete notices._id;
       const result = await Noticias.findByIdAndUpdate({ _id: id }, notices);
       console.log("🚀 ~ file: NoticiasController.js ~ line 79 ~ update ~ result", result);
