@@ -43,7 +43,7 @@ module.exports = {
   },
   async getAll(req, res) {
     try {
-      const accountability = await Accountability.find();
+      const accountability = await Accountability.find().skip(req.query.times * 50).limit(50);
       return res.status(200).json(accountability);
     } catch (err) {
       console.error(err);
