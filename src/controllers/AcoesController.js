@@ -84,20 +84,17 @@ module.exports = {
             const actions = req.body;
             const files = req.files;
             const action = await Actions.findOne({ _id: id });
-            files.forEach(file => {
-                actions[`${file.fieldname}`] = file.id;
+            files?.forEach(file => {
+              if (action[`${file.fieldname}`]) {
+                gridfsBucket.delete(ObjectId(action[`${file.fieldname}`]));
+              } 
+              actions[`${file.fieldname}`] = file.id;
             })
-            if (req.files.length > 0 && action.archive_1.length > 0) {
-                gridfsBucket.delete(new ObjectId(action.archive_1));
-            }
-            if (req.files.length > 0 && action.archive_2.length > 0) {
-                gridfsBucket.delete(new ObjectId(action.archive_2));
-            }
             const result = await Actions.findByIdAndUpdate({ _id: id }, actions);
-            return res.status(200).json(result);
+            return res.status(200).json(actions);
         } catch (err) {
             try {
-                req.files.forEach(file => {
+                req?.files.forEach(file => {
                     gridfsBucket.delete(file.id);
                 })
             } catch (deleteFileErr) {
