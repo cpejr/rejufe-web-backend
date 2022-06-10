@@ -7,12 +7,12 @@ module.exports = {
         authorization: Joi.string().required(),
       })
       .unknown(),
-    [Segments.BODY]: Joi.object().keys({
+    [Segments.BODY]: Joi.object().keys({ 
       type: Joi.string().valid('REQUERIMENTOS ADMINISTRATIVOS', 'PETIÇÕES INICIAIS', 'JURISPRUDÊNCIA').required(),
-      date: Joi.date().required(),
+      numberModels: Joi.number().allow('').optional(),
       description: Joi.string().required(),
-      archive_1: Joi.string().optional(),
-      archive_2: Joi.string().optional(),
+      archive_1: Joi.string().allow('').optional(),
+      archive_2: Joi.string().allow('').optional(),
     }),
   }),
   getAll: celebrate({
@@ -50,10 +50,10 @@ module.exports = {
     }),
     [Segments.BODY]: Joi.object().keys({
       type: Joi.string().valid('REQUERIMENTOS ADMINISTRATIVOS', 'PETIÇÕES INICIAIS', 'JURISPRUDÊNCIA').optional(),
-      date: Joi.date().optional(),
+      numberModels: Joi.number().optional(),
       description: Joi.string().optional(),
-      archive_1: Joi.string().optional(),
-      archive_2: Joi.string().optional(),
+      archive_1: Joi.string().allow('').optional(),
+      archive_2: Joi.string().allow('').optional(),
     }).min(1),
   }),
 

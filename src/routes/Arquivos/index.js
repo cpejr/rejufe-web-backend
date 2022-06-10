@@ -15,6 +15,12 @@ FilesRouter.post(
 );
 
 FilesRouter.get(
+    '/getFileNameById',
+    requiresLogin,
+    FilesController.getFileNameById
+);
+
+FilesRouter.get(
     '/',
     requiresLogin,
     checksUserIsAdmin,
