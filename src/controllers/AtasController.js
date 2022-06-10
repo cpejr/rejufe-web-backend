@@ -60,6 +60,13 @@ module.exports = {
     async delete(req, res) {
         try {
             const { id } = req.params;
+            const ata = await Atas.findOne({ _id: id })
+            if (ata.archive_1) {
+                gridfsBucket.delete(ObjectId(ata.archive_1));
+            } else if (ata.archive_2) {
+                gridfsBucket.delete(ObjectId(ata.archive_2));
+            }
+            
             const atas = await Atas.findByIdAndDelete({ _id: id });
             return res.status(200).json({ id: atas.id });
         } catch (err) {
