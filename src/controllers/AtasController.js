@@ -90,7 +90,6 @@ module.exports = {
               atas[`${file.fieldname}`] = file.id;
             })
             const result = await Atas.findByIdAndUpdate({ _id: id }, atas);
-            console.log(result);
             return res.status(200).json(result);
         } catch (err) {
             try {
