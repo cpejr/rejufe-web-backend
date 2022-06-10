@@ -29,6 +29,7 @@ ModelsRouter.post(
 );
 ModelsRouter.put(
     '/:id',
+    upload.any(),
     ModelsValidator.update,
     requiresLogin,
     checksUserIsAdmin,
