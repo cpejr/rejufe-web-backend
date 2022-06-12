@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const QuizzesSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -34,6 +33,11 @@ const QuizzesSchema = new mongoose.Schema({
             type: Number,
         }
     }],
+    privateResult: {
+        type: Boolean,
+        require: true,
+        default: false,
+    },
 });
 
 const Quizzes = mongoose.model('Quizzes', QuizzesSchema);

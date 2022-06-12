@@ -18,6 +18,12 @@ QuizzesRouter.get(
   requiresLogin,
   QuizzesController.getById
 );
+QuizzesRouter.get(
+  '/toVote/:id',
+  QuizzesValidator.getToVoteQuizzes,
+  requiresLogin,
+  QuizzesController.getToVoteQuizzes
+);
 QuizzesRouter.post(
   '/',
   QuizzesValidator.create,
@@ -30,6 +36,12 @@ QuizzesRouter.put(
   QuizzesValidator.update,
   requiresLogin,
   checksUserIsAdmin,
+  QuizzesController.update
+);
+QuizzesRouter.put(
+  '/vote/:id',
+  QuizzesValidator.updateVote,
+  requiresLogin,
   QuizzesController.update
 );
 QuizzesRouter.delete(

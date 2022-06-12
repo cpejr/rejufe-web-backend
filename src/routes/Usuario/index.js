@@ -7,6 +7,10 @@ const UserValidator = require('../../validators/UsuarioValidator');
 const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
 UserRouter.get(
+  '/getUsersByTodaysBirthday',
+  UserController.getUsersByTodaysBirthday
+);
+UserRouter.get(
   '/getUserEmailByUsername',
   UserValidator.getUserEmailByUsername,
   UserController.getUserEmailByUsername
@@ -16,7 +20,7 @@ UserRouter.get(
   UserValidator.getExcludedAssociate,
   checksUserIsAdmin,
   UserController.getExcludedAssociate,
-)
+);
 UserRouter.get(
   '/',
   UserValidator.getAll,
@@ -40,6 +44,12 @@ UserRouter.get(
   UserValidator.getById,
   requiresLogin,
   UserController.getById
+);
+UserRouter.get(
+  '/externalAssociate/:id',
+  UserValidator.getExternalUserById,
+  requiresLogin,
+  UserController.getExternalUserById
 );
 UserRouter.post(
   '/',
