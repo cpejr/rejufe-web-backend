@@ -1,6 +1,7 @@
 const Atas = require('../models/Atas.js');
 var Grid = require("gridfs-stream");
 var mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 
 let gfs, gridfsBucket;
 mongoose.connection.once("open", () => {
@@ -70,13 +71,6 @@ module.exports = {
             const atas = await Atas.findByIdAndDelete({ _id: id });
             return res.status(200).json({ id: atas.id });
         } catch (err) {
-            try {
-                req.files.forEach(file => {
-                  gridfsBucket.delete(file.id);
-                })
-            } catch (deleteFileErr) {
-                console.error(deleteFileErr);
-            }
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to delete an atas',
