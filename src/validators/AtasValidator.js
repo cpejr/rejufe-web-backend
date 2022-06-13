@@ -50,10 +50,10 @@ module.exports = {
     }),
     [Segments.BODY]: Joi.object().keys({
       type: Joi.string().valid('ATAS', 'EDITAIS').optional(),
-      date: Joi.date().optional(),
+      number: Joi.string().optional(),
       description: Joi.string().optional(),
-      archive_1: Joi.string().optional(),
-      archive_2: Joi.string().optional(),
+      archive_1: Joi.string().allow('').optional(),
+      archive_2: Joi.string().allow('').optional(),
     }).min(1),
   }),
 
