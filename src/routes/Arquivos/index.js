@@ -28,6 +28,12 @@ FilesRouter.get(
 );
 
 FilesRouter.get(
+    '/getFileNameById',
+    requiresLogin,
+    FilesController.getFileNameById
+);
+
+FilesRouter.get(
     '/:id',
     requiresLogin,
     FilesController.getById
