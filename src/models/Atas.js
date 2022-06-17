@@ -4,7 +4,7 @@ const AtaSchema = new mongoose.Schema({
     type: {
         type: String,
         require: true,
-        enum: ['ATAS', 'EDITAIS'],
+        enum: ['ATAS', 'EDITAL'],
     },
     number: {
         type: String,
