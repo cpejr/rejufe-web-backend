@@ -52,8 +52,8 @@ module.exports = {
       type: Joi.string().valid('REQUERIMENTOS ADMINISTRATIVOS', 'PETIÇÕES INICIAIS', 'JURISPRUDÊNCIA').optional(),
       numberModels: Joi.number().optional(),
       description: Joi.string().optional(),
-      archive_1: Joi.string().optional(),
-      archive_2: Joi.string().optional(),
+      archive_1: Joi.string().allow('').optional(),
+      archive_2: Joi.string().allow('').optional(),
     }).min(1),
   }),
 

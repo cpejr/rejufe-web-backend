@@ -1,4 +1,5 @@
 const { SchemaTypeOptions } = require('mongoose');
+const moment = require('moment');
 const User = require('../models/Usuario.js');
 const ExternalUser = require('../models/UsuarioExterno.js');
 const Firebase = require('../utils/Firebase');
@@ -122,6 +123,33 @@ module.exports = {
             console.error(err);
             return res.status(500).json({
                 notification: 'Internal server error while trying to get a email by user',
+            });
+        }
+    },
+
+    async getUsersByTodaysBirthday(req, res) {
+        try {
+            const date = new Date();
+            const day = moment(date).format('DD');
+            const month = moment(date).format('MM');
+            const users = await User.aggregate([
+                { 
+                  $match: {
+                    $expr: {
+                      $and: [
+                        { $eq: [{ $dayOfMonth: '$birth' }, { $dayOfMonth: new Date() }] },
+                        { $eq: [{ $month: '$birth' }, { $month: new Date() }] },
+                      ],
+                    },
+                  }
+                },
+                { $project: {name: "$name", email: "$email", cell_phone_number: "$cell_phone_number" }},
+              ])
+            return res.status(200).json(users);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get users by birthday',
             });
         }
     },
