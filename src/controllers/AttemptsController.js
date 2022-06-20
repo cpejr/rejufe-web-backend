@@ -6,7 +6,6 @@ module.exports = {
         try {
             const { email } = req.query;
             const result = await Attempts.findOne({ email });
-            console.log(result);
 
             return res.status(200).json({email:result?.email, quantity:result?.quantity, lock_time: result?.lock_time});
         } catch (err) {
