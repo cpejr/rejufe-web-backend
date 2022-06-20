@@ -45,4 +45,10 @@ FilesRouter.delete(
     FilesController.delete
 );
 
+FilesRouter.get(
+    '/image/:id',
+    requiresLogin,
+    FilesController.getImageById
+);
+
 module.exports = FilesRouter;
