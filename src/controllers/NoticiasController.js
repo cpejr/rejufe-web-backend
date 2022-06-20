@@ -2,6 +2,7 @@ const Noticias = require('../models/Noticias.js');
 var Grid = require("gridfs-stream");
 var mongoose = require("mongoose");
 const Notice = require('../models/Noticias.js');
+const ObjectId = mongoose.Types.ObjectId;
 
 let gfs, gridfsBucket;
 mongoose.connection.once("open", () => {
@@ -67,7 +68,6 @@ module.exports = {
       const { id } = req.params;
       const notices = req.body;
       const files = req.files;
-      console.log("🚀 ~ file: NoticiasController.js ~ line 80 ~ update ~ result", files);
       const notice = await Noticias.findOne({ _id: id });
       files?.forEach(file => {
         if (notice[`${file.fieldname}`]) {
@@ -76,11 +76,10 @@ module.exports = {
         notices[`${file.fieldname}`] = file.id;
       })
       const result = await Noticias.findByIdAndUpdate({ _id: id }, notices);
-      console.log("🚀 ~ file: NoticiasController.js ~ line 79 ~ update ~ result", result);
       return res.status(200).json(result);
     } catch (err) {
       try {
-        req.files.forEach(file => {
+        req?.files.forEach(file => {
           gridfsBucket.delete(file.id);
         })
       } catch (deleteFileErr) {
