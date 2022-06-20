@@ -10,6 +10,7 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.1",
     "celebrate": "^15.0.0",
@@ -21,10 +22,13 @@
     "firebase": "^9.6.4",
     "gridfs-stream": "^1.1.1",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
     "mongoose": "^6.0.13",
     "mongoose-sequence": "^5.3.1",
     "multer": "^1.4.4",
     "multer-gridfs-storage": "^5.0.2",
+    "nodemailer": "^6.7.3",
+    "googleapis": "~32.0.0",
     "path": "^0.12.7",
     "xmlhttprequest": "^1.8.0"
   },

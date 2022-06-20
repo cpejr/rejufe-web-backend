@@ -29,6 +29,7 @@ InformationsRouter.post(
 );
 InformationsRouter.put(
     '/:id',
+    upload.any(),
     InformationsValidator.update,
     requiresLogin,
     checksUserIsAdmin,

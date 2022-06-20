@@ -29,6 +29,7 @@ AtasRouter.post(
 );
 AtasRouter.put(
     '/:id',
+    upload.any(),
     AtasValidator.update,
     requiresLogin,
     checksUserIsAdmin,
