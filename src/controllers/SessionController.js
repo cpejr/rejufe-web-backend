@@ -29,12 +29,12 @@ module.exports = {
       }
       const user = await UsuarioModel.findOne({ firebaseId });
       const accessToken = rememberMe ? jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: '7d',
+        expiresIn: '10min',
       }) : jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: '8h',
+        expiresIn: '5min',
       });
 
-      request.session.cookie.maxAge = rememberMe ? 1000 * 60 * 60 * 24 * 5 : 1000 * 60 * 60 * 8; // 5 dias se true ou 8 horas se false
+      request.session.cookie.maxAge = rememberMe ? 1000 * 60 * 10 : 1000 * 60 * 5; // 5 dias se true ou 8 horas se false
       request.session.user = user;
 
       return response.status(200).json({ user, accessToken });
