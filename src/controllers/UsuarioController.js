@@ -9,12 +9,15 @@ module.exports = {
         try {
             const user = req.body;
             const randomPassword = Math.random().toString(36).slice(-8);
+            await User.create(user);
+
             const uid = await Firebase.createNewUser(user.email, randomPassword);
 
             delete randomPassword;
             user.firebaseId = uid;
 
-            await User.create(user);
+            await User.update
+
             return res.status(200).json(user);
         } catch (err) {
             console.error(err);
