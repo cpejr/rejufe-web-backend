@@ -29,6 +29,7 @@ ActionsRouter.post(
 );
 ActionsRouter.put(
     '/:id',
+    upload.any(),
     ActionsValidator.update,
     requiresLogin,
     checksUserIsAdmin,
