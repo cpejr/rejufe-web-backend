@@ -79,13 +79,28 @@ module.exports = {
         try {
             const { id } = req.params;
             const informations = req.body;
+            const files = req.files;
+            const information = await Informations.findOne({ _id: id });
+            files?.forEach(file => {
+                if (information[`${file.fieldname}`]) {
+                  gridfsBucket.delete(ObjectId(model[`${file.fieldname}`]));
+                } 
+                informations[`${file.fieldname}`] = file.id;
+              })
             const result = await Informations.findByIdAndUpdate({ _id: id }, informations);
             return res.status(200).json(result);
         } catch (err) {
+            try {
+                req?.files.forEach(file => {
+                    gridfsBucket.delete(file.id);
+                })
+            } catch (deleteFileErr) {
+                console.error(deleteFileErr);
+            }
             console.error(err);
             return res.status(500).json({
                 notification:
-                    'Internal server error while trying to update an return information by id',
+                    'Internal server error while trying to update a models by id',
             });
         }
     },

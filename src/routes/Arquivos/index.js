@@ -28,6 +28,12 @@ FilesRouter.get(
 );
 
 FilesRouter.get(
+    '/getFileNameById',
+    requiresLogin,
+    FilesController.getFileNameById
+);
+
+FilesRouter.get(
     '/:id',
     requiresLogin,
     FilesController.getById
@@ -43,6 +49,12 @@ FilesRouter.delete(
     '/:id',
     requiresLogin,
     FilesController.delete
+);
+
+FilesRouter.get(
+    '/image/:id',
+    requiresLogin,
+    FilesController.getImageById
 );
 
 module.exports = FilesRouter;

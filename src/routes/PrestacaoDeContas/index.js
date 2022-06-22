@@ -5,7 +5,7 @@ const AccountabilityController = require('../../controllers/PrestacaoDeContasCon
 const AccountabilityValidator = require('../../validators/PrestacaoDeContasValidator');
 const upload = require('../../middlewares/upload.js');
 
-const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
+const { requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
 AccountabilityRouter.get(
   '/',
@@ -29,6 +29,7 @@ AccountabilityRouter.post(
 );
 AccountabilityRouter.put(
   '/:id',
+  upload.any(),
   AccountabilityValidator.update,
   requiresLogin,
   checksUserIsAdmin,
