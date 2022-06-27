@@ -1,6 +1,8 @@
 const Accountability = require('../models/PrestacaoDeContas.js');
 var Grid = require("gridfs-stream");
 var mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
+
 
 let gfs, gridfsBucket;
 mongoose.connection.once("open", () => {
@@ -41,7 +43,7 @@ module.exports = {
   },
   async getAll(req, res) {
     try {
-      const accountability = await Accountability.find();
+      const accountability = await Accountability.find().skip(req.query.times * 50).limit(50);
       return res.status(200).json(accountability);
     } catch (err) {
       console.error(err);
@@ -65,14 +67,22 @@ module.exports = {
   async update(req, res) {
     try {
       const { id } = req.params;
-      const accountability = req.body;
-      const result = await Accountability.findByIdAndUpdate({ _id: id }, accountability);
-      return res.status(200).json(result);
+      const accountabilities = req.body;
+      const files = req.files;
+      const accountability = await Accountability.findOne({ _id: id });
+      files?.forEach(file => {
+        if (accountability[`${file.fieldname}`]) {
+          gridfsBucket.delete(ObjectId(accountability[`${file.fieldname}`]));
+        } 
+        accountabilities[`${file.fieldname}`] = file.id;
+      })
+      const result = await Accountability.findByIdAndUpdate({ _id: id }, accountabilities);
+      return res.status(200).json(accountabilities);
     } catch (err) {
       console.error(err);
       return res.status(500).json({
         notification:
-          'Internal server error while trying to update an accountability by id',
+          'Internal server error while trying to update a accountability by id',
       });
     }
   },

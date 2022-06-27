@@ -3,7 +3,7 @@ const AtasRouter = express.Router();
 
 const AtasController = require('../../controllers/AtasController.js');
 const AtasValidator = require('../../validators/AtasValidator.js')
-const upload = require('../../middlewares/Upload.js');
+const upload = require('../../middlewares/upload.js');
 
 const { requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
 
@@ -29,6 +29,7 @@ AtasRouter.post(
 );
 AtasRouter.put(
     '/:id',
+    upload.any(),
     AtasValidator.update,
     requiresLogin,
     checksUserIsAdmin,

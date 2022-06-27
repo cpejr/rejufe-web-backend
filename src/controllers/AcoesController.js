@@ -1,6 +1,7 @@
 const Actions = require('../models/Acoes.js');
 var Grid = require("gridfs-stream");
 var mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 
 let gfs, gridfsBucket;
 mongoose.connection.once("open", () => {
@@ -15,7 +16,7 @@ mongoose.connection.once("open", () => {
 module.exports = {
     async getAll(req, res) {
         try {
-            const actions = await Actions.find();
+            const actions = await Actions.find().skip(req.query.times * 50).limit(50);
             return res.status(200).json(actions);
         } catch (err) {
             console.error(err);
@@ -78,14 +79,29 @@ module.exports = {
     async update(req, res) {
         try {
             const { id } = req.params;
-            const action = req.body;
-            const actions = await Actions.findByIdAndUpdate({ _id: id }, action);
+            const actions = req.body;
+            const files = req.files;
+            const action = await Actions.findOne({ _id: id });
+            files?.forEach(file => {
+              if (action[`${file.fieldname}`]) {
+                gridfsBucket.delete(ObjectId(action[`${file.fieldname}`]));
+              } 
+              actions[`${file.fieldname}`] = file.id;
+            })
+            const result = await Actions.findByIdAndUpdate({ _id: id }, actions);
             return res.status(200).json(actions);
         } catch (err) {
+            try {
+                req?.files.forEach(file => {
+                    gridfsBucket.delete(file.id);
+                })
+            } catch (deleteFileErr) {
+                console.error(deleteFileErr);
+            }
             console.error(err);
             return res.status(500).json({
                 notification:
-                    'Internal server error while trying to update a bank by id',
+                    'Internal server error while trying to update an action by id',
             });
         }
     },
