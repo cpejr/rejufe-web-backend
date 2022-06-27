@@ -47,7 +47,8 @@ module.exports = {
         try {
             const email = req.body.params.email;
             const time = req.body.params.time;
-            const { quantity } = await Attempts.findOne({ email });
+            const result = await Attempts.findOne({ email });
+            const { quantity } = result;
             await Attempts.findOneAndUpdate({email}, {quantity: quantity + 1})
             await Attempts.findOneAndUpdate({email}, {lock_time: time })
 
