@@ -1,6 +1,8 @@
 const Noticias = require('../models/Noticias.js');
 var Grid = require("gridfs-stream");
 var mongoose = require("mongoose");
+const Notice = require('../models/Noticias.js');
+const ObjectId = mongoose.Types.ObjectId;
 
 let gfs, gridfsBucket;
 mongoose.connection.once("open", () => {
@@ -64,14 +66,29 @@ module.exports = {
   async update(req, res) {
     try {
       const { id } = req.params;
-      const noticias = req.body;
-      const result = await Noticias.findByIdAndUpdate({ _id: id }, noticias);
+      const notices = req.body;
+      const files = req.files;
+      const notice = await Noticias.findOne({ _id: id });
+      files?.forEach(file => {
+        if (notice[`${file.fieldname}`]) {
+          gridfsBucket.delete(ObjectId(notice[`${file.fieldname}`]));
+        } 
+        notices[`${file.fieldname}`] = file.id;
+      })
+      const result = await Noticias.findByIdAndUpdate({ _id: id }, notices);
       return res.status(200).json(result);
     } catch (err) {
+      try {
+        req?.files.forEach(file => {
+          gridfsBucket.delete(file.id);
+        })
+      } catch (deleteFileErr) {
+        console.error(deleteFileErr);
+      }
       console.error(err);
       return res.status(500).json({
         notification:
-          'Internal server error while trying to update a noticias by id',
+          'Internal server error while trying to update an notice by id',
       });
     }
   },
