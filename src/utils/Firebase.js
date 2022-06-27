@@ -3,7 +3,8 @@ const {
   getAuth, 
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  deleteUser
 } = require("firebase/auth");
 
 const firebaseConfig = {
@@ -24,6 +25,16 @@ module.exports = {
     const result = await createUserWithEmailAndPassword(auth, email, password);
 
     return result.user.uid;
+  },
+
+  async deleteUser(id) {
+    const user = auth.currentUser;
+    try {
+      const result = await deleteUser(user);
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
   },
 
   async login(email, password) {

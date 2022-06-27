@@ -6,21 +6,38 @@ const Firebase = require('../utils/Firebase');
 
 module.exports = {
     async create(req, res) {
+        const user = req.body;
+        let uid;
+
         try {
-            const user = req.body;
             const randomPassword = Math.random().toString(36).slice(-8);
-            const uid = await Firebase.createNewUser(user.email, randomPassword);
+
+            uid = await Firebase.createNewUser(user.email, randomPassword);
 
             delete randomPassword;
             user.firebaseId = uid;
 
             await User.create(user);
+
             return res.status(200).json(user);
         } catch (err) {
             console.error(err);
+            if (uid) {
+                await Firebase.deleteUser(uid);
+            }
             if (err.code === 'auth/email-already-in-use') {
                 return res.status(500).json({
                     notification: 'Email already in use',
+                });
+            }
+            if (err.code === 11000 && Object.keys(err.keyValue)[0] === 'cpf') {
+                return res.status(500).json({
+                    notification: 'CPF already in use',
+                });
+            }
+            if (err.code === 11000 && Object.keys(err.keyValue)[0] === 'user') {
+                return res.status(500).json({
+                    notification: 'User already in use',
                 });
             }
             return res.status(500).json({
