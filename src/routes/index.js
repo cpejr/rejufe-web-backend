@@ -30,6 +30,7 @@ routes.use('/quizzes', QuizzesRouter);
 routes.use('/prestacaodecontas', AccountabilityRouter);
 routes.use('/usuario', UserRouter);
 routes.use('/login', sessionRouter);
+routes.use('/logout', sessionRouter);
 routes.use('/birthday', BirthdayNotificationRouter);
 
 

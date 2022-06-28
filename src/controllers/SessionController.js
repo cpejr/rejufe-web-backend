@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const Firebase = require('../utils/Firebase');
+const session = require('express-session');
 const UsuarioModel = require('../models/Usuario.js');
 
 module.exports = {
@@ -45,4 +46,18 @@ module.exports = {
         .json({ notification: 'Internal server error while trying to get User' });
     }
   },
+
+  async logout(request, response) {
+    try {
+      request.session.destroy(function() {
+        response.clearCookie('connect.sid', { path: '/' });
+      });
+      return response.status(200).json();
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json({
+        notification: 'Error while trying to logout',
+      });
+    }
+  }
 };
