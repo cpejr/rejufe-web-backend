@@ -1,3 +1,4 @@
+const { options } = require('../../../rejufe-web-frontend/src/components/GraphicResultQuizzes/GraphicResultQuizzes.js');
 const Quizzes = require('../models/Quizzes.js');
 
 module.exports = {
@@ -80,8 +81,23 @@ module.exports = {
     try {
       const { id } = req.params;
       const quizzes = req.body;
-      const result = await Quizzes.findByIdAndUpdate({ _id: id }, quizzes);
-      return res.status(200).json({_id:result?.id, alreadyVoted:result?.alreadyVoted, closingDate: result?.closingDate, description: result?.description, openingDate: result?.openingDate, title: result?.title, toVote: result?.toVote});
+      const keys = Object.keys(quizzes);
+      const date = new date();
+      const quizz = await Quizzes.findOne({ _id: id });
+      if (keys.find((key) => key === options)) {
+        if (quizz.closingDate > date) {
+          const result = await Quizzes.findByIdAndUpdate({ _id: id }, quizzes);
+          return res.status(200).json({_id:result?.id, alreadyVoted:result?.alreadyVoted, closingDate: result?.closingDate, description: result?.description, openingDate: result?.openingDate, title: result?.title, toVote: result?.toVote});
+        } else {
+          return res.status(500).json({
+            notification:
+              'Internal server error while trying to update a quiz by id',
+          }); 
+        }
+      } else {
+        const result = await Quizzes.findByIdAndUpdate({ _id: id }, quizzes);
+        return res.status(200).json({_id:result?.id, alreadyVoted:result?.alreadyVoted, closingDate: result?.closingDate, description: result?.description, openingDate: result?.openingDate, title: result?.title, toVote: result?.toVote});
+      }
     } catch (err) {
       console.error(err);
       return res.status(500).json({
