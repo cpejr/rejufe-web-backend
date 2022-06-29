@@ -30,12 +30,12 @@ module.exports = {
       }
       const user = await UsuarioModel.findOne({ firebaseId });
       const accessToken = rememberMe ? jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: '10min',
+        expiresIn: 60 * 60 * 24 * 5,
       }) : jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: '5min',
+        expiresIn: 60 * 60 * 8,
       });
 
-      request.session.cookie.maxAge = rememberMe ? 1000 * 60 * 10 : 1000 * 60 * 5; // 5 dias se true ou 8 horas se false
+      request.session.cookie.maxAge = rememberMe ? 1000 * 60 * 60 * 24 * 5 : 1000 * 60 * 60 * 8; // 5 dias se true ou 8 horas se false
       request.session.user = user;
 
       return response.status(200).json({ user, accessToken });
@@ -46,18 +46,4 @@ module.exports = {
         .json({ notification: 'Internal server error while trying to get User' });
     }
   },
-
-  async logout(request, response) {
-    try {
-      request.session.destroy(function() {
-        response.clearCookie('connect.sid', { path: '/' });
-      });
-      return response.status(200).json();
-    } catch (error) {
-      console.error(error);
-      return response.status(500).json({
-        notification: 'Error while trying to logout',
-      });
-    }
-  }
 };
