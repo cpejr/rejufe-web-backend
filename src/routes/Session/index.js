@@ -15,9 +15,4 @@ sessionRouter.post(
      SessionController.signIn
      );
 
-sessionRouter.delete(
-    '/',
-    SessionController.logout
-);
-
 module.exports = sessionRouter;
