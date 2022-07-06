@@ -1,4 +1,3 @@
-const { options } = require('../../../rejufe-web-frontend/src/components/GraphicResultQuizzes/GraphicResultQuizzes.js');
 const Quizzes = require('../models/Quizzes.js');
 
 module.exports = {
