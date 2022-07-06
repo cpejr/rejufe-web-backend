@@ -164,6 +164,12 @@ module.exports = {
     }),
   }),
 
+  getUserEmailByCpf: celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      cpf: Joi.string().required(),
+    }),
+  }),
+
   getExcludedAssociate: celebrate({
     [Segments.BODY]: Joi.object().keys({
       status: Joi.string().required(),

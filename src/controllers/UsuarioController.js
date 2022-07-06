@@ -144,6 +144,19 @@ module.exports = {
         }
     },
 
+    async getUserEmailByCpf(req, res) {
+        try {
+            const { cpf } = req.query;
+            const { email } = await User.findOne({ 'cpf': cpf });
+            return res.status(200).json(email);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                notification: 'Internal server error while trying to get a email by user',
+            });
+        }
+    },
+
     async getUsersByTodaysBirthday(req, res) {
         try {
             const date = new Date();

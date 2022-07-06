@@ -16,6 +16,11 @@ UserRouter.get(
   UserController.getUserEmailByUsername
 );
 UserRouter.get(
+  '/getUserEmailByCpf',
+  UserValidator.getUserEmailByCpf,
+  UserController.getUserEmailByCpf
+);
+UserRouter.get(
   '/getExcludedAssociate',
   UserValidator.getExcludedAssociate,
   checksUserIsAdmin,
