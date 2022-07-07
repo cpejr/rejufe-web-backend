@@ -77,19 +77,29 @@ module.exports = {
     }
   },
   async update(req, res) {
-    try {
-      const { id } = req.params;
-      const quizzes = req.body;
-      const result = await Quizzes.findByIdAndUpdate({ _id: id }, quizzes);
-      return res.status(200).json({_id:result?.id, alreadyVoted:result?.alreadyVoted, closingDate: result?.closingDate, description: result?.description, openingDate: result?.openingDate, title: result?.title, toVote: result?.toVote});
-    } catch (err) {
-      console.error(err);
+    const { id } = req.params;
+    const date = new Date();
+    const quizz = await Quizzes.findOne({ _id: id });
+    if (quizz.closingDate > date) {
+      try {
+        const quizzes = req.body;
+        const result = await Quizzes.findByIdAndUpdate({ _id: id }, quizzes);
+        return res.status(200).json({_id:result?.id, alreadyVoted:result?.alreadyVoted, closingDate: result?.closingDate, description: result?.description, openingDate: result?.openingDate, title: result?.title, toVote: result?.toVote});
+      } catch (err) {
+        console.error(err);
+        return res.status(500).json({
+          notification:
+            'Internal server error while trying to update a quiz by id',
+        });
+      }
+    } else {
       return res.status(500).json({
         notification:
-          'Internal server error while trying to update a quiz by id',
-      });
+          'Não é mais possível votar/alterar o quizz',
+      }); 
     }
   },
+
   async delete(req, res) {
     try {
       const { id } = req.params;
