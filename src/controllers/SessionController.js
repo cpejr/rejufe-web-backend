@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const Firebase = require('../utils/Firebase');
+const session = require('express-session');
 const UsuarioModel = require('../models/Usuario.js');
 
 module.exports = {
@@ -29,9 +30,9 @@ module.exports = {
       }
       const user = await UsuarioModel.findOne({ firebaseId });
       const accessToken = rememberMe ? jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: '7d',
+        expiresIn: 60 * 60 * 24 * 5,
       }) : jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: '8h',
+        expiresIn: 60 * 60 * 8,
       });
 
       request.session.cookie.maxAge = rememberMe ? 1000 * 60 * 60 * 24 * 5 : 1000 * 60 * 60 * 8; // 5 dias se true ou 8 horas se false
