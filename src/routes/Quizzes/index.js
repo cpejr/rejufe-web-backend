@@ -44,6 +44,12 @@ QuizzesRouter.put(
   requiresLogin,
   QuizzesController.update
 );
+QuizzesRouter.put(
+  '/votes/:id',
+  QuizzesValidator.updateVotes,
+  requiresLogin,
+  QuizzesController.updateVote
+);
 QuizzesRouter.delete(
   '/:id',
   QuizzesValidator.delete,
