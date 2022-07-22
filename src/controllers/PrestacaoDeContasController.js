@@ -22,8 +22,8 @@ module.exports = {
       files?.forEach(file => {
         accountability[`${file.fieldname}`] = file.id;
       })
-      if (req.body.pdf === '') {
-        return res.status(400).json({ error: `pdf is required` });
+      if (req.body.archive_1 === '') {
+        return res.status(400).json({ error: `archive_1 is required` });
       }
       await Accountability.create(accountability);
       return res.status(200).json(accountability);
