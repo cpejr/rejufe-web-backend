@@ -100,7 +100,7 @@ module.exports = {
       id: Joi.string().required(),
     }),
     [Segments.BODY]: Joi.object().keys({
-      index: Joi.number().optional(),
+      index: Joi.number().required(),
     })
   }),
 
