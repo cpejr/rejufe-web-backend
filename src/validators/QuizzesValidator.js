@@ -93,6 +93,17 @@ module.exports = {
     }).min(1),
   }),
 
+  updateVotes: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .unknown(),
+    [Segments.PARAMS]: Joi.object().keys({
+      id: Joi.string().required(),
+    }),
+    [Segments.BODY]: Joi.object().keys({
+      index: Joi.number().required(),
+    })
+  }),
+
   delete: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
