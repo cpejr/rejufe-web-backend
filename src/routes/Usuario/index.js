@@ -29,7 +29,6 @@ UserRouter.get(
 UserRouter.get(
   '/',
   UserValidator.getAll,
-  checksUserIsAdmin,
   UserController.getAll
 );
 UserRouter.get(
