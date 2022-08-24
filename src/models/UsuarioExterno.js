@@ -60,11 +60,6 @@ const ExternalUserSchema = new mongoose.Schema({
         default: 'USUARIO EM ESPERA',
 
     },
-    judicial_section: {
-        type: String,
-        require: false,
-        enum: ['SE', 'AL', 'PE', 'PB', 'RN', 'CE'],
-    },
     spouse: {
         type: String,
         require: false,
@@ -109,7 +104,7 @@ const ExternalUserSchema = new mongoose.Schema({
     allocation: {
         type: String,
         require: true,
-        enum: ['CEARÁ', 'RIO GRANDE DO NORTE', 'PARAÍBA', 'PERNAMBUCO', 'ALAGOAS', 'SERGIPE'],
+        enum: ['TRF', 'CEARÁ', 'RIO GRANDE DO NORTE', 'PARAÍBA', 'PERNAMBUCO', 'ALAGOAS', 'SERGIPE'],
     },
     acting: {
         type: String,

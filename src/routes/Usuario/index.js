@@ -32,10 +32,10 @@ UserRouter.get(
   UserController.getAll
 );
 UserRouter.get(
-  '/section/:section',
-  UserValidator.getBySection,
+  '/allocation/:allocation',
+  UserValidator.getByAllocation,
   checksUserIsAdmin,
-  UserController.getUsersBySection,
+  UserController.getUsersByAllocation,
 );
 UserRouter.get(
   '/externalAssociate',

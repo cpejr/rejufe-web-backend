@@ -71,12 +71,12 @@ module.exports = {
         }
     },
 
-    async getUsersBySection(req, res) {
+    async getUsersByAllocation(req, res) {
         try {
             const limit = 50;
             const times = req.query.times;
-            const { section } = req.params;
-            const user = await User.find({ judicial_section: section }).limit(limit).skip(limit * times);
+            const { allocation } = req.params;
+            const user = await User.find({ allocation: allocation }).limit(limit).skip(limit * times);
             return res.status(200).json(user);
         } catch (err) {
             console.error(err);
