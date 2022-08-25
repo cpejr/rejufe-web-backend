@@ -48,7 +48,6 @@ module.exports = {
     async createExternalAssociate(req, res) {
         try {
             const user = req.body;
-
             await ExternalUser.create(user);
             return res.status(200).json(user);
         } catch (err) {
