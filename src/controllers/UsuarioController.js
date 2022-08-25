@@ -75,8 +75,8 @@ module.exports = {
         try {
             const limit = 50;
             const times = req.query.times;
-            const { allocation } = req.params;
-            const user = await User.find({ allocation: allocation }).limit(limit).skip(limit * times);
+            const { allocation_ } = req.params;
+            const user = await User.find({ allocation: allocation_ }).limit(limit).skip(limit * times);
             return res.status(200).json(user);
         } catch (err) {
             console.error(err);
