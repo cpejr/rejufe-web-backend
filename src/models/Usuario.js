@@ -119,7 +119,7 @@ const UserSchema = new mongoose.Schema({
     allocation: {
         type: String,
         require: true,
-        enum: ['TRF', 'CEARÁ', 'RIO GRANDE DO NORTE', 'PARAÍBA', 'PERNAMBUCO', 'ALAGOAS', 'SERGIPE'],
+        enum: ['TRF', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE'],
     },
     acting: {
         type: String,
