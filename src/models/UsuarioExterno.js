@@ -104,7 +104,7 @@ const ExternalUserSchema = new mongoose.Schema({
     allocation: {
         type: String,
         require: true,
-        enum: ['TRF', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE'],
+        enum: ['TRF 5', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE'],
     },
     acting: {
         type: String,
