@@ -1,4 +1,7 @@
+const { ToVoteNotification } = require('../mail/mail.js');
+const nodemailer = require('nodemailer');
 const Quizzes = require('../models/Quizzes.js');
+
 
 module.exports = {
   async create(req, res) {
@@ -143,4 +146,64 @@ module.exports = {
       });
     }
   },
+
+  async getToVoteMembers(req, res) {
+    try {
+      const { quizzId } = req.params;
+      const toVoteMembers = (await Quizzes
+        .find({ _id: quizzId })
+        .populate('toVote')
+        .select('toVote -_id'))[0].toVote;
+      return res.status(200).json(toVoteMembers);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({
+        notification: 'Internal server error while trying to get "to vote members" by quizz id',
+      });
+    }
+  },
+
+
+  async sendEmailToVoteMembers(req, res) {
+    try {
+      const { quizzId } = req.params;
+      const data = (await Quizzes
+        .find({ _id: quizzId })
+        .populate({ 
+          path: 'toVote', 
+          select: 'name email '
+        })
+        .select('toVote title -_id'))[0];
+
+      const { title: quizzTitle, toVote: toVoteMembers } = data;
+
+      const requests = toVoteMembers.map((member) => ToVoteNotification({
+        to: member.email,
+        name: member.name,
+        quizzTitle
+      }));
+
+      const responses = await Promise.all(requests);
+      responses.forEach((response) => console.log(nodemailer.getTestMessageUrl(response)));
+
+      for (const member of toVoteMembers){
+        const emailContent = {
+          to: member.email,
+          name: member.name,
+          quizzTitle
+        }
+        console.log(emailContent);
+        // await ToVoteNotification(emailContent);
+      }
+      console.log(toVoteMembers.length);
+      console.log('----------------------------------------------')
+
+      return res.status(200).json(toVoteMembers);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({
+        notification: 'Internal server error while trying to send emails',
+      });
+    }
+  }
 };

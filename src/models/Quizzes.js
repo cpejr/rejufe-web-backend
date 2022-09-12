@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const QuizzesSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -9,11 +10,13 @@ const QuizzesSchema = new mongoose.Schema({
       require: true,
     },
     toVote: [{
-        type: String,
+        type: mongoose.Types.ObjectId,
+        ref: 'Usuario',
         require: true,
     }],
     alreadyVoted: [{
-        type: String,
+        type: mongoose.Types.ObjectId,
+        ref: 'Usuario',
         require: true,
     }],
     openingDate: {

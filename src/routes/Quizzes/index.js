@@ -58,4 +58,16 @@ QuizzesRouter.delete(
   QuizzesController.delete
 );
 
+QuizzesRouter.post(
+  '/toVoteMembers/:quizzId',
+  QuizzesValidator.getToVoteMembers,
+  QuizzesController.getToVoteMembers
+);
+
+QuizzesRouter.post(
+  '/sendEmailToVote/:quizzId',
+  QuizzesValidator.sendEmailToVoteMembers,
+  QuizzesController.sendEmailToVoteMembers
+);
+
 module.exports = QuizzesRouter;

@@ -114,4 +114,26 @@ module.exports = {
       id: Joi.string().required(),
     }),
   }),
+  
+  getToVoteMembers: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
+    [Segments.PARAMS]: Joi.object().keys({
+      quizzId: Joi.string().required(),
+    }),
+  }),
+
+  sendEmailToVoteMembers: celebrate({
+    [Segments.HEADERS]: Joi.object()
+      .keys({
+        authorization: Joi.string().required(),
+      })
+      .unknown(),
+    [Segments.PARAMS]: Joi.object().keys({
+      quizzId: Joi.string().required(),
+    }),
+  }),
 };
