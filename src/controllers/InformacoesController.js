@@ -1,6 +1,8 @@
 const Informations = require('../models/Informacoes.js');
 var Grid = require("gridfs-stream");
 var mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
+
 
 let gfs, gridfsBucket;
 mongoose.connection.once("open", () => {
@@ -83,7 +85,7 @@ module.exports = {
             const information = await Informations.findOne({ _id: id });
             files?.forEach(file => {
                 if (information[`${file.fieldname}`]) {
-                  gridfsBucket.delete(ObjectId(model[`${file.fieldname}`]));
+                  gridfsBucket.delete(mongoose.Types.ObjectId(information[`${file.fieldname}`]));
                 } 
                 informations[`${file.fieldname}`] = file.id;
               })
