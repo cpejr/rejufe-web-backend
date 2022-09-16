@@ -62,11 +62,14 @@ module.exports = {
 
     async getAll(req, res) {
         try {
-            const { times, field, filter } = req.query;
+            const { times, field, filter, consultFlag } = req.query;
             let query = User.find();
 
+            if (consultFlag) query = query.find({ type: { $ne: 'administrador' }, status: 'A' });
             if (filter) query = query.find({ name: { $regex: diacriticSensitiveRegex(filter), $options: 'i' } });
             if (field) query = query.find({ judicial_section: field });
+
+            console.log(await User.find({ type: { $ne: 'administrador' }, status: 'A' }))
 
             const user = await query.skip(times * 50).limit(50);
             return res.status(200).json(user);
