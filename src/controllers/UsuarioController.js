@@ -3,6 +3,7 @@ const moment = require('moment');
 const User = require('../models/Usuario.js');
 const ExternalUser = require('../models/UsuarioExterno.js');
 const Firebase = require('../utils/Firebase');
+const diacriticSensitiveRegex = require('../utils/diacriticSensitiveRegex.js')
 
 module.exports = {
     async create(req, res) {
@@ -61,7 +62,14 @@ module.exports = {
 
     async getAll(req, res) {
         try {
-            const user = await User.find().skip(req.query.times * 50).limit(50);
+            const { times, field, filter, consultFlag } = req.query;
+            let query = {};
+
+            if (consultFlag) query = { ...query, type: { $ne: 'administrador' }, status: 'A' };
+            if (filter) query = { ... query, name: { $regex: diacriticSensitiveRegex(filter), $options: 'i' } };
+            if (field) query = { ...query, judicial_section: field };
+
+            const user = await User.find(query).skip(times * 50).limit(50);
             return res.status(200).json(user);
         } catch (err) {
             console.error(err);

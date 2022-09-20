@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 const bcrypt = require('bcryptjs');
 
-
 const UserSchema = new mongoose.Schema({
     firebaseId: {
         type: String,
