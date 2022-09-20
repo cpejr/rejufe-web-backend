@@ -106,7 +106,8 @@ module.exports = {
     [Segments.QUERY]: Joi.object().keys({
       times: Joi.number().integer().required(),
       field: Joi.string().allow(null, ''),
-      filter: Joi.allow(null, ''),
+      filter: Joi.string().allow(null, ''),
+      consultFlag: Joi.bool().allow(null),
     }),
   }),
 
