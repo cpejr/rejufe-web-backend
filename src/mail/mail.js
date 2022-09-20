@@ -1,27 +1,8 @@
 const nodemailer = require('nodemailer');
+const { create } = require('../models/Usuario');
 require("dotenv").config();
 
-async function sendEmailTest({ from, to, subject, text, html }) {
-
-    const testAccount = await nodemailer.createTestAccount();
-    const transporter = nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
-        port: 587,
-        secure: false,
-        auth: {
-          user: testAccount.user,
-          pass: testAccount.pass,
-        },
-      });
-
-    return transporter.sendMail({
-        from,
-        to,
-        subject,
-        text,
-        html
-    });
-}
+const testAccount = nodemailer.createTestAccount();
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -77,36 +58,5 @@ module.exports = {
             text: content,
         };
         return transporter.sendMail(emailContent);
-    },
-    async ToVoteNotification({ to, name, quizzTitle }) {
-        const subject = `Sistema REJUFE: Enquete pendente`;
-        const text = `
-            Prezado(a) ${name},
-            
-
-            A sua participação na enquete ${quizzTitle} está sendo solicitada.
-            Por favor, clique aqui para acessar o sistema.
-
-
-            Rede REJUFE`;
-        const html = `
-            <p>Prezado(a) <strong>${name}</strong>,</p>
-            </br>
-            </br>
-            <p>A sua participação na enquete <strong>${quizzTitle}</strong> está sendo solicitada. 
-            Por favor, <a href="http://localhost:3000/login" target="_blank">clique aqui</a> para acessar o sistema.</p>
-            </br>
-            </br>
-            <p><strong>Rede REJUFE</strong></p>`;
-
-        const emailContent = {
-            from: process.env.MAIL_USERNAME,
-            to,
-            subject,
-            text,
-            html
-        };
-        // return transporter.sendMail(emailContent);
-        return sendEmailTest(emailContent);
     }
 }
