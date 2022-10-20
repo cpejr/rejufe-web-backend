@@ -158,23 +158,21 @@ module.exports = {
 
     async getUsersByTodaysBirthday(req, res) {
         try {
-            const currDayAndMonth = moment(new Date()).format("DD/MM");
-            const users = await User.aggregate([
-                {
-                  $project: {
-                    name: 1,
-                    email: 1,
-                    cell_phone_number: 1,
-                    birthString: { $dateToString: { format: "%d/%m", date: "$birth" } },
-                  }
-                },
-                {
-                  $match: {
-                    birthString: currDayAndMonth
-                  }
+          const date = new Date();
+          const users = await User.aggregate([
+              { 
+                $match: {
+                  $expr: {
+                    $and: [
+                      { $eq: [{ $dayOfMonth: '$birth' }, { $dayOfMonth: date }] },
+                      { $eq: [{ $month: '$birth' }, { $month: date }] },
+                    ],
+                  },
                 }
-              ]);
-            return res.status(200).json(users);
+              },
+              { $project: {name: "$name", email: "$email", cell_phone_number: "$cell_phone_number" }},
+            ])
+          return res.status(200).json(users);
         } catch (err) {
             console.error(err);
             return res.status(500).json({
