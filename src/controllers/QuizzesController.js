@@ -182,21 +182,7 @@ module.exports = {
         name: member.name,
         quizzTitle
       }));
-
-      const responses = await Promise.all(requests);
-      responses.forEach((response) => console.log(nodemailer.getTestMessageUrl(response)));
-
-      for (const member of toVoteMembers){
-        const emailContent = {
-          to: member.email,
-          name: member.name,
-          quizzTitle
-        }
-        console.log(emailContent);
-        // await ToVoteNotification(emailContent);
-      }
-      console.log(toVoteMembers.length);
-      console.log('----------------------------------------------')
+      await Promise.all(requests);
 
       return res.status(200).json(toVoteMembers);
     } catch (err) {
