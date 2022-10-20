@@ -1,4 +1,3 @@
-const { SchemaTypeOptions } = require('mongoose');
 const moment = require('moment');
 const User = require('../models/Usuario.js');
 const ExternalUser = require('../models/UsuarioExterno.js');
@@ -159,22 +158,22 @@ module.exports = {
 
     async getUsersByTodaysBirthday(req, res) {
         try {
-            const date = new Date();
-            const day = moment(date).format('DD');
-            const month = moment(date).format('MM');
+            const currDayAndMonth = moment(new Date()).format("DD/MM");
             const users = await User.aggregate([
-                { 
-                  $match: {
-                    $expr: {
-                      $and: [
-                        { $eq: [{ $dayOfMonth: '$birth' }, { $dayOfMonth: new Date() }] },
-                        { $eq: [{ $month: '$birth' }, { $month: new Date() }] },
-                      ],
-                    },
+                {
+                  $project: {
+                    name: 1,
+                    email: 1,
+                    cell_phone_number: 1,
+                    birthString: { $dateToString: { format: "%d/%m", date: "$birth" } },
                   }
                 },
-                { $project: {name: "$name", email: "$email", cell_phone_number: "$cell_phone_number" }},
-              ])
+                {
+                  $match: {
+                    birthString: currDayAndMonth
+                  }
+                }
+              ]);
             return res.status(200).json(users);
         } catch (err) {
             console.error(err);
