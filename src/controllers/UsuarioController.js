@@ -48,7 +48,6 @@ module.exports = {
     async createExternalAssociate(req, res) {
         try {
             const user = req.body;
-
             await ExternalUser.create(user);
             return res.status(200).json(user);
         } catch (err) {
@@ -71,12 +70,12 @@ module.exports = {
         }
     },
 
-    async getUsersBySection(req, res) {
+    async getUsersByAllocation(req, res) {
         try {
             const limit = 50;
             const times = req.query.times;
-            const { section } = req.params;
-            const user = await User.find({ judicial_section: section }).limit(limit).skip(limit * times);
+            const { allocation_ } = req.params;
+            const user = await User.find({ allocation: allocation_ }).limit(limit).skip(limit * times);
             return res.status(200).json(user);
         } catch (err) {
             console.error(err);
