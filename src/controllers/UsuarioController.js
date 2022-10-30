@@ -1,4 +1,3 @@
-const moment = require('moment');
 const User = require('../models/Usuario.js');
 const ExternalUser = require('../models/UsuarioExterno.js');
 const Firebase = require('../utils/Firebase');
@@ -158,14 +157,13 @@ module.exports = {
 
     async getUsersByTodaysBirthday(req, res) {
         try {
-          const date = new Date();
           const users = await User.aggregate([
               { 
                 $match: {
                   $expr: {
                     $and: [
-                      { $eq: [{ $dayOfMonth: '$birth' }, { $dayOfMonth: date }] },
-                      { $eq: [{ $month: '$birth' }, { $month: date }] },
+                      { $eq: [{ $dayOfMonth: '$birth' }, { $dayOfMonth: new Date() }] },
+                      { $eq: [{ $month: '$birth' }, { $month: new Date() }] },
                     ],
                   },
                 }
