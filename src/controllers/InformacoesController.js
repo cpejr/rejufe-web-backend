@@ -1,7 +1,6 @@
 const Informations = require('../models/Informacoes.js');
 var Grid = require("gridfs-stream");
 var mongoose = require("mongoose");
-const ObjectId = mongoose.Types.ObjectId;
 
 
 let gfs, gridfsBucket;

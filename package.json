@@ -6,8 +6,8 @@
   "author": "Pedro Babosa <pedrobarbosa@cpejr.com.br>",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "node index.js",
+    "start": "node index.js"
   },
   "dependencies": {
     "axios": "^0.26.1",
