@@ -18,6 +18,7 @@ module.exports = {
           .status(403)
           .json({ error: 'Invalid authorization token' });
 
+        console.log({data})
       request.session = data;
 
       next();
@@ -27,6 +28,7 @@ module.exports = {
     if (request.session && request.session.user) {
       return next();
     } else {
+      console.log({ session: request.session})
       return response
         .status(401)
         .json({ error: 'You must be logged in to view this page.' });

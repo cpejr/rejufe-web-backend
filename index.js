@@ -28,7 +28,8 @@ mongoose.connect(process.env.DB_URL, {
 
 const isProduction = process.env.NODE_ENV === 'production';
 app.use(cors({
-    origin: process.env.FRONTEND_URL,
+    // origin: process.env.FRONTEND_URL,
+    origin: '*',
     credentials: true
 }));
 app.use(bodyParser.json());
@@ -39,8 +40,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        httpOnly: !isProduction, // Deve ser definido como false em produção
-        secure: isProduction, // Deve ser definido como true em produção
+        httpOnly: true, // Deve ser definido como false em produção
+        secure: false, // Deve ser definido como true em produção
         maxAge: 1000 * 60 * 60 * 8 // 8 horas
     },
     store: MongoStore.create({
