@@ -18,7 +18,7 @@ module.exports = {
           .status(403)
           .json({ error: 'Invalid authorization token' });
   
-      request.session = data;
+      request.session.user = data?.user;
 
       next();
     });
