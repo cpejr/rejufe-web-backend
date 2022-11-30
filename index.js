@@ -29,7 +29,6 @@ mongoose.connect(process.env.DB_URL, {
 const isProduction = process.env.NODE_ENV === 'production';
 app.use(cors({
     origin: process.env.FRONTEND_URL,
-    origin: '*',
     credentials: true
 }));
 app.use(bodyParser.json());
