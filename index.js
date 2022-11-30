@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const path = require('path');
 const mongoose = require('mongoose');
 var Grid = require("gridfs-stream");
 const session = require('express-session');
@@ -27,8 +26,9 @@ mongoose.connect(process.env.DB_URL, {
     }
 })
 
+const isProduction = process.env.NODE_ENV === 'production';
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: process.env.FRONTEND_URL,
     credentials: true
 }));
 app.use(bodyParser.json());
@@ -39,18 +39,16 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        httpOnly: true, // Deve ser definido como false em produção
-        secure: false, // Deve ser definido como true em produção
+        httpOnly: !isProduction, // Deve ser definido como false em produção
+        secure: isProduction, // Deve ser definido como true em produção
         maxAge: 1000 * 60 * 60 * 8 // 8 horas
     },
     store: MongoStore.create({
         mongoUrl: process.env.DB_URL
     }),
 }));
+app.use(errors());
 app.use(routes)
 
-app.use(errors());
-
-app.listen(3333, function () {
-    console.log('Listening on port: 3333')
-});
+const PORT = process.env.PORT || 3333
+app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
