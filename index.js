@@ -39,8 +39,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        httpOnly: false, // Deve ser definido como false em produção
-        secure: true, // Deve ser definido como true em produção
+        httpOnly: !isProduction, // Deve ser definido como false em produção
+        secure: isProduction, // Deve ser definido como true em produção
         maxAge: 1000 * 60 * 60 * 8 // 8 horas
     },
     store: MongoStore.create({
