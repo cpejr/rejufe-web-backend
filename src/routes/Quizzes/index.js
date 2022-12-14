@@ -51,7 +51,7 @@ QuizzesRouter.put(
   QuizzesController.updateVote
 );
 QuizzesRouter.delete(
-  '/:id',
+  '/delete/:id',
   QuizzesValidator.delete,
   requiresLogin,
   checksUserIsAdmin,
