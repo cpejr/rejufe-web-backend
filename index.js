@@ -48,8 +48,8 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      httpOnly: isProduction, // Deve ser definido como false em produção
-      secure: isProduction, // Deve ser definido como true em produção
+      httpOnly: true, // Deve ser definido como false em produção
+      secure: true, // Deve ser definido como true em produção
       maxAge: 1000 * 60 * 60 * 8, // 8 horas
     },
     store: MongoStore.create({
@@ -57,6 +57,7 @@ app.use(
     }),
   })
 );
+console.log(isProduction);
 app.use(errors());
 app.use(routes);
 
