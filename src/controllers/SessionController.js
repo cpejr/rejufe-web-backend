@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const Firebase = require('../utils/Firebase');
-const session = require('express-session');
 const UsuarioModel = require('../models/Usuario.js');
 
 module.exports = {
@@ -41,8 +40,6 @@ module.exports = {
         ? 1000 * 60 * 60 * 24 * 5
         : 1000 * 60 * 60 * 8; // 5 dias se true ou 8 horas se false
       request.session.user = user;
-
-      console.log('Sessão quando no Sign In: ', { session: request.session });
 
       return response.status(200).json({ user, accessToken });
     } catch (error) {

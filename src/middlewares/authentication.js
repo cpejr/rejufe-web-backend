@@ -17,14 +17,14 @@ module.exports = {
         return response
           .status(403)
           .json({ error: 'Invalid authorization token' });
-  
+
       request.session.user = data?.user;
 
       next();
     });
   },
   async requiresLogin(request, response, next) {
-    console.log({ session: request.session })
+    console.log('Sessão no requiresLogin: ', { session: request.session });
     if (request.session && request.session.user) {
       return next();
     } else {
@@ -35,7 +35,11 @@ module.exports = {
   },
   async checksUserIsAdmin(request, response, next) {
     /* Verificar se o usuario logado na sessão é do tipo administrator */
-    if (request.session && request.session.user && request.session.user.type === 'administrador') {
+    if (
+      request.session &&
+      request.session.user &&
+      request.session.user.type === 'administrador'
+    ) {
       next();
     } else {
       response
