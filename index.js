@@ -30,12 +30,15 @@ mongoose.connect(
 );
 
 const isProduction = process.env.NODE_ENV === 'production';
+if (isProduction) app.set('trust proxy', 1);
+
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
@@ -46,7 +49,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: isProduction, // Deve ser definido como false em produção
-      secure: !isProduction, // Deve ser definido como true em produção
+      secure: isProduction, // Deve ser definido como true em produção
       maxAge: 1000 * 60 * 60 * 8, // 8 horas
     },
     store: MongoStore.create({
