@@ -1,15 +1,15 @@
-require("dotenv").config();
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const mongoose = require("mongoose");
-var Grid = require("gridfs-stream");
-const session = require("express-session");
-var MongoStore = require("connect-mongo");
-const { errors } = require("celebrate");
+require('dotenv').config();
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const mongoose = require('mongoose');
+var Grid = require('gridfs-stream');
+const session = require('express-session');
+var MongoStore = require('connect-mongo');
+const { errors } = require('celebrate');
 
-const routes = require("./src/routes/index");
-global.XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+const routes = require('./src/routes/index');
+global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 const app = express();
 
 mongoose.connect(
@@ -23,13 +23,13 @@ mongoose.connect(
       console.log(err);
     } else {
       gfs = Grid(mongoose.connection.db, mongoose.mongo);
-      gfs.collection("uploads");
-      console.log("Connected to bucket");
+      gfs.collection('uploads');
+      console.log('Connected to bucket');
     }
   }
 );
 
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = process.env.NODE_ENV === 'production';
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
@@ -45,8 +45,8 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      httpOnly: !isProduction, // Deve ser definido como false em produção
-      secure: isProduction, // Deve ser definido como true em produção
+      httpOnly: isProduction, // Deve ser definido como false em produção
+      secure: !isProduction, // Deve ser definido como true em produção
       maxAge: 1000 * 60 * 60 * 8, // 8 horas
     },
     store: MongoStore.create({
