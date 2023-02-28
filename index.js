@@ -51,6 +51,7 @@ app.use(
       httpOnly: isProduction, // Deve ser definido como false em produção
       secure: isProduction, // Deve ser definido como true em produção
       maxAge: 1000 * 60 * 60 * 8, // 8 horas
+      sameSite: 'none',
     },
     store: MongoStore.create({
       mongoUrl: process.env.DB_URL,
