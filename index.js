@@ -64,5 +64,5 @@ app.use(routes);
 
 const PORT = process.env.PORT || 3333;
 app.listen(PORT, () =>
-  console.log(`Listening on port: ${PORT}. isProduction=${isProduction}`)
+  console.log(`Listening on port: ${PORT}`)
 );

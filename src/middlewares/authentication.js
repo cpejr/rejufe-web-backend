@@ -24,7 +24,6 @@ module.exports = {
     });
   },
   async requiresLogin(request, response, next) {
-    console.log('Sessão no requiresLogin: ', { session: request.session });
     if (request.session && request.session.user) {
       return next();
     } else {
