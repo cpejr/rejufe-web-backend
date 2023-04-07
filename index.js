@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 var Grid = require('gridfs-stream');
 const session = require('express-session');
 var MongoStore = require('connect-mongo');
-const { errors } = require('celebrate');
+const { errors, isCelebrateError } = require('celebrate');
 
 const routes = require('./src/routes/index');
 global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
@@ -59,8 +59,16 @@ app.use(
   })
 );
 
-app.use(errors());
 app.use(routes);
+app.use((err, req, res, next) => {
+  console.log(err)
+  if (isCelebrateError(err)) {
+      console.error(err);
+  }
+  next(err);
+});
+app.use(errors());
+
 
 const PORT = process.env.PORT || 3333;
 app.listen(PORT, () =>
