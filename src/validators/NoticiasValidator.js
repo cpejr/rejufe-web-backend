@@ -57,7 +57,6 @@ module.exports = {
       archive_2: Joi.string().allow(''),
       photos: Joi.string().allow(''),
       status: Joi.string().valid('I', 'A').insensitive(),
-      send_site: Joi.boolean(),
       _id: Joi.string(),
       date: Joi.date(),
       news_sequential_id: Joi.string(),

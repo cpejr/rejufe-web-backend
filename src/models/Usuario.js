@@ -74,11 +74,6 @@ const UserSchema = new mongoose.Schema({
         enum: ['A', 'E'],
 
     },
-    judicial_section: {
-        type: String,
-        require: false,
-        enum: ['', 'SE', 'AL', 'PE', 'PB', 'RN', 'CE'],
-    },
     spouse: {
         type: String,
         require: false,
@@ -123,7 +118,7 @@ const UserSchema = new mongoose.Schema({
     allocation: {
         type: String,
         require: true,
-        enum: ['CEARÁ', 'RIO GRANDE DO NORTE', 'PARAÍBA', 'PERNAMBUCO', 'ALAGOAS', 'SERGIPE'],
+        enum: ['TRF 5', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE'],
     },
     acting: {
         type: String,

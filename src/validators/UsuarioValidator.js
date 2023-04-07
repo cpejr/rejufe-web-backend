@@ -30,7 +30,7 @@ module.exports = {
       profissional_district: Joi.string().required(),
       profissional_city: Joi.string().required(),
       profissional_state: Joi.string().required(),
-      allocation: Joi.string().valid('CEARÁ', 'RIO GRANDE DO NORTE', 'PARAÍBA', 'PERNAMBUCO', 'ALAGOAS', 'SERGIPE').required(),
+      allocation: Joi.string().valid('TRF 5', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE').required(),
       acting: Joi.string().required(),
       personal_cep: Joi.string(),
       personal_address: Joi.string(),
@@ -42,7 +42,6 @@ module.exports = {
       telephone: Joi.string(),
       fax: Joi.string(),
       cell_phone_number: Joi.string().required(),
-      judicial_section: Joi.string().valid('', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE').optional(),
       email: Joi.string().email().required(),
       email_REJUFE: Joi.string().optional(),
       email_ASCOM: Joi.string().optional(),
@@ -77,7 +76,7 @@ module.exports = {
       profissional_district: Joi.string().required(),
       profissional_city: Joi.string().required(),
       profissional_state: Joi.string().required(),
-      allocation: Joi.string().valid('CEARÁ', 'RIO GRANDE DO NORTE', 'PARAÍBA', 'PERNAMBUCO', 'ALAGOAS', 'SERGIPE').required(),
+      allocation: Joi.string().valid('TRF 5', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE').required(),
       acting: Joi.string().required(),
       personal_cep: Joi.string(),
       personal_address: Joi.string(),
@@ -89,7 +88,6 @@ module.exports = {
       telephone: Joi.string(),
       fax: Joi.string(),
       cell_phone_number: Joi.string().required(),
-      judicial_section: Joi.string().valid('CE', 'RN', 'PB', 'PE', 'AL', 'SE').optional().allow(''),
       email: Joi.string().email().required(),
       email_REJUFE: Joi.string().optional(),
       email_ASCOM: Joi.string().optional(),
@@ -111,7 +109,7 @@ module.exports = {
     }),
   }),
 
-  getBySection: celebrate({
+  getByAllocation: celebrate({
     [Segments.HEADERS]: Joi.object()
       .keys({
         authorization: Joi.string().required(),
@@ -209,7 +207,7 @@ module.exports = {
       profissional_district: Joi.string(),
       profissional_city: Joi.string(),
       profissional_state: Joi.string(),
-      allocation: Joi.string().valid('CEARÁ', 'RIO GRANDE DO NORTE', 'PARAÍBA', 'PERNAMBUCO', 'ALAGOAS', 'SERGIPE').insensitive(),
+      allocation: Joi.string().valid('TRF 5', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE'),
       acting: Joi.string(),
       personal_cep: Joi.string(),
       personal_address: Joi.string(),
@@ -221,7 +219,6 @@ module.exports = {
       telephone: Joi.string().optional(),
       fax: Joi.string().optional(),
       cell_phone_number: Joi.string(),
-      judicial_section: Joi.string().valid('', 'CE', 'RN', 'PB', 'PE', 'AL', 'SE').optional().allow(''),
       email: Joi.string().email(),
       email_REJUFE: Joi.string().optional(),
       email_ASCOM: Joi.string().optional(),

@@ -9,6 +9,7 @@ const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../m
 QuizzesRouter.get(
   '/',
   QuizzesValidator.getAll,
+  authenticateToken,
   requiresLogin,
   QuizzesController.getAll
 );

@@ -1,5 +1,3 @@
-const { SchemaTypeOptions } = require('mongoose');
-const moment = require('moment');
 const User = require('../models/Usuario.js');
 const ExternalUser = require('../models/UsuarioExterno.js');
 const Firebase = require('../utils/Firebase');
@@ -49,7 +47,6 @@ module.exports = {
     async createExternalAssociate(req, res) {
         try {
             const user = req.body;
-
             await ExternalUser.create(user);
             return res.status(200).json(user);
         } catch (err) {
@@ -79,12 +76,12 @@ module.exports = {
         }
     },
 
-    async getUsersBySection(req, res) {
+    async getUsersByAllocation(req, res) {
         try {
             const limit = 50;
             const times = req.query.times;
-            const { section } = req.params;
-            const user = await User.find({ judicial_section: section }).limit(limit).skip(limit * times);
+            const { allocation_ } = req.params;
+            const user = await User.find({ allocation: allocation_ }).limit(limit).skip(limit * times);
             return res.status(200).json(user);
         } catch (err) {
             console.error(err);
@@ -167,23 +164,20 @@ module.exports = {
 
     async getUsersByTodaysBirthday(req, res) {
         try {
-            const date = new Date();
-            const day = moment(date).format('DD');
-            const month = moment(date).format('MM');
-            const users = await User.aggregate([
-                { 
-                  $match: {
-                    $expr: {
-                      $and: [
-                        { $eq: [{ $dayOfMonth: '$birth' }, { $dayOfMonth: new Date() }] },
-                        { $eq: [{ $month: '$birth' }, { $month: new Date() }] },
-                      ],
-                    },
-                  }
-                },
-                { $project: {name: "$name", email: "$email", cell_phone_number: "$cell_phone_number" }},
-              ])
-            return res.status(200).json(users);
+          const users = await User.aggregate([
+              { 
+                $match: {
+                  $expr: {
+                    $and: [
+                      { $eq: [{ $dayOfMonth: '$birth' }, { $dayOfMonth: new Date() }] },
+                      { $eq: [{ $month: '$birth' }, { $month: new Date() }] },
+                    ],
+                  },
+                }
+              },
+              { $project: {name: "$name", email: "$email", cell_phone_number: "$cell_phone_number" }},
+            ])
+          return res.status(200).json(users);
         } catch (err) {
             console.error(err);
             return res.status(500).json({
