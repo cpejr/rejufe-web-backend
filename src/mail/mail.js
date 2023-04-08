@@ -51,7 +51,7 @@ module.exports = {
       };
       return Email.sendEmail(emailContent);
   },
-  ToVoteNotification({ to, name, quizzTitle }) {
+  async ToVoteNotification({ to, name, userId, quizzTitle, quizzId }) {
       const subject = `Sistema REJUFE: Enquete pendente`;
       const text = `
           Prezado(a) ${name},
@@ -67,7 +67,7 @@ module.exports = {
           </br>
           </br>
           <p>A sua participação na enquete <strong>${quizzTitle}</strong> está sendo solicitada. 
-          Por favor, <a href="http://localhost:3000/login" target="_blank">clique aqui</a> para acessar o sistema.</p>
+          Por favor, <a href="${process.env.FRONTEND_URL}/ficha-enquete/${userId}/${quizzId}" target="_blank">clique aqui</a> para acessar o sistema.</p>
           </br>
           </br>
           <p><strong>Rede REJUFE</strong></p>`;

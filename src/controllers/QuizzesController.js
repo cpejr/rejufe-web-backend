@@ -180,7 +180,9 @@ module.exports = {
       const requests = toVoteMembers.map((member) => ToVoteNotification({
         to: member.email,
         name: member.name,
-        quizzTitle
+        userId: member._id,
+        quizzTitle,
+        quizzId
       }));
       await Promise.all(requests);
 
