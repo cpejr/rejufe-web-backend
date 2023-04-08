@@ -88,12 +88,12 @@ module.exports = {
   async update(req, res) {
     const { id } = req.params;
     const date = new Date();
-    const quizz = await Quizzes.findOne({ _id: id });
+    const quizz = await Quizzes.findOne({ _id: id }).exec();
     if (quizz.closingDate > date) {
       try {
-        const quizzes = req.body;
-        const result = await Quizzes.findByIdAndUpdate({ _id: id }, quizzes);
-        return res.status(200).json({_id:result?.id, alreadyVoted:result?.alreadyVoted, closingDate: result?.closingDate, description: result?.description, openingDate: result?.openingDate, title: result?.title, toVote: result?.toVote});
+        const updateData = req.body;
+        const updatedQuizz = await quizz.set(updateData).save()
+        return res.status(200).json(updatedQuizz);
       } catch (err) {
         console.error(err);
         return res.status(500).json({
