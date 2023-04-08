@@ -2,11 +2,11 @@ const { celebrate, Segments, Joi } = require('celebrate');
 
 module.exports = {
   create: celebrate({
-    [Segments.HEADERS]: Joi.object()
-      .keys({
-        authorization: Joi.string().required(),
-      })
-      .unknown(),
+    // [Segments.HEADERS]: Joi.object()
+    //   .keys({
+    //     authorization: Joi.string().required(),
+    //   })
+    //   .unknown(),
     [Segments.BODY]: Joi.object().keys({
       email: Joi.string().required(),
       quantity: Joi.number().optional(),

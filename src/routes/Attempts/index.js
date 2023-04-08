@@ -4,29 +4,27 @@ const AttemptsRouter = express.Router();
 const AttemptsController = require('../../controllers/AttemptsController.js');
 const AttemptsValidator = require('../../validators/AttemptsValidator.js');
 
-const { authenticateToken, requiresLogin, checksUserIsAdmin } = require('../../middlewares/authentication');
-
 AttemptsRouter.get(
-    '/getAttemptsByEmail',
+    '/getAttemptsByEmail/:email',
+    AttemptsValidator.getAttemptsByEmail,
     AttemptsController.getAttemptsByEmail,
-    AttemptsValidator.getAttemptsByEmail
 
 )
 AttemptsRouter.post(
     '/',
+    AttemptsValidator.create,
     AttemptsController.create,
-    AttemptsValidator.create
 );
 AttemptsRouter.put(
-    '/resetByEmail',
+    '/resetByEmail/:email',
+    AttemptsValidator.resetByEmail,
     AttemptsController.resetByEmail,
-    AttemptsValidator.resetByEmail
 );
 
 AttemptsRouter.put(
-    '/updateTime',
+    '/updateTime/:email',
+    AttemptsValidator.updateTimeByEmail,
     AttemptsController.updateTimeByEmail,
-    AttemptsValidator.updateTimeByEmail
 );
 
 module.exports = AttemptsRouter

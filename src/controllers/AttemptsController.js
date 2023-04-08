@@ -4,7 +4,7 @@ module.exports = {
 
     async getAttemptsByEmail(req, res) {
         try {
-            const { email } = req.query;
+            const { email } = req.params;
             const result = await Attempts.findOne({ email });
 
             return res.status(200).json({email:result?.email, quantity:result?.quantity, lock_time: result?.lock_time});
@@ -31,8 +31,8 @@ module.exports = {
 
     async resetByEmail(req, res) {
         try {
-            const email = req.body.params.email;
-            const result = await Attempts.findOneAndUpdate({email}, {quantity: 0})
+            const { email }= req.params;
+            const result = await Attempts.findOneAndUpdate({ email }, { quantity: 0 })
 
             return res.status(200).json(result);
         } catch (err) {
@@ -45,14 +45,15 @@ module.exports = {
 
     async updateTimeByEmail(req, res) {
         try {
-            const email = req.body.params.email;
-            const time = req.body.params.time;
-            const result = await Attempts.findOne({ email });
-            const { quantity } = result;
-            await Attempts.findOneAndUpdate({email}, {quantity: quantity + 1})
-            await Attempts.findOneAndUpdate({email}, {lock_time: time })
+            const { email } = req.params;
+            const { lock_time } = req.body;
+    
+            const foundAttempt = await Attempts.findOne({ email }).exec();
+            foundAttempt.quantity = foundAttempt.quantity + 1;
+            foundAttempt.lock_time = lock_time
 
-            return res.status(200).json({notification: 'Time and attempts updated!'});
+            await foundAttempt.save()
+            return res.status(200).json({ notification: 'Time and attempts updated!' });
         } catch (err) {
             console.error(err);
             return res.status(500).json({
