@@ -34,7 +34,7 @@ if (isProduction) app.set('trust proxy', 1);
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: process.env.ALLOWED_ORIGINS.split(', '),
     credentials: true,
   })
 );
@@ -61,16 +61,13 @@ app.use(
 
 app.use(routes);
 app.use((err, req, res, next) => {
-  console.log(err)
+  console.log(err);
   if (isCelebrateError(err)) {
-      console.error(err);
+    console.error(err);
   }
   next(err);
 });
 app.use(errors());
 
-
 const PORT = process.env.PORT || 3333;
-app.listen(PORT, () =>
-  console.log(`Listening on port: ${PORT}`)
-);
+app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
