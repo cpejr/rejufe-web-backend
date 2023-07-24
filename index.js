@@ -30,7 +30,10 @@ mongoose.connect(
 );
 
 const isProduction = process.env.NODE_ENV === 'production';
-if (isProduction) app.set('trust proxy', 1);
+if (isProduction) {
+  app.set('trust proxy', 1);
+  console.log('ENTROU AQUIIIIIIII, NO TRUST PROXY');
+}
 
 app.use(
   cors({
@@ -48,7 +51,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      httpOnly: isProduction, // Deve ser definido como false em produção
+      httpOnly: isProduction, // Deve ser definido como true em produção
       secure: isProduction, // Deve ser definido como true em produção
       maxAge: 1000 * 60 * 60 * 8, // 8 horas
       sameSite: 'none',
