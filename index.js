@@ -35,9 +35,11 @@ if (isProduction) {
   console.log('ENTROU AQUIIIIIIII, NO TRUST PROXY');
 }
 
+const ALLOWED_ORIGINS = /^(https?:\/\/((localhost|177\.47\.177\.45)(:\d+)?|([a-zA-Z0-9_-]+\.)?rejufe\.org\.br))(\/.*)?$/;
+
 app.use(
   cors({
-    origin: process.env.ALLOWED_ORIGINS.split(', '),
+    origin: ALLOWED_ORIGINS,
     credentials: true,
   })
 );
